@@ -1,4 +1,4 @@
-//describe your actionTypes here
+
 
 export const SIGNIN_REQUEST = "SIGNIN_REQUEST";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
