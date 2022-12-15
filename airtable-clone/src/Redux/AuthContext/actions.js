@@ -1,4 +1,6 @@
-import { SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS } from "./actionTypes";
+
+import { SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS,SIGNIN_FAILURE, SIGNIN_REQUEST,
+  SIGNIN_SUCCESS, } from "./actionTypes";
 import axios from "axios"
 //describe your actions here
 export const SignUpFunc = (payload) => (dispatch) => {
@@ -15,3 +17,11 @@ export const SignUpFunc = (payload) => (dispatch) => {
         console.log(e);
       });
   };
+  export const Loginfunction = (data) => (dispatch) => {
+  dispatch({ type: SIGNIN_REQUEST });
+
+  dispatch({ type: SIGNIN_SUCCESS, payload: data });
+
+  dispatch({ type: SIGNIN_FAILURE });
+};
+
