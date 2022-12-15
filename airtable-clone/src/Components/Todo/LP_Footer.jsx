@@ -22,10 +22,10 @@ import {
     faLinkedinIn
   } from "@fortawesome/free-brands-svg-icons";
 import React from "react";
-import footer_logo from "../Images/footer_logo.jpeg";
+import footer_logo from "../../Images/footer_logo.jpeg";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import appStore from "../Images/appStore.svg";
-import googlePlay from "../Images/googlePlay.svg";
+import appStore from "../../Images/appStore.svg";
+import googlePlay from "../../Images/googlePlay.svg";
 
 
 const Footer = () => {
