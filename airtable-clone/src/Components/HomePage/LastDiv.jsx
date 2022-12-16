@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Image,
-  Button,
-  GridItem,
-  Grid,
-  Container,
-  Text,
-  Heading,
-  Slider,
-} from "@chakra-ui/react";
+import { Box, GridItem, Grid } from "@chakra-ui/react";
 import {
   Accordion,
   AccordionItem,
@@ -18,7 +8,6 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 
-import { AspectRatio } from "@chakra-ui/react";
 import ImgSlider from "./ImgSlider";
 
 export const LastDiv = () => {

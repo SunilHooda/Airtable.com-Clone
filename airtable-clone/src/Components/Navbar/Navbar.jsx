@@ -26,8 +26,12 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import Logo from "./Logo.png";
 import { useRef } from "react";
+import { useSelector } from "react-redux";
+import SignUpPopUp from "./SignUpPopUp";
+import UserDetail from "./UserDetail";
 
 const Navbar = () => {
+  const isAuth = useSelector((store) => store.AuthReducer.isAuth);
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const hoverColor = "#0768F8";
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,14 +39,7 @@ const Navbar = () => {
 
   return (
     <Box w="100%">
-      <Flex
-        justifyContent="center"
-        align="center"
-        p="1rem"
-        fontSize="14px"
-        bg="#0768F8"
-        w="100%"
-      >
+      <Flex align="center" p="1rem" fontSize="14px" bg="#0768F8" w="100%">
         <Text color={"white"}>
           Welcome to WebTaskIt.com. Why stress over Work Management? Manage here
           at <Link to="/">WebTaskIt.com</Link>
@@ -50,12 +47,12 @@ const Navbar = () => {
       </Flex>
 
       <Flex
-        justify="space-around"
+        justify="space-between"
         align="center"
         p="1rem 0px"
         borderBottom="0.2px solid gray"
       >
-        <Flex align="center" gap="1.5rem">
+        <Flex align="center" gap="1.5rem" ml="1rem">
           <Link to="/">
             <Image
               width="100px"
@@ -168,36 +165,17 @@ const Navbar = () => {
           justify="space-between"
           align="center"
           gap="1.5rem"
+          mr="1rem"
         >
-          <Box
-            bg={hoverColor}
-            color={"white"}
-            p="0.5rem 1rem"
-            fontSize={18}
-            fontWeight={"500"}
-            borderRadius={"1rem"}
-            textAlign={"center"}
-          >
-            <Link to={""}>
-              <Text cursor="pointer">Sign up for free</Text>
-            </Link>
-          </Box>
-          <Box p={2} fontSize={18} fontWeight={"500"} textAlign={"center"}>
-            <Link to={""}>
-              <Text
-                cursor="pointer"
-                _hover={{
-                  color: hoverColor,
-                  textDecoration: "underline",
-                }}
-              >
-                Signin
-              </Text>
-            </Link>
+          <Box display="flex" alignItem="center">
+            {isAuth ? <UserDetail /> : <SignUpPopUp />}
           </Box>
         </Flex>
 
-        <Box display={["inline-block", "inline-block", "none", "none"]}>
+        <Box
+          display={["inline-block", "inline-block", "none", "none"]}
+          mr="2rem"
+        >
           <GiHamburgerMenu
             onClick={onOpen}
             ref={hamburgerMenuRef}
@@ -294,32 +272,8 @@ const Navbar = () => {
                 </Link>
               </Box>
 
-              <Box
-                bg={hoverColor}
-                color={"white"}
-                p="0.5rem 1rem"
-                fontSize={18}
-                fontWeight={"500"}
-                borderRadius={"1rem"}
-                textAlign={"center"}
-              >
-                <Link to={""}>
-                  <Text cursor="pointer">Sign up for free</Text>
-                </Link>
-              </Box>
-
-              <Box p={2} fontSize={18} fontWeight={"500"} textAlign={"center"}>
-                <Link to={""}>
-                  <Text
-                    cursor="pointer"
-                    _hover={{
-                      color: hoverColor,
-                      textDecoration: "underline",
-                    }}
-                  >
-                    Signin
-                  </Text>
-                </Link>
+              <Box m="25px auto">
+                {isAuth ? <UserDetail /> : <SignUpPopUp />}
               </Box>
             </DrawerBody>
           </DrawerContent>

@@ -1,24 +1,6 @@
 import React from "react";
 
-import {
-  Box,
-  Image,
-  Button,
-  GridItem,
-  Grid,
-  Container,
-  Text,
-  Heading,
-} from "@chakra-ui/react";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from "@chakra-ui/react";
-
-import { AspectRatio } from "@chakra-ui/react";
+import { Box, Image, GridItem, Grid } from "@chakra-ui/react";
 
 export const ConnectEv = () => {
   return (
