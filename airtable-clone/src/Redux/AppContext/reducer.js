@@ -1,7 +1,9 @@
-// const initialState = {
-//   isLoading: false,
-//   isError: false,
-//   data: [],
-// };
+const initialState = {
+  isLoading: false,
+  isError: false,
+  data: [],
+};
 
-// export const reducer = () => {};
+export const reducer = (state = initialState) => {
+  return state;
+};

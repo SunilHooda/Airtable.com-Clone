@@ -1,58 +1,49 @@
 import {
   GridItem,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
   Box,
   Container,
   Image,
   Flex,
   FormControl,
   Heading,
-  Spacer,
-  Grid,
   Button,
+  Grid,
   Input,
   VStack,
   FormLabel,
-  Modal,
   Select,
   useToast,
 } from "@chakra-ui/react";
-import React, { useRef, useEffect, useState } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useDisclosure } from "@chakra-ui/react";
-import Logo from "../images/PRlogo.jpeg";
+import Logo from "./images/PRlogo.jpeg";
 import { BiLockAlt } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
-import { useGoogleLogin } from "@react-oauth/google";
-import { Loginfunction } from "../Redux/AuthContext/action";
-import { SIGNIN_REQUEST } from "../Redux/AuthContext/actionTypes";
+//import { useGoogleLogin } from "@react-oauth/google";
+import { Loginfunction } from "../../Redux/AuthContext/actions";
+
 function Login() {
-  const [isLoading, setIsLoading] = useState(false);
   const [userObj, setUserObj] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [selectUser, setSelectUser] = useState("");
   const [employeeID, setEmployee] = useState("");
   // console.log(password)
-  const isAuth = useSelector((state) => {
+
+  const { isAuth } = useSelector((state) => {
     return {
       isAuth: state.AuthReducer.isAuth,
     };
-  }, shallowEqual);
-
+  });
   console.log(isAuth);
+
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(isAuth);
     if (isAuth) {
       toast({
         title: `LogIn Successfull`,
@@ -61,8 +52,11 @@ function Login() {
         position: "top",
         isClosable: true,
       });
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     }
-  }, [isAuth]);
+  }, [isAuth, navigate, toast]);
 
   useEffect(() => {
     axios
@@ -71,12 +65,12 @@ function Login() {
       .then((response) => {
         console.log(response.data);
         setUserObj(response.data);
-        console.log(userObj);
       })
       .catch((e) => {
         console.log(e);
       });
   }, []);
+
   const SendSignInRequest = () => {
     let check;
 
@@ -120,7 +114,7 @@ function Login() {
               isClosable: true,
             });
           }
-        } else if (checkPassword[0].userType === "customer") {
+        } else if (checkPassword[0].userType === "user") {
           /* if userType is customer disaptch */
           dispatch(
             Loginfunction({
@@ -152,26 +146,26 @@ function Login() {
     setPassword("");
     setSelectUser("");
   };
-  const login = useGoogleLogin({
-    onSuccess: async (respose) => {
-      try {
-        const res = await axios.get(
-          "https://www.googleapis.com/oauth2/v3/userinfo",
-          {
-            headers: {
-              Authorization: `Bearer ${respose.access_token}`,
-            },
-          }
-        );
-        console.log(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    },
-  });
+  // const login = useGoogleLogin({
+  //   onSuccess: async (respose) => {
+  //     try {
+  //       const res = await axios.get(
+  //         "https://www.googleapis.com/oauth2/v3/userinfo",
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${respose.access_token}`,
+  //           },
+  //         }
+  //       );
+  //       console.log(res.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   },
+  // });
 
-  const initialRef = useRef(null);
-  const finalRef = useRef(null);
+  // const initialRef = useRef(null);
+  // const finalRef = useRef(null);
 
   return (
     <>
@@ -202,11 +196,11 @@ function Login() {
                 <Heading mt={2} fontSize={15}>
                   Or
                 </Heading>
-                <a href="google.com">
+                <Link to="/signup">
                   <Heading mt={2} fontSize={15} color="blue">
                     create an account
                   </Heading>
-                </a>
+                </Link>
               </Flex>
             </GridItem>
           </Grid>
@@ -231,7 +225,7 @@ function Login() {
               onChange={(e) => setSelectUser(e.target.value)}
             >
               <option value="admin">Admin</option>
-              <option value="customer">Customer</option>
+              <option value="user">Customer</option>
             </Select>
             <br />
             {selectUser === "admin" ? (
@@ -274,7 +268,7 @@ function Login() {
             </Box>
             <br />
             <Button
-              onClick={login}
+              // onClick={login}
               align="flex-center"
               gap={5}
               border="1px"
