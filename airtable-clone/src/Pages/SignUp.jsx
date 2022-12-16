@@ -74,7 +74,7 @@ export default function SignUp() {
   function SignupRequest() {
     dispatch(
       SignUpFunc({
-        email: email,
+        userEmail: email,
         password: password,
         userName: userName,
         userType: userType,
