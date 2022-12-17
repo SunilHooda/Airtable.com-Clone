@@ -19,14 +19,14 @@ import {
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DeleteIcon } from "@chakra-ui/icons";
-import { 
-    addSubtasks, 
-    addTags, 
-    deleteSubtasks, 
-    getTagsList, 
-    getTasks, 
-    updateSubtasksList, 
-    updateTasks 
+import {
+    addSubtasks,
+    addTags,
+    deleteSubtasks,
+    getTagsList,
+    getTasks,
+    updateSubtasksList,
+    updateTasks
 } from "../Redux/AppContext/actions";
 import { LpCreateTask } from "../Modals/LpCreateTask";
 
@@ -51,57 +51,56 @@ const LpEditPage = () => {
     const [checkBox, setCheckBox] = useState([]);
     const [currentSubTask, setCurrrentSubTask] = useState("");
     const [newTag, setNewTag] = useState('');
- 
-    
+
+
     const deleteSubTaskHandler = (title) => {
         let newSubTasksTitle = subTasks.filter((item) => item.subTaskTitle !== title);
-        dispatch(deleteSubtasks(id, {subTasks: newSubTasksTitle}))
-        .then(() => dispatch(getTasks()));
-        console.log("newSubTasksTitle:" , newSubTasksTitle)
+        dispatch(deleteSubtasks(id, { subTasks: newSubTasksTitle }))
+            .then(() => dispatch(getTasks()));
+        // console.log("newSubTasksTitle:", newSubTasksTitle)
     }
 
 
     const addSubTask = (e) => {
         e.preventDefault();
-        if(currentSubTask){
+        if (currentSubTask) {
             const newSubTask = [
                 ...subTasks,
                 { subTaskTitle: currentSubTask, status: false }
             ];
 
-            dispatch(addSubtasks(id, {subTasks: newSubTask}))
-            .then(() => dispatch(getTasks()))
-            .then(() => setCurrrentSubTask(""))
+            dispatch(addSubtasks(id, { subTasks: newSubTask }))
+                .then(() => dispatch(getTasks()))
+                .then(() => setCurrrentSubTask(""))
         }
     };
 
 
     const createTagHandler = () => {
-        if(newTag){
+        if (newTag) {
             dispatch(addTags(newTag)).then(() => dispatch(getTagsList()));
         };
     };
 
 
     const updateFunc = (identifier, value) => {
-        if(identifier === "textAndDescription"){
-            dispatch(updateTasks(id,{
+        if (identifier === "textAndDescription") {
+            dispatch(updateTasks(id, {
                 title: taskTitle,
                 description: taskDescription
             })).then(() => dispatch(getTasks()));
             console.log("taskDescription-1: ", taskDescription);
         }
-        else if(identifier === "taskStatus"){
-            dispatch(updateTasks(id,{
+        else if (identifier === "taskStatus") {
+            dispatch(updateTasks(id, {
                 task_status: value,
             })).then(() => dispatch(getTasks()));
         }
-        else if(identifier === "taskTags"){
-            dispatch(updateTasks(id,{
+        else if (identifier === "taskTags") {
+            dispatch(updateTasks(id, {
                 tags: value,
             })).then(() => dispatch(getTasks()));
         }
-        // console.log("taskDescription-2: ", taskDescription);
     };
 
 
@@ -110,22 +109,22 @@ const LpEditPage = () => {
             if (value.includes(item.subTaskTitle)) {
                 return { ...item, status: true };
             }
-            else{
+            else {
                 return { ...item, status: false };
             }
         });
         dispatch(updateSubtasksList(id, { subTasks: newSubTaskData }))
-        .then(() => {
-            dispatch(getTasks());
-        });
+            .then(() => {
+                dispatch(getTasks());
+            });
     };
 
 
     useEffect(() => {
-        if(tasks.length === 0){
+        if (tasks.length === 0) {
             dispatch(getTasks());
         }
-    },[dispatch, tasks.length]);
+    }, [dispatch, tasks.length]);
 
 
 
@@ -153,21 +152,26 @@ const LpEditPage = () => {
         <Box
             width="100%"
             paddingTop="1rem"
-            border="1px solid rgba(0,0,0,0.3)"
-        >
+            backgroundColor="gray.200"
+            paddingBottom={{base: "10%", sm: "3%", md: "2%",lg: "auto", xl: "auto"}}
+        >  
             <Flex
-                direction="row"
-                justifyContent="space-around"
+                direction={{base: "column", sm: "column", md: "row", lg: "row", xl: "row"}}
+                justifyContent="space-evenly"
             >
                 <Flex
-                    width="32%"
-                    padding="3px 15px, 0px, 3px"
+                    width={{base: "90%", sm: "90%", md: "45%", lg: "50%", xl: "50%"}}
+                    padding={{base: "5%", sm: "5%", md: "5%", lg: "5%", xl: "5%"}}
+                    margin="auto"
+                    backgroundColor="white"
                     height="fit-content"
                     direction="column"
                     justifyContent="space-between"
                     overflow="auto"
+                    marginBottom="2%"
                     border="1px solid rbga(0,0,0,0.1)"
                     borderRadius="5px"
+                    boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
                 >
                     <Box>
                         <Stack direction="column">
@@ -189,8 +193,8 @@ const LpEditPage = () => {
                         <Heading as="h5" size="md" padding="0.5rem 0">
                             Status
                         </Heading>
-                        <RadioGroup 
-                            value={taskStatus} 
+                        <RadioGroup
+                            value={taskStatus}
                             onChange={(value) => {
                                 setTaskStatus(value);
                                 updateFunc("taskStatus", value);
@@ -207,16 +211,16 @@ const LpEditPage = () => {
                             Tags
                         </Heading>
                         <Flex>
-                            <Input 
+                            <Input
                                 value={newTag}
                                 placeholder="Create New Tag"
                                 onChange={(e) => setNewTag(e.target.value)}
-                                />
+                            />
                             <Button onClick={createTagHandler} marginLeft="0.5rem">Create</Button>
                         </Flex>
-                        <CheckboxGroup 
-                            colorScheme="green" 
-                            value={taskTags} 
+                        <CheckboxGroup
+                            colorScheme="green"
+                            value={taskTags}
                             onChange={(value) => {
                                 setTaskTags(value);
                                 updateFunc("taskTags", value);
@@ -233,22 +237,38 @@ const LpEditPage = () => {
                 </Flex>
 
 
-                {/* Add new subtasks  */}
-
-
                 <Box
-                    width="32%"
-                    padding="0.25rem"
-                    paddingRight="15px"
+                    width={{base: "90%", sm: "90%", md: "45%", lg: "45%", xl: "45%"}}
+                    padding={{base: "5%", sm: "5%", md: "5%", lg: "5%", xl: "5%"}}
                     height="fit-content"
+                    backgroundColor="white"
                     overflow="auto"
+                    margin="auto"
+                    marginTop="0.5rem"
                     border="1px solid rbga(0,0,0,0.1)"
                     borderRadius="5px"
+                    boxShadow="rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
                 >
+                    {/* Create new tasks  */}
+
+                    <Flex direction="column">
+                        <Flex justifyContent="center" marginTop="1rem">
+                            <Text>Date: </Text>
+                            <Text margin="auto 0" fontWeight="bold">{date}</Text>
+                        </Flex>
+                        <Box m="1rem">
+                            <Button onClick={onOpen}>Create new Task</Button>
+                        </Box>
+                        <LpCreateTask isOpen={isOpen} onClose={onClose} />
+                    </Flex>
+
+                    {/* Add new subtasks  */}
+
+
                     <form onSubmit={addSubTask}>
                         <Flex>
-                            <Input 
-                                placeholder="Add new subtask" 
+                            <Input
+                                placeholder="Add new subtask"
                                 value={currentSubTask}
                                 onChange={(e) => {
                                     setCurrrentSubTask(e.target.value);
@@ -258,8 +278,8 @@ const LpEditPage = () => {
                         </Flex>
                     </form>
                     <Flex direction="column" p="1rem" gap="1rem">
-                        <CheckboxGroup 
-                            value={checkBox} 
+                        <CheckboxGroup
+                            value={checkBox}
                             onChange={(value) => {
                                 setCheckBox(value);
                                 updateSubTaskStatus(value);
@@ -267,32 +287,13 @@ const LpEditPage = () => {
                             {subTasks.length && subTasks.map((item, index) => (
                                 <Flex key={index} justifyContent="space-between" alignItems="center">
                                     <Checkbox value={item.subTaskTitle}>{item.subTaskTitle}</Checkbox>
-                                    <DeleteIcon onClick={() => deleteSubTaskHandler(item.subTaskTitle)}/>
+                                    <DeleteIcon cursor="pointer" color="red" onClick={() => deleteSubTaskHandler(item.subTaskTitle)} />
                                 </Flex>
                             ))}
                         </CheckboxGroup>
                     </Flex>
-                </Box>
 
-
-                {/* Create new tasks  */}
-
-
-                <Box
-                    border="1px solid rbga(0,0,0,0.1)"
-                    borderRadius="5px"
-                    width="32%"
-                    height="auto"
-                    textAlign="center"
-                >
-                    <Flex justifyContent="center" marginTop="1rem">
-                        <Text>Date: </Text>
-                        <Text margin="auto 0" fontWeight="bold">{date}</Text>
-                    </Flex>
-                    <Box m="1rem">
-                        <Button onClick={onOpen}>Create new Task</Button>
-                    </Box>
-                    <LpCreateTask isOpen={isOpen} onClose={onClose}/>
+                    
                 </Box>
             </Flex>
         </Box>
