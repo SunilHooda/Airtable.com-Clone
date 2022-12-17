@@ -1,27 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Image,
-  Button,
-  GridItem,
-  Grid,
-  Container,
-  Text,
-  Heading,
-} from "@chakra-ui/react";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from "@chakra-ui/react";
-
-import { AspectRatio } from "@chakra-ui/react";
-import { ConnectEv } from "../Components/ConnectEv";
-import { AllBrands } from "../Components/AllBrands";
-import { CreateSolution } from "../Components/CreateSolution";
-import { UnitEver } from "../Components/UnitEver";
+import { Box, Image, GridItem, Grid } from "@chakra-ui/react";
 
 export const AllDataTogether = () => {
   return (

@@ -1,15 +1,27 @@
-import { SIGNUP_FAILURE, SIGNUP_REQUEST, SIGNUP_SUCCESS } from "./actionTypes";
+import {
+  SIGNUP_FAILURE,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNIN_FAILURE,
+  SIGNIN_REQUEST,
+  SIGNIN_SUCCESS,
+  SIGNOUT,
+} from "./actionTypes";
 
 const SignUpState = {
-    createAccountLoading: false,
-    successCreate: false,
-    createError: false,
-    userData: [],
+  createAccountLoading: false,
+  successCreate: false,
+  createError: false,
+  userData: {},
+  isAuth: false,
+  isLoading: false,
+  isError: false,
 };
 
-export const reducer = (state=SignUpState,type,payload) => {
-    switch(type){
-        case SIGNUP_REQUEST:
+export const reducer = (state = SignUpState, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case SIGNUP_REQUEST:
       return {
         ...state,
         createAccountLoading: true,
@@ -21,6 +33,7 @@ export const reducer = (state=SignUpState,type,payload) => {
         createAccountLoading: false,
         successCreate: true,
         createError: false,
+        isAuth: false,
         userData: payload,
       };
 
@@ -31,6 +44,40 @@ export const reducer = (state=SignUpState,type,payload) => {
         successCreate: false,
         creatError: true,
       };
-        default : return state;
-    }
+
+    case SIGNIN_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case SIGNIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isAuth: true,
+        userData: payload,
+        isError: false,
+      };
+
+    case SIGNIN_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    case SIGNOUT:
+      return {
+        ...state,
+        userData: {},
+        isAuth: false,
+        isLoading: false,
+        isError: false,
+        successCreate: false,
+        createAccountLoading: false,
+        createError: false,
+      };
+    default:
+      return state;
+  }
 };
