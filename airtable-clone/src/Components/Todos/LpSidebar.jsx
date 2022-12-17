@@ -47,9 +47,10 @@ const LpSidebar = () => {
 
     return (
         <Box
-            border="1px solid rgba(0,0,0,0.4)"
-            width="25%"
+            // border="1px solid rgba(0,0,0,0.4)"
+            width={{base: "100%", sm: "35%", md: "25%", lg: "25%", xl: "25%"}}
             height="auto"
+            margin="auto"
             marginTop="1rem"
             padding="0.25rem"
         >
@@ -64,16 +65,16 @@ const LpSidebar = () => {
                 >
                     <Flex direction="column" height="fit-content">
                         
-                        <Box height="fit-content" bg="purple.100">
-                            <Box m="1rem">
-                                <Button onClick={onOpen}>Create new Task</Button>
+                        <Box height="fit-content" padding="3%" bg="purple.100" width="auto">
+                            <Box>
+                                <Button backgroundColor="blue.500" _hover={{color: "black", backgroundColor: "gray.100"}} color="white" fontSize={{base: "17px", sm:"10px", md: "13px", lg: "17px", xl: "20px"}} onClick={onOpen}>Create new Task</Button>
                             </Box>
                             <LpCreateTask isOpen={isOpen} onClose={onClose} />
                         </Box>
 
                         <Box
                             cursor="pointer"
-                            padding="5%"
+                            padding={{base: "2%", sm: "5%", md: "5%", lg: "5%", xl: "5%"}}
                             boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px"
                             onClick={() => {
                                 handleTagChange("All");
@@ -96,7 +97,7 @@ const LpSidebar = () => {
                                     <Box
                                         cursor="pointer"
                                         key={item.id}
-                                        padding="5%"
+                                        padding={{base: "1%", sm: "5%", md: "5%", lg: "5%", xl: "5%"}}
                                         boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px"
                                         onClick={() => {
                                             handleTagChange(item.tag);

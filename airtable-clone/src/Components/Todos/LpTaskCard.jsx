@@ -18,7 +18,6 @@ const LpTaskCard = ({ id, title, description, tags, subTasks, colorScheme }) => 
 
     const dispatch = useDispatch();
 
-
     const deleteTaskHandler = (id) => {
         dispatch(deleteTasks(id)).then(() => dispatch(getTasks()));
     };
@@ -27,7 +26,7 @@ const LpTaskCard = ({ id, title, description, tags, subTasks, colorScheme }) => 
         let data = subTasks.filter((item) => {
             return item.status && item.subTaskTitle;
         })
-            .map((item) => item.subTaskTitle);
+        .map((item) => item.subTaskTitle);
         return data;
     });
 
@@ -50,20 +49,24 @@ const LpTaskCard = ({ id, title, description, tags, subTasks, colorScheme }) => 
 
     return (
         <Box
-            width="90%"
+            width={{base: "80%", sm: "90%", md: "90%", lg:"90%", xl: "90%"}}
             margin="auto"
             marginTop="7%"
             marginBottom="3%"
             padding="5%"
+            backgroundColor="white"
             boxShadow="rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset"
         >
             <Box>
                 <Flex>
-                    <Text>{title}</Text>
+                    <Text fontWeight="bold">{title}</Text>
                 </Flex>
             </Box>
             <Box>
-                <Stack direction="row">
+                <Stack 
+                    direction={{base: "column",sm: "column", md: "column",lg: "row", xl: "row"}}
+                    width="fit-content"
+                >
                     {tags.length && tags.map((item, index) => {
                         return <Badge colorScheme={colorScheme} key={index}>{item}</Badge>
                     })}
@@ -71,16 +74,20 @@ const LpTaskCard = ({ id, title, description, tags, subTasks, colorScheme }) => 
             </Box>
             <Box>
                 <Flex>
-                    <Text>{description}</Text>
+                    <Text 
+                        fontWeight="500"
+                        marginTop="3%"
+                        marginBottom="3%"
+                    >{description}</Text>
                 </Flex>
             </Box>
-            <Box>
+            <Box display="flex" flexDirection="column">
                 <CheckboxGroup
                     value={checkBox}
                     onChange={(value) => {
                         setCheckBox(value);
                         updateSubTaskStatus(value);
-                    }}
+                    }}   
                 >
                     {subTasks.length > 0 && subTasks.map((item, index) => {
                         return <Checkbox value={item.subTaskTitle} key={index}>{item.subTaskTitle}</Checkbox>
