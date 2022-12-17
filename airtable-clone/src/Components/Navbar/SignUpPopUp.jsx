@@ -6,7 +6,6 @@ import {
   MenuItem,
   Box,
   Text,
-  Button,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
