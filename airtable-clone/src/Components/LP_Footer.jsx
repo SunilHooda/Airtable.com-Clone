@@ -287,6 +287,7 @@ const Footer = () => {
                     </AccordionItem>
 
                 </Accordion>
+                
                 <Box textAlign="left" marginTop="5%">
                     <Grid width="90%" margin="auto" templateColumns='repeat(1, 1fr)'>
                         <GridItem marginLeft="2%" w='100%' h='10' fontWeight="600"><Text cursor="pointer">Product</Text></GridItem>
