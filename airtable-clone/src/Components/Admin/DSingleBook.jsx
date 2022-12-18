@@ -231,9 +231,11 @@ const DSingleBook = () => {
               lg: "repeat(4, 1fr)",
             }}
             gap={8}
+            padding="0px  20px"
             paddingTop="5px"
             margin={"auto"}
             justifyContent={"space-evenly"}
+            align="center"
           >
             {tasks.length > 0 &&
               tasks

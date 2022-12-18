@@ -11,6 +11,7 @@ import {
   Text,
   useDisclosure,
   useMediaQuery,
+  useToast,
 } from "@chakra-ui/react";
 import {
   Drawer,
@@ -35,10 +36,27 @@ const Navbar = () => {
   const hoverColor = "#0768F8";
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
+  const toast = useToast();
+  const userData = useSelector((data) => data.AuthReducer.userData);
 
   const handleDashboard = () => {
     if (isAuth) {
-      navigate("/userdashboard");
+      if (userData.userType === "admin") {
+        navigate("/admindashboard", { replace: true });
+      } else if (userData.userType === "user") {
+        navigate("/userdashboard", { replace: true });
+      }
+    } else {
+      toast({
+        title: `Please Login First...`,
+        status: "error",
+        duration: 500,
+        position: "top",
+        isClosable: true,
+      });
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     }
   };
 
@@ -135,7 +153,7 @@ const Navbar = () => {
                 fontSize={18}
                 fontWeight={"500"}
               >
-                <Link to={""}>
+                <Link to={"/pricing"}>
                   <Text
                     cursor="pointer"
                     _hover={{
@@ -159,7 +177,7 @@ const Navbar = () => {
                   </Text>
                 </Link>
 
-                <Link to={"resourse"}>
+                <Link to={"/resourse"}>
                   <Text
                     cursor="pointer"
                     _hover={{
@@ -246,6 +264,7 @@ const Navbar = () => {
                       gap="1rem"
                       fontSize={17}
                       fontWeight={"460"}
+                      onClick={handleDashboard}
                     >
                       <FaGreaterThan />
                       Views
@@ -255,7 +274,7 @@ const Navbar = () => {
               </Menu>
 
               <Box m="25px auto" fontSize={18} fontWeight={"500"}>
-                <Link to={""}>
+                <Link to={"/pricing"}>
                   <Text _hover={{ color: "blue", cursor: "pointer" }}>
                     Pricing
                   </Text>
@@ -271,7 +290,7 @@ const Navbar = () => {
               </Box>
 
               <Box m="25px auto" fontSize={18} fontWeight={"500"}>
-                <Link to={""}>
+                <Link to={"/resourse"}>
                   <Text _hover={{ color: "blue", cursor: "pointer" }}>
                     Resources
                   </Text>
