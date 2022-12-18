@@ -15,22 +15,22 @@ import PR_Singlethree from "./PR_Singlethree";
 import PR_Singlefour from "./PR_Singlefour";
 import PR_Singlefive from "./PR_Singlefive";
 import PR_Singlesix from "./PR_Singlesix";
-
 import { UserDashboard } from "./UserDashboard";
 import CalendarHomePage from "../Components/Calendar/CalendarHomePage";
 import AllEvents from "./AllEvents";
-
 import { CombinedPage } from "./CombinedPage";
-
+import AdminDashboard from "./AdminDashboard";
+import DSingleBook from "../Components/Admin/DSingleBook";
 
 const MainRoutes = () => {
   return (
     <Routes>
+      <Route path="/admindashboard" element={<AdminDashboard />} />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/profileEdit" element={<ProfileEdit />} />
-
+      <Route path="/users/:id" element={<DSingleBook/> } />
       <Route path="/resourse" element={<PR_Resourse />} />
       <Route path="/singleresourse" element={<PR_Single />} />
       <Route path="/singletworesourse" element={<PR_Singletwo />} />
@@ -38,32 +38,43 @@ const MainRoutes = () => {
       <Route path="/singlefourresourse" element={<PR_Singlefour />} />
       <Route path="/singlefiveresourse" element={<PR_Singlefive />} />
       <Route path="/singlesixresourse" element={<PR_Singlesix />} />
-      
 
       <Route path="/combinedpage" element={<CombinedPage />} />
-
 
       <Route
         path="/todohomepage"
         element={
-
-            
-            <Stack backgroundColor="gray.200"  direction={{base: "column", sm: "colum", md: "row", lg: "row", xl: "row"}}>
-              <LpSidebar />
-              <LpTodoHomePage />
-            </Stack>
-
+          <Stack
+            backgroundColor="gray.200"
+            direction={{
+              base: "column",
+              sm: "colum",
+              md: "row",
+              lg: "row",
+              xl: "row",
+            }}
+          >
+            <LpSidebar />
+            <LpTodoHomePage />
+          </Stack>
         }
       />
       <Route
         path="/task/:id"
         element={
-
-            <Stack backgroundColor="gray.200" direction={{base: "column", sm: "column", md: "row", lg: "row", xl: "row"}}>
-              <LpSidebar />
-              <LpEditPage />
-            </Stack>
-
+          <Stack
+            backgroundColor="gray.200"
+            direction={{
+              base: "column",
+              sm: "column",
+              md: "row",
+              lg: "row",
+              xl: "row",
+            }}
+          >
+            <LpSidebar />
+            <LpEditPage />
+          </Stack>
         }
       />
       <Route path="/calendarhomepage" element={<CalendarHomePage />} />
