@@ -43,10 +43,8 @@ const updateTasks = (id, payload) => (dispatch) => {
   return axios
     .put(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/tasks/${id}`, payload)
     .then((r) => {
-
-        dispatch({type: types.UPDATE_TASK_SUCCESS, payload: r.data});
-        // console.log("updated data: ", r.data);
-
+      dispatch({ type: types.UPDATE_TASK_SUCCESS, payload: r.data });
+      // console.log("updated data: ", r.data);
     })
     .catch((e) => {
       dispatch({ type: types.UPDATE_TASK_FAILURE, payload: e });
@@ -106,7 +104,6 @@ const deleteTasks = (id) => (dispatch) => {
   return axios
     .delete(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/tasks/${id}`)
     .then((res) => {
-
       dispatch({ type: types.DELETE_TASK_SUCCESS, payload: res });
       console.log(res.data);
     })
@@ -120,10 +117,9 @@ const deleteTasks = (id) => (dispatch) => {
 const getEvents = () => (dispatch) => {
   dispatch({ type: types.GET_EVENTS_REQUEST });
   return axios
-    .get(`https://6398b39329930e2bb3bf7dcf.mockapi.io/events`)
+    .get(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/events`)
     .then((res) => {
       dispatch({ type: types.GET_EVENTS_SUCCESS, payload: res.data });
-
     })
     .catch((e) => {
       dispatch({ type: types.GET_EVENTS_FAILURE, payload: e });
@@ -133,7 +129,7 @@ const getEvents = () => (dispatch) => {
 const addEvents = (event) => (dispatch) => {
   dispatch({ type: types.ADD_EVENTS_REQUEST });
   return axios
-    .post(`https://6398b39329930e2bb3bf7dcf.mockapi.io/events`, event)
+    .post(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/events`, event)
     .then((r) => {
       dispatch({ type: types.ADD_EVENTS_SUCCESS, payload: r.data });
     })
@@ -145,7 +141,7 @@ const addEvents = (event) => (dispatch) => {
 const updateEvent = (id, payload) => (dispatch) => {
   dispatch({ type: types.UPDATE_EVENT_REQUEST });
   return axios
-    .put(`https://6398b39329930e2bb3bf7dcf.mockapi.io/events/${id}`, payload)
+    .put(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/${id}`, payload)
     .then((r) => {
       dispatch({ type: types.UPDATE_EVENT_SUCCESS, payload: r.data });
     })
@@ -157,7 +153,7 @@ const updateEvent = (id, payload) => (dispatch) => {
 const deleteEvent = (id) => (dispatch) => {
   dispatch({ type: types.DELETE_EVENT_REQUEST });
   return axios
-    .delete(`https://6398b39329930e2bb3bf7dcf.mockapi.io/events/${id}`)
+    .delete(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/events/${id}`)
     .then((res) => {
       dispatch({ type: types.DELETE_EVENT_SUCCESS, payload: res });
       console.log(res.data);
@@ -167,68 +163,61 @@ const deleteEvent = (id) => (dispatch) => {
     });
 };
 
-
 const getCheckPoint = () => (dispatch) => {
-    dispatch({type: types.GET_CHECKPOINT_REQUEST});
-    return axios
+  dispatch({ type: types.GET_CHECKPOINT_REQUEST });
+  return axios
     .get(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/checkpoint`)
     .then((res) => {
-        dispatch({type: types.GET_CHECKPOINT_SUCCESS, payload: res.data});
+      dispatch({ type: types.GET_CHECKPOINT_SUCCESS, payload: res.data });
     })
     .catch((e) => {
-        dispatch({type: types.GET_CHECKPOINT_FAILURE, payload: e});
+      dispatch({ type: types.GET_CHECKPOINT_FAILURE, payload: e });
     });
 };
-
-
 
 const addCheckPoint = (payload) => (dispatch) => {
-    dispatch({type: types.GET_CHECKPOINT_REQUEST});
-    return axios
+  dispatch({ type: types.GET_CHECKPOINT_REQUEST });
+  return axios
     .post(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/checkpoint`, payload)
     .then((res) => {
-        dispatch({type: types.GET_CHECKPOINT_SUCCESS, payload: res.data});
-        console.log("Add checkpoint: ", res.data);
+      dispatch({ type: types.GET_CHECKPOINT_SUCCESS, payload: res.data });
+      console.log("Add checkpoint: ", res.data);
     })
     .catch((e) => {
-        dispatch({type: types.GET_CHECKPOINT_FAILURE, payload: e});
+      dispatch({ type: types.GET_CHECKPOINT_FAILURE, payload: e });
     });
 };
-
-
 
 const updateCheckPoints = (id, payload) => (dispatch) => {
-    dispatch({type:types.UPDATE_CHECKPOINT_REQUEST});
-    return axios
-    .put(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/checkpoint/${id}`, payload)
+  dispatch({ type: types.UPDATE_CHECKPOINT_REQUEST });
+  return axios
+    .put(
+      `https://639a7c9f3a5fbccb5267f6a0.mockapi.io/checkpoint/${id}`,
+      payload
+    )
     .then((r) => {
-        dispatch({type: types.UPDATE_CHECKPOINT_SUCCESS, payload: r.data});
+      dispatch({ type: types.UPDATE_CHECKPOINT_SUCCESS, payload: r.data });
     })
     .catch((e) => {
-        dispatch({type: types.UPDATE_CHECKPOINT_FAILURE, payload: e});
+      dispatch({ type: types.UPDATE_CHECKPOINT_FAILURE, payload: e });
     });
 };
 
-
-
-
 export {
-
-    getTasks, 
-    getTagsList, 
-    updateSubtasksList, 
-    updateTasks, 
-    addTags, 
-    addSubtasks, 
-    deleteSubtasks,
-    createTasks,
-    deleteTasks,
-    getCheckPoint,
-    addCheckPoint,
-    updateCheckPoints,
-     getEvents,
+  getTasks,
+  getTagsList,
+  updateSubtasksList,
+  updateTasks,
+  addTags,
+  addSubtasks,
+  deleteSubtasks,
+  createTasks,
+  deleteTasks,
+  getCheckPoint,
+  addCheckPoint,
+  updateCheckPoints,
+  getEvents,
   addEvents,
   updateEvent,
   deleteEvent,
 };
-

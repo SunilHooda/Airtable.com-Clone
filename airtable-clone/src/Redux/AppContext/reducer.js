@@ -1,7 +1,6 @@
 import * as types from "./actionTypes";
 
 const initialState = {
-
   tasks: [],
   tags: [],
   events: [],
@@ -64,21 +63,20 @@ const reducer = (state = initialState, action) => {
         isLoading: false,
         isError: true,
       };
-      case types.GET_CHECKPOINT_REQUEST:
-            return { ...state };
+    case types.GET_CHECKPOINT_REQUEST:
+      return { ...state };
 
-        case types.GET_CHECKPOINT_SUCCESS:
-            return {
-                ...state,
-                checkPoint: payload
-            };
+    case types.GET_CHECKPOINT_SUCCESS:
+      return {
+        ...state,
+        checkPoint: payload,
+      };
 
-        case types.GET_CHECKPOINT_FAILURE:
-            return { ...state };
+    case types.GET_CHECKPOINT_FAILURE:
+      return { ...state };
     default:
       return state;
   }
-
 };
 
 export { reducer };

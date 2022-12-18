@@ -16,20 +16,21 @@ import {
   ModalFooter,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateEvent, getEvents } from "../../Redux/AppContext/actions";
 
-const AllEventGrid = ({ id, title, start, end, description }) => {
+const AllEventGrid = ({
+  id,
+  title,
+  start,
+  end,
+  description,
+  handleUpdateEvent,
+}) => {
   const [detail, setDetail] = useState("");
   const [showDetail, setShowDetail] = useState(detail);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const dispatch = useDispatch();
 
-  const handleUpdateEvent = (id, newEvent) => {
-    dispatch(updateEvent(id, newEvent)).then(() => dispatch(getEvents()));
-  };
-
-  const handleDescription = (id) => {
+  const handleDescription = (id, detail) => {
+    console.log(detail);
     const newEvent = {
       title: title,
       start: new Date(start),
@@ -150,7 +151,7 @@ const AllEventGrid = ({ id, title, start, end, description }) => {
               colorScheme="blue"
               mr={3}
               onClick={() => {
-                handleDescription(id);
+                handleDescription(id, detail);
                 onClose();
               }}
             >
@@ -163,4 +164,4 @@ const AllEventGrid = ({ id, title, start, end, description }) => {
   );
 };
 
-export default AllEventGrid;
+export { AllEventGrid };

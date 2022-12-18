@@ -29,39 +29,42 @@ import { Loginfunction } from "../../Redux/AuthContext/actions";
 
 import { saveData } from "../../Utils/localStorageData";
 
-import { addCheckPoint, getCheckPoint, getTasks, updateCheckPoints, updateTasks } from "../../Redux/AppContext/actions";
+import {
+  addCheckPoint,
+  getCheckPoint,
+  getTasks,
+  updateCheckPoints,
+  updateTasks,
+} from "../../Redux/AppContext/actions";
 import { useReducer } from "react";
 
-
 const userIsValidateInitialState = {
-    mailID: "",
-    checkValidate: true,
+  mailID: "",
+  checkValidate: true,
 };
-
 
 const userIsvalidateReducer = (state, action) => {
   switch (action.type) {
-      case 'mailID':
-          return {
-              ...state,
-              mailID: action.payload,
-          };
-      case 'checkValidate':
-          return {
-              ...state,
-              checkValidate: action.payload,
-          };
-      default:
-          return state;
-  };
+    case "mailID":
+      return {
+        ...state,
+        mailID: action.payload,
+      };
+    case "checkValidate":
+      return {
+        ...state,
+        checkValidate: action.payload,
+      };
+    default:
+      return state;
+  }
 };
 
-
-
-
 function Login() {
-
-  const [userValidateState, setUserValidateState] = useReducer(userIsvalidateReducer, userIsValidateInitialState);
+  const [userValidateState, setUserValidateState] = useReducer(
+    userIsvalidateReducer,
+    userIsValidateInitialState
+  );
   const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
   console.log("login checkpoint:", checkPoints);
 
@@ -76,33 +79,28 @@ function Login() {
 
   // console.log(password)
 
-
-
-
-  // ......................................................................... 
-  // adding checkpoint data:- 
+  // .........................................................................
+  // adding checkpoint data:-
   let flag = true;
   const addCheckPointHandler = () => {
-
-    checkPoints.length > 0 && checkPoints.map((elem) => {
-       if(elem.mailID === checkingMail){
-          dispatch(updateCheckPoints(elem.id, {...elem, checkValidate: true}));
+    checkPoints.length > 0 &&
+      checkPoints.map((elem) => {
+        if (elem.mailID === checkingMail) {
+          dispatch(
+            updateCheckPoints(elem.id, { ...elem, checkValidate: true })
+          );
           flag = false;
-       }
-    });
-    
-    if(flag === true){
+        }
+      });
+
+    if (flag === true) {
       dispatch(addCheckPoint(userValidateState));
       console.log("userValidateState: ", userValidateState);
-    } 
-    else if(flag === false){
+    } else if (flag === false) {
       console.log("userValidateState: ", userValidateState);
     }
   };
-  // ...................................................................................... 
-
-
-
+  // ......................................................................................
 
   const { isAuth } = useSelector((state) => {
     return {
@@ -171,7 +169,6 @@ function Login() {
           });
           /* if employee is is correct */
           if (check.length > 0) {
-
             saveData("loggedUser", { ...check[0] });
 
             addCheckPointHandler();
@@ -181,7 +178,6 @@ function Login() {
                 ...check[0],
               })
             );
-            
           } else if (check.length === 0) {
             /*if employee id is not correct */
             toast({
@@ -201,7 +197,6 @@ function Login() {
               ...checkPassword[0],
             })
           );
-          
         }
       } else if (checkPassword.length === 0) {
         /* if password is wrong */
@@ -249,36 +244,31 @@ function Login() {
   // const initialRef = useRef(null);
   // const finalRef = useRef(null);
 
-
-
-
-  
-
-  // ............................................................................. 
+  // .............................................................................
 
   useEffect(() => {
     if (checkPoints.length === 0) {
-        dispatch(getCheckPoint());
-    };
+      dispatch(getCheckPoint());
+    }
   }, [dispatch, checkPoints.length]);
 
-
-  useEffect(() => {  // prince77@gmail.com
-    checkPoints.length > 0 && checkPoints.map(elem => {
-        if(elem.mailID === checkingMail)
-        {
-          dispatch(updateCheckPoints(elem.id, {...elem, checkValidate: true}));
+  useEffect(() => {
+    // prince77@gmail.com
+    checkPoints.length > 0 &&
+      checkPoints.map((elem) => {
+        if (elem.mailID === checkingMail) {
+          dispatch(
+            updateCheckPoints(elem.id, { ...elem, checkValidate: true })
+          );
+        } else {
+          dispatch(
+            updateCheckPoints(elem.id, { ...elem, checkValidate: false })
+          );
         }
-        else{
-          dispatch(updateCheckPoints(elem.id, {...elem, checkValidate: false}));
-        }
-    });
-},[checkPoints.length, dispatch]);
+      });
+  }, [checkPoints.length, dispatch]);
 
-
-// ................................................................................... 
-
-
+  // ...................................................................................
 
   return (
     <>
@@ -326,7 +316,10 @@ function Login() {
                 w="full"
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  setUserValidateState({ type: 'mailID', payload: e.target.value });
+                  setUserValidateState({
+                    type: "mailID",
+                    payload: e.target.value,
+                  });
                   setCheckingMail(e.target.value);
                 }}
                 placeholder="Enter Email address"

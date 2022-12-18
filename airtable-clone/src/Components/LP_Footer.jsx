@@ -5,7 +5,6 @@ import {
   AccordionIcon,
   AccordionPanel,
   Box,
-  Divider,
   Grid,
   GridItem,
   Collapse,
