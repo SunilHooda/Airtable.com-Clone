@@ -6,6 +6,7 @@ import {
     Stack,
     CheckboxGroup,
     Checkbox,
+    useToast,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -17,9 +18,20 @@ import { Link } from "react-router-dom";
 const LpTaskCard = ({ id, title, description, tags, subTasks, colorScheme }) => {
 
     const dispatch = useDispatch();
+    const toast = useToast();
+
 
     const deleteTaskHandler = (id) => {
-        dispatch(deleteTasks(id)).then(() => dispatch(getTasks()));
+        dispatch(deleteTasks(id))
+        .then(() => toast({
+            title: 'Task deleted !',
+            description: "We've deleted your task.",
+            status: 'success',
+            duration: 1500,
+            position: "top",
+            isClosable: true,
+        }))
+        .then(() => dispatch(getTasks()));
     };
 
     const [checkBox, setCheckBox] = useState(() => {
@@ -81,7 +93,7 @@ const LpTaskCard = ({ id, title, description, tags, subTasks, colorScheme }) => 
                     >{description}</Text>
                 </Flex>
             </Box>
-            <Box display="flex" flexDirection="column">
+            <Box display="flex" flexDirection="column" paddingLeft={{base: "15%"}}>
                 <CheckboxGroup
                     value={checkBox}
                     onChange={(value) => {
@@ -90,7 +102,7 @@ const LpTaskCard = ({ id, title, description, tags, subTasks, colorScheme }) => 
                     }}   
                 >
                     {subTasks.length > 0 && subTasks.map((item, index) => {
-                        return <Checkbox value={item.subTaskTitle} key={index}>{item.subTaskTitle}</Checkbox>
+                        return <Checkbox color="#470122" fontWeight="500"  value={item.subTaskTitle} key={index}>{item.subTaskTitle}</Checkbox>
                     })}
                 </CheckboxGroup>
             </Box>
@@ -100,10 +112,10 @@ const LpTaskCard = ({ id, title, description, tags, subTasks, colorScheme }) => 
                     paddingTop="7%" 
                     justifyContent="space-between">
                     <Box color="blue">
-                        <Link to={`/task/${id}`}><EditIcon cursor="pointer"/></Link>
+                        <Link to={`/task/${id}`}><EditIcon fontSize="130%" cursor="pointer"/></Link>
                     </Box>
                     <Box color="red">
-                        <DeleteIcon onClick={() => deleteTaskHandler(id)} cursor="pointer"/>
+                        <DeleteIcon fontSize="130%" onClick={() => deleteTaskHandler(id)} cursor="pointer"/>
                     </Box>
                 </Flex>
             </Box>

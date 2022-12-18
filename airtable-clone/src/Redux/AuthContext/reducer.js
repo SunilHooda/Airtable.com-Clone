@@ -7,13 +7,14 @@ import {
   SIGNIN_SUCCESS,
   SIGNOUT,
 } from "./actionTypes";
+import { getLocalData, saveData } from "../../Utils/localStorageData";
 
 const SignUpState = {
   createAccountLoading: false,
   successCreate: false,
   createError: false,
   userData: {},
-  isAuth: false,
+  isAuth: getLocalData("isAuth") || false,
   isLoading: false,
   isError: false,
 };
@@ -52,10 +53,12 @@ export const reducer = (state = SignUpState, action) => {
       };
 
     case SIGNIN_SUCCESS:
+      const loggedIn = !state.isAuth;
+      saveData("isAuth", loggedIn);
       return {
         ...state,
         isLoading: false,
-        isAuth: true,
+        isAuth: loggedIn,
         userData: payload,
         isError: false,
       };

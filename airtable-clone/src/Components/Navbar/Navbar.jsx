@@ -25,7 +25,6 @@ import { FaGreaterThan } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import Logo from "./Logo.png";
-import { useRef } from "react";
 import { useSelector } from "react-redux";
 import SignUpPopUp from "./SignUpPopUp";
 import UserDetail from "./UserDetail";
@@ -35,7 +34,6 @@ const Navbar = () => {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const hoverColor = "#0768F8";
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const hamburgerMenuRef = useRef();
 
   return (
     <Box w="100%">
@@ -176,19 +174,10 @@ const Navbar = () => {
           display={["inline-block", "inline-block", "none", "none"]}
           mr="2rem"
         >
-          <GiHamburgerMenu
-            onClick={onOpen}
-            ref={hamburgerMenuRef}
-            size="1.5rem"
-          />
+          <GiHamburgerMenu onClick={onOpen} size="1.5rem" />
         </Box>
         {/* Hamburger menu bar */}
-        <Drawer
-          isOpen={isOpen}
-          onClose={onClose}
-          placement="right"
-          finalFocusRef={hamburgerMenuRef}
-        >
+        <Drawer isOpen={isOpen} onClose={onClose} placement="right">
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />

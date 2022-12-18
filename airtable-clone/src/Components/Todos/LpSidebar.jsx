@@ -1,54 +1,62 @@
 import React, { useEffect, useState } from "react";
-import {
-    Box,
-    Button,
-    Flex,
-    Text,
-    useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTagsList } from "../../Redux/AppContext/actions";
+import { getCheckPoint, getTagsList } from "../../Redux/AppContext/actions";
 import { useSearchParams } from "react-router-dom";
 import { LpCreateTask } from "../../Modals/LpCreateTask";
 
 const LpSidebar = () => {
+  const dispatch = useDispatch();
+  const tagLists = useSelector((store) => store.AppReducer.tags);
+  const tasks = useSelector((store) => store.AppReducer.tasks);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectTags, setSelectTags] = useState(
+    searchParams.getAll("tags") || []
+  );
+  const [totalTask, setTotalTask] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+    const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
+    const [checkedUserId, setCheckedUserId] = useState("");
+    // console.log("checkPoints:", checkPoints);
+    // console.log("checkeduserid:", checkedUserId);
 
-    const dispatch = useDispatch();
-    const tagLists = useSelector((store) => store.AppReducer.tags);
-    const tasks = useSelector((store) => store.AppReducer.tasks);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [selectTags, setSelectTags] = useState(searchParams.getAll("tags") || []);
-    const [totalTask, setTotalTask] = useState("");
-    const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const handleTagChange = (value) => {
-        let newTags = [...selectTags];
-        if (selectTags.includes(value)) {
-            newTags.splice(newTags.indexOf(value), 1);
-        }
-        else {
-            newTags.push(value);
-        }
-        setSelectTags(newTags);
-        setSearchParams({ tags: newTags });
-    };
+  const handleTagChange = (value) => {
+    let newTags = [...selectTags];
+    if (selectTags.includes(value)) {
+      newTags.splice(newTags.indexOf(value), 1);
+    } else {
+      newTags.push(value);
+    }
+    setSelectTags(newTags);
+    setSearchParams({ tags: newTags });
+  };
 
-    // useEffect(() => {
-    //     if(tasks.length === 0){
+   useEffect(() => {
+        checkPoints.length > 0 && checkPoints.map(elem => {
+            if(elem.checkValidate === true){
+                setCheckedUserId(elem.mailID)
+            }
+        });
+    },[checkPoints.length]);
 
-    //     }
-    // });
+
 
     useEffect(() => {
-        if (tagLists.length === 0) {
-            dispatch(getTagsList());
+        if (checkPoints.length === 0) {
+            dispatch(getCheckPoint());
         };
-    }, [dispatch, tagLists.length]);
+    }, [dispatch, checkPoints.length]);
+
+  useEffect(() => {
+    if (tagLists.length === 0) {
+      dispatch(getTagsList());
+    }
+  }, [dispatch, tagLists.length]);
 
     return (
         <Box
-            // border="1px solid rgba(0,0,0,0.4)"
-            width={{base: "100%", sm: "35%", md: "25%", lg: "25%", xl: "25%"}}
+            width={{base: "90%", sm: "80%", md: "25%", lg: "25%", xl: "25%"}}
             height="auto"
             margin="auto"
             marginTop="1rem"
@@ -61,20 +69,22 @@ const LpSidebar = () => {
             >
                 <Box
                     minHeight="fit-content"
-                    border="1px solid rgba(0,0,0,0.3)"
+                    border="1px solid gray.200"
                 >
                     <Flex direction="column" height="fit-content">
                         
-                        <Box height="fit-content" padding="3%" bg="purple.100" width="auto">
+                        <Box height="fit-content" padding="3%"  width="auto">
                             <Box>
-                                <Button backgroundColor="blue.500" _hover={{color: "black", backgroundColor: "gray.100"}} color="white" fontSize={{base: "17px", sm:"10px", md: "13px", lg: "17px", xl: "20px"}} onClick={onOpen}>Create new Task</Button>
+                                <Button backgroundColor="blue.500" _hover={{color: "black", backgroundColor: "gray.100"}} color="white" fontSize={{base: "17px", sm:"18px", md: "13px", lg: "17px", xl: "20px"}} onClick={onOpen}>Create new Task</Button>
                             </Box>
                             <LpCreateTask isOpen={isOpen} onClose={onClose} />
                         </Box>
 
                         <Box
                             cursor="pointer"
-                            padding={{base: "2%", sm: "5%", md: "5%", lg: "5%", xl: "5%"}}
+                            borderRadius="10px"
+                            margin={{base: "0.5%", sm: "0.5%", md: "2%", lg: "2%", xl: "2%"}}
+                            padding={{base: "2%", sm: "1%", md: "5%", lg: "5%", xl: "5%"}}
                             boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px"
                             onClick={() => {
                                 handleTagChange("All");
@@ -87,8 +97,8 @@ const LpSidebar = () => {
                             }
                         >
                             <Flex>
-                                <Text>All ➛ </Text>
-                                <Text>{tasks.length}</Text>
+                                <Text paddingLeft="5%">All</Text>
+                               
                             </Flex>
                         </Box>
                         {tagLists.length > 0 &&
@@ -96,8 +106,10 @@ const LpSidebar = () => {
                                 return (
                                     <Box
                                         cursor="pointer"
+                                        margin={{base: "0.5%", sm: "0.5%", md: "2%", lg: "2%", xl: "2%"}}
                                         key={item.id}
-                                        padding={{base: "1%", sm: "5%", md: "5%", lg: "5%", xl: "5%"}}
+                                        borderRadius="10px"
+                                        padding={{base: "1%", sm: "1%", md: "5%", lg: "5%", xl: "5%"}}
                                         boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px"
                                         onClick={() => {
                                             handleTagChange(item.tag);
@@ -110,19 +122,26 @@ const LpSidebar = () => {
                                         }
                                     >
                                         <Flex>
-                                            <Text>{item.tag} ➛ </Text>
+                                            <Text paddingLeft="5%">{item.tag} ➛ </Text>
                                             <Text>
-                                                {tasks.filter((elem) => elem.tags.includes(item.tag)).length}
+                                                {tasks.filter((elem) => 
+                                                    elem.tags.includes(
+                                                    elem.userID === checkedUserId && 
+                                                    item.tag 
+                                                    )).length
+                                                }
                                             </Text>
                                         </Flex>
                                     </Box>
                                 );
                             })}
+
                     </Flex>
-                </Box>
-            </Flex>
-        </Box>
-    );
+                  </Box>
+             
+      </Flex>
+    </Box>
+  );
 };
 
 export { LpSidebar };

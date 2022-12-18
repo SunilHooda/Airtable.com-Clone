@@ -1,0 +1,75 @@
+.mainConatiner {
+  width: 100%;
+  text-align: center;
+}
+.header {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem auto;
+}
+.header h1 {
+  color: #3174ad;
+  margin: 0;
+}
+.header button {
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background-color: #3174ad;
+  color: #fff;
+  cursor: pointer;
+}
+/* .event-form {
+  padding: 1rem 2rem 2rem 2rem;
+  background-color: #fff;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  border-radius: 5px;
+}
+.event-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.event-form-header h2 {
+  margin: 0 0 1rem 0;
+  color: #3174ad;
+}
+.close-btn {
+  cursor: pointer;
+}
+.event-form label {
+  font-weight: 600;
+}
+.event-form input {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid gray;
+  margin-bottom: 1rem;
+}
+
+.submit-btn {
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background-color: #3174ad;
+  color: #fff;
+  cursor: pointer;
+}
+.delete-btn {
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 1rem;
+} */

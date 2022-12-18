@@ -6,17 +6,15 @@ import { LpTaskCard } from "../Components/Todos/LpTaskCard";
 import { getCheckPoint, getTasks } from "../Redux/AppContext/actions";
 
 const LpTodoHomePage = () => {
-
-    const tasks = useSelector((store) => store.AppReducer.tasks);
+   const tasks = useSelector((store) => store.AppReducer.tasks);
     const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
     // console.log("checkPoints:", checkPoints);
     const [checkedUserId, setCheckedUserId] = useState("");
-
     const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
 
 
-    const filterByParamTags = (task) => {
+   const filterByParamTags = (task) => {
         const tagsInTheParams = searchParams.getAll('tags');
         if (tagsInTheParams.includes('All') || tagsInTheParams.length === 0) {
             return task;
@@ -59,8 +57,7 @@ const LpTodoHomePage = () => {
             dispatch(getTasks());
         };
     }, [dispatch, tasks.length]);
-
-
+   
     return (
         <Box
             width="100%"
@@ -96,8 +93,7 @@ const LpTodoHomePage = () => {
                         {tasks.length > 0 && 
                         tasks.filter(item =>  
                             item.task_status === "todo" && 
-                            item.userID === checkedUserId && 
-                            item.isValidate === true)
+                            item.userID === checkedUserId) 
                             .filter(filterByParamTags)
                             .map((item) => {
                                 return <LpTaskCard key={item.id} {...item} colorScheme="red" />
@@ -127,8 +123,7 @@ const LpTodoHomePage = () => {
                         {tasks.length > 0 && 
                         tasks.filter(item => 
                             item.task_status === "progress" && 
-                            item.userID === checkedUserId &&
-                            item.isValidate === true)
+                            item.userID === checkedUserId ) // && item.isValidate === true
                             .filter(filterByParamTags)
                             .map((item) => {
                                 return <LpTaskCard key={item.id} {...item} colorScheme="yellow" />
@@ -159,8 +154,7 @@ const LpTodoHomePage = () => {
                         {tasks.length > 0 && 
                         tasks.filter(item => 
                             item.task_status === "done" && 
-                            item.userID === checkedUserId && 
-                            item.isValidate === true)
+                            item.userID === checkedUserId)
                             .filter(filterByParamTags)
                             .map((item) => {
                                 return <LpTaskCard key={item.id} {...item} colorScheme="green" />
@@ -168,8 +162,11 @@ const LpTodoHomePage = () => {
                     </Box>
                 </Box>
             </Flex>
-        </Box>
-    )
+
+     
+    </Box>
+  );
 };
 
 export { LpTodoHomePage };
+

@@ -20,13 +20,13 @@ import {
     MenuList,
     MenuOptionGroup,
     ModalFooter,
-    MenuItemOption
+    MenuItemOption,
+    useToast
 } from "@chakra-ui/react";
 import React, { useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { createTasks, getTasks } from "../Redux/AppContext/actions";
-
 
 const initialTaskState = {
     title: "",
@@ -37,7 +37,6 @@ const initialTaskState = {
     userID: "",
     isValidate: false,
 };
-
 
 const taskReducer = (state, action) => {
     switch (action.type) {
@@ -70,12 +69,6 @@ const taskReducer = (state, action) => {
                 ...state,
                 subTasks: action.payload,
             };
-
-        case 'isValidate':
-            return {
-                ...state,
-                isValidate: action.payload == "true" ? true : false,
-            };
         case 'userID':
             return {
                 ...state,
@@ -86,7 +79,6 @@ const taskReducer = (state, action) => {
     };
 };
 
-
 const LpCreateTask = ({ isOpen, onClose }) => {
 
     const [taskState, setTaskState] = useReducer(taskReducer, initialTaskState);
@@ -94,11 +86,20 @@ const LpCreateTask = ({ isOpen, onClose }) => {
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
+    const toast = useToast();
 
 
     const createTaskHandler = () => {
         dispatch(createTasks(taskState))
         .then(() => dispatch(getTasks()))
+        .then(() => toast({
+            title: 'Task Created.',
+            description: "We've created your task for you.",
+            status: 'success',
+            duration: 2000,
+            position: "top",
+            isClosable: true,
+          }))
         .then(() => {
             if(location.pathname !== "/todohomepage"){
                 navigate("/todohomepage");
@@ -166,18 +167,6 @@ const LpCreateTask = ({ isOpen, onClose }) => {
                             <option value="todo">Todo</option>
                             <option value="progress">In-Progress</option>
                             <option value="done">Done</option>
-                        </Select>
-                    </Box>
-
-                    <Box mb="0.5rem">
-                        <FormLabel>Validation</FormLabel>
-                        <Select
-                            placeholder="Validation"
-                            value={taskState.isValidate}
-                            onChange={(e) => setTaskState({ type: 'isValidate', payload: e.target.value })}
-                        >
-                            <option value={true} >True</option>
-                            <option value={false} >False</option>
                         </Select>
                     </Box>
 
