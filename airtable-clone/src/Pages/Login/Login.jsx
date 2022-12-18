@@ -13,6 +13,8 @@ import {
   FormLabel,
   Select,
   useToast,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,17 +22,70 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "./images/PRlogo.jpeg";
 import { BiLockAlt } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
 //import { useGoogleLogin } from "@react-oauth/google";
 import { Loginfunction } from "../../Redux/AuthContext/actions";
+import { addCheckPoint, getCheckPoint, updateCheckPoints } from "../../Redux/AppContext/actions";
+import { useReducer } from "react";
+
+
+const userIsValidateInitialState = {
+    mailID: "",
+    checkValidate: true,
+};
+
+
+const userIsvalidateReducer = (state, action) => {
+  switch (action.type) {
+      case 'mailID':
+          return {
+              ...state,
+              mailID: action.payload,
+          };
+      case 'checkValidate':
+          return {
+              ...state,
+              checkValidate: action.payload,
+          };
+      default:
+          return state;
+  };
+};
+
+
 
 function Login() {
+
+  const [userValidateState, setUserValidateState] = useReducer(userIsvalidateReducer, userIsValidateInitialState);
+  const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
+  console.log("login checkpoint:", checkPoints);
+  const [checkingMail, setCheckingMail] = useState("");
+
+
+
+  const [showPassword, setShowPassword] = useState(false);
   const [userObj, setUserObj] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [selectUser, setSelectUser] = useState("");
   const [employeeID, setEmployee] = useState("");
+
   // console.log(password)
+
+
+
+
+  // ......................................................................... 
+  // adding checkpoint data:- 
+  const addCheckPointHandler = () => {
+      dispatch(addCheckPoint(userValidateState));
+      console.log("userValidateState: ", userValidateState);
+  };
+// ...................................................................................... 
+
+
+
 
   const { isAuth } = useSelector((state) => {
     return {
@@ -76,13 +131,13 @@ function Login() {
 
     /* Checking the email */
     let checkEmail = userObj.filter((el) => {
-      return el.email === email;
+      return el.userEmail === email;
     });
 
     /* if email is right ,Checking the password */
     if (checkEmail.length > 0) {
       let checkPassword = userObj.filter((el) => {
-        return el.email === email && el.password === password;
+        return el.userEmail === email && el.password === password;
       });
       //console.log(check[0]);
 
@@ -92,18 +147,20 @@ function Login() {
         if (checkPassword[0].userType === "admin") {
           check = userObj.filter((el) => {
             return (
-              el.email === email &&
+              el.userEmail === email &&
               el.password === password &&
               el.employeeId === employeeID
             );
           });
           /* if employee is is correct */
           if (check.length > 0) {
+            addCheckPointHandler();
             dispatch(
               Loginfunction({
                 ...check[0],
               })
             );
+            
           } else if (check.length === 0) {
             /*if employee id is not correct */
             toast({
@@ -116,11 +173,13 @@ function Login() {
           }
         } else if (checkPassword[0].userType === "user") {
           /* if userType is customer disaptch */
+          addCheckPointHandler();
           dispatch(
             Loginfunction({
               ...checkPassword[0],
             })
           );
+          
         }
       } else if (checkPassword.length === 0) {
         /* if password is wrong */
@@ -145,6 +204,7 @@ function Login() {
     setEmail("");
     setPassword("");
     setSelectUser("");
+    setEmployee("");
   };
   // const login = useGoogleLogin({
   //   onSuccess: async (respose) => {
@@ -166,6 +226,46 @@ function Login() {
 
   // const initialRef = useRef(null);
   // const finalRef = useRef(null);
+
+
+
+
+  
+
+  // ............................................................................. 
+
+  useEffect(() => {
+    if (checkPoints.length === 0) {
+        dispatch(getCheckPoint());
+    };
+  }, [dispatch, checkPoints.length]);
+
+
+  useEffect(() => {  // prince77@gmail.com
+    checkPoints.length > 0 && checkPoints.map(elem => {
+        // if(elem.mailID === checkingMail){
+        //    elem.checkValidate = true;
+        // }else{
+        //   elem.checkValidate = false;
+        // }
+
+        if(elem.mailID === checkingMail){
+          // elem.checkValidate = true;
+          dispatch(updateCheckPoints(elem.id, {...elem, checkValidate: true}));
+        }else{
+        //  elem.checkValidate = false;
+          dispatch(updateCheckPoints(elem.id, {...elem, checkValidate: false}));
+        }
+    });
+},[checkPoints.length]);
+
+// ................................................................................... 
+
+
+
+
+
+
 
   return (
     <>
@@ -211,7 +311,11 @@ function Login() {
               <FormLabel>Email address</FormLabel>
               <Input
                 w="full"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setUserValidateState({ type: 'mailID', payload: e.target.value });
+                  setCheckingMail(e.target.value);
+                }}
                 placeholder="Enter Email address"
                 type="email"
                 value={email}
@@ -243,14 +347,26 @@ function Login() {
             ) : null}
             <FormControl>
               <FormLabel>Password</FormLabel>
-              <Input
-                w="full"
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter Password"
-                value={password}
-                id="password"
-                type="password"
-              />
+              <InputGroup>
+                <Input
+                  w="full"
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter Password"
+                  value={password}
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                />
+                <InputRightElement h={"full"}>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() =>
+                      setShowPassword((showPassword) => !showPassword)
+                    }
+                  >
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
             <br />
             <Box w="full">

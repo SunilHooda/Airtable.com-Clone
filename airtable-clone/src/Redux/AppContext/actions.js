@@ -95,6 +95,7 @@ const deleteSubtasks = (id, payload) => (dispatch) => {
 };
 
 
+
 const createTasks = (payload) => (dispatch) => {
     dispatch({type: types.CREATE_TASK_REQUEST});
     return axios
@@ -115,12 +116,56 @@ const deleteTasks = (id) => (dispatch) => {
     .delete(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/tasks/${id}`)
     .then((res) => {
         dispatch({type: types.DELETE_TASK_SUCCESS, payload: res});
-        console.log(res.data);
     })
     .catch((e) => {
         dispatch({type: types.DELETE_TASK_FAILURE, payload: e});
     });
 };
+
+
+
+const getCheckPoint = () => (dispatch) => {
+    dispatch({type: types.GET_CHECKPOINT_REQUEST});
+    return axios
+    .get(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/checkpoint`)
+    .then((res) => {
+        dispatch({type: types.GET_CHECKPOINT_SUCCESS, payload: res.data});
+    })
+    .catch((e) => {
+        dispatch({type: types.GET_CHECKPOINT_FAILURE, payload: e});
+    });
+};
+
+
+
+const addCheckPoint = (payload) => (dispatch) => {
+    dispatch({type: types.GET_CHECKPOINT_REQUEST});
+    return axios
+    .post(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/checkpoint`, payload)
+    .then((res) => {
+        dispatch({type: types.GET_CHECKPOINT_SUCCESS, payload: res.data});
+        console.log("Add checkpoint: ", res.data);
+    })
+    .catch((e) => {
+        dispatch({type: types.GET_CHECKPOINT_FAILURE, payload: e});
+    });
+};
+
+
+
+const updateCheckPoints = (id, payload) => (dispatch) => {
+    dispatch({type:types.UPDATE_CHECKPOINT_REQUEST});
+    return axios
+    .put(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/checkpoint/${id}`, payload)
+    .then((r) => {
+        dispatch({type: types.UPDATE_CHECKPOINT_SUCCESS, payload: r.data});
+    })
+    .catch((e) => {
+        dispatch({type: types.UPDATE_CHECKPOINT_FAILURE, payload: e});
+    });
+};
+
+
 
 
 export {
@@ -132,5 +177,8 @@ export {
     addSubtasks, 
     deleteSubtasks,
     createTasks,
-    deleteTasks
+    deleteTasks,
+    getCheckPoint,
+    addCheckPoint,
+    updateCheckPoints
 };

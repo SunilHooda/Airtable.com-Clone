@@ -1,13 +1,17 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { LpTaskCard } from "../Components/Todos/LpTaskCard";
-import { getTasks } from "../Redux/AppContext/actions";
+import { getCheckPoint, getTasks } from "../Redux/AppContext/actions";
 
 const LpTodoHomePage = () => {
 
     const tasks = useSelector((store) => store.AppReducer.tasks);
+    const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
+    // console.log("checkPoints:", checkPoints);
+    const [checkedUserId, setCheckedUserId] = useState("");
+
     const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
 
@@ -30,6 +34,25 @@ const LpTodoHomePage = () => {
     };
 
 
+    // checking point for validate user for todos 
+
+    useEffect(() => {
+        checkPoints.length > 0 && checkPoints.map(elem => {
+            if(elem.checkValidate === true){
+                // console.log(elem);
+                setCheckedUserId(elem.mailID)
+            }
+        });
+    },[checkPoints.length]);
+
+
+    useEffect(() => {
+        if (checkPoints.length === 0) {
+            dispatch(getCheckPoint());
+        };
+    }, [dispatch, checkPoints.length]);
+
+
 
     useEffect(() => {
         if (tasks.length === 0) {
@@ -42,17 +65,17 @@ const LpTodoHomePage = () => {
         <Box
             width="100%"
             paddingTop="1rem"
-            border="1px solid rgba(0,0,0,0.3)"
         >
             <Flex
-                direction="row"
+                direction={{base: "column", sm: "column", md: "column", lg: "row", xl: "row"}}
                 justifyContent="space-around"
             >
                 {/* PENDING TASKS  */}
                 <Box
-                    width="32%"
+                    width={{base: "100%", sm: "100%", md: "100%", lg: "32%", xl: "32%"}}
                     height="auto"
                     border="1px solid rgba(0,0,0,0.3)"
+                    
                 >
                     <Box backgroundColor="red.100">
                         <Text
@@ -62,20 +85,29 @@ const LpTodoHomePage = () => {
                             PENDING
                         </Text>
                     </Box>
+
                     {/* PROGRESSED TASKS  */}
-                    <Box>
+
+                    <Box
+                        display={{base: "grid", sm: "grid", md: "grid", lg: "flex", xl: "flex"}}
+                        flexDirection="column"
+                        gridTemplateColumns={{base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(1, 1fr)", xl: "repeat(1, 1fr)"}}
+                    >
                         {tasks.length > 0 && 
-                        tasks.filter(item => item.task_status === "todo" && item.userID === "userID")
-                        .filter(filterByParamTags)
-                        .map((item) => {
-                            return <LpTaskCard key={item.id} {...item} colorScheme="red" />
-                        })}
+                        tasks.filter(item =>  
+                            item.task_status === "todo" && 
+                            item.userID === checkedUserId && 
+                            item.isValidate === true)
+                            .filter(filterByParamTags)
+                            .map((item) => {
+                                return <LpTaskCard key={item.id} {...item} colorScheme="red" />
+                            })}
                     </Box>
                 </Box>
 
 
                 <Box
-                    width="32%"
+                    width={{base: "100%", sm: "100%", md: "100%", lg: "32%", xl: "32%"}}
                     height="auto"
                     border="1px solid rgba(0,0,0,0.3)"
                 >
@@ -87,20 +119,28 @@ const LpTodoHomePage = () => {
                             PROGRESS...
                         </Text>
                     </Box>
-                    <Box>
+                    <Box
+                        display={{base: "grid", sm: "grid", md: "grid", lg: "flex", xl: "flex"}}
+                        flexDirection="column"
+                        gridTemplateColumns={{base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(1, 1fr)", xl: "repeat(1, 1fr)"}}
+                    >
                         {tasks.length > 0 && 
-                        tasks.filter(item => item.task_status === "progress" && item.userID === "userID")
-                        .filter(filterByParamTags)
-                        .map((item) => {
-                            return <LpTaskCard key={item.id} {...item} colorScheme="yellow" />
-                        })}
+                        tasks.filter(item => 
+                            item.task_status === "progress" && 
+                            item.userID === checkedUserId &&
+                            item.isValidate === true)
+                            .filter(filterByParamTags)
+                            .map((item) => {
+                                return <LpTaskCard key={item.id} {...item} colorScheme="yellow" />
+                            })}
                     </Box>
                 </Box>
 
                 {/* TASKS DONE  */}
                 <Box
-                    width="32%"
+                    width={{base: "100%", sm: "100%", md: "100%", lg: "32%", xl: "32%"}}
                     height="auto"
+                    
                     border="1px solid rgba(0,0,0,0.3)"
                 >
                     <Box backgroundColor="teal.100">
@@ -111,13 +151,20 @@ const LpTodoHomePage = () => {
                             DONE
                         </Text>
                     </Box>
-                    <Box>
+                    <Box 
+                        display={{base: "grid", sm: "grid", md: "grid", lg: "flex", xl: "flex"}}
+                        flexDirection="column"
+                        gridTemplateColumns={{base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(1, 1fr)", xl: "repeat(1, 1fr)"}}
+                    >
                         {tasks.length > 0 && 
-                        tasks.filter(item => item.task_status === "done" && item.userID === "userID")
-                        .filter(filterByParamTags)
-                        .map((item) => {
-                            return <LpTaskCard key={item.id} {...item} colorScheme="green" />
-                        })}
+                        tasks.filter(item => 
+                            item.task_status === "done" && 
+                            item.userID === checkedUserId && 
+                            item.isValidate === true)
+                            .filter(filterByParamTags)
+                            .map((item) => {
+                                return <LpTaskCard key={item.id} {...item} colorScheme="green" />
+                            })}
                     </Box>
                 </Box>
             </Flex>

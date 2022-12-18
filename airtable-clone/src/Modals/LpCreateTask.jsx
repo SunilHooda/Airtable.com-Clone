@@ -34,6 +34,8 @@ const initialTaskState = {
     task_status: "todo",
     tags: ["Others"],
     subTasks: [],
+    userID: "",
+    isValidate: false,
 };
 
 
@@ -69,6 +71,16 @@ const taskReducer = (state, action) => {
                 subTasks: action.payload,
             };
 
+        case 'isValidate':
+            return {
+                ...state,
+                isValidate: action.payload == "true" ? true : false,
+            };
+        case 'userID':
+            return {
+                ...state,
+                userID: action.payload,
+            };
         default:
             return state;
     };
@@ -118,6 +130,17 @@ const LpCreateTask = ({ isOpen, onClose }) => {
                         />
                     </FormControl>
 
+                    {/* UserId  */}
+
+                    <FormControl>
+                        <FormLabel>User-ID</FormLabel>
+                        <Input
+                            placeholder="User-ID"
+                            value={taskState.userID}
+                            onChange={(e) => setTaskState({ type: 'userID', payload: e.target.value })}
+                        />
+                    </FormControl>
+
                     {/* Description  */}
 
                     <FormControl mt={4}>
@@ -143,6 +166,18 @@ const LpCreateTask = ({ isOpen, onClose }) => {
                             <option value="todo">Todo</option>
                             <option value="progress">In-Progress</option>
                             <option value="done">Done</option>
+                        </Select>
+                    </Box>
+
+                    <Box mb="0.5rem">
+                        <FormLabel>Validation</FormLabel>
+                        <Select
+                            placeholder="Validation"
+                            value={taskState.isValidate}
+                            onChange={(e) => setTaskState({ type: 'isValidate', payload: e.target.value })}
+                        >
+                            <option value={true} >True</option>
+                            <option value={false} >False</option>
                         </Select>
                     </Box>
 

@@ -23,23 +23,20 @@ const MainRoutes = () => {
       <Route
         path="/todohomepage"
         element={
-          // <Container minWidth="100%">
-            <Stack direction="row">
+            
+            <Stack backgroundColor="gray.200"  direction={{base: "column", sm: "row", md: "row", lg: "row", xl: "row"}}>
               <LpSidebar />
               <LpTodoHomePage />
             </Stack>
-          // </Container>
         }
       />
       <Route
         path="/task/:id"
         element={
-          // <Container minWidth="100%">
-            <Stack direction="row">
+            <Stack backgroundColor="gray.200" direction={{base: "column", sm: "row", md: "row", lg: "row", xl: "row"}}>
               <LpSidebar />
               <LpEditPage />
             </Stack>
-          // </Container>
         }
       />
     </Routes>
