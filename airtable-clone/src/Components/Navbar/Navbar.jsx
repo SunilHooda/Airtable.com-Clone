@@ -144,7 +144,7 @@ const Navbar = () => {
                   </Text>
                 </Link>
 
-                <Link to={""}>
+                <Link to={"resourse"}>
                   <Text
                     cursor="pointer"
                     _hover={{

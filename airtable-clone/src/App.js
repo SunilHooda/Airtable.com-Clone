@@ -9,11 +9,11 @@ function App() {
   return (
     <div className="App">
       
-      <Container  minWidth="6xl" maxW='10xl'>
+   
       <Navbar />
       <MainRoutes />
       <Footer />
-      </Container>
+    
       
     </div>
   );
