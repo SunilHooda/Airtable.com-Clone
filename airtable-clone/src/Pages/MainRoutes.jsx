@@ -21,6 +21,9 @@ import CalendarHomePage from "../Components/Calendar/CalendarHomePage";
 import AllEvents from "./AllEvents";
 
 import { CombinedPage } from "./CombinedPage";
+import PaymentPro from "../Components/paymentproNew";
+import ThreeTierPricing from "../Components/PricingNew";
+import PricingModal from "../Components/pricingModalNew";
 
 
 const MainRoutes = () => {
@@ -30,6 +33,9 @@ const MainRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/profileEdit" element={<ProfileEdit />} />
+      <Route path="/payment"  element={<PaymentPro />}  />
+      <Route path="/pricing"  element={<ThreeTierPricing />} />
+      <Route path="/pricingmodal" element={<PricingModal />}/>
 
       <Route path="/resourse" element={<PR_Resourse />} />
       <Route path="/singleresourse" element={<PR_Single />} />
