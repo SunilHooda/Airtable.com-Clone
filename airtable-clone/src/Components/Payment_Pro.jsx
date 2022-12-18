@@ -1,8 +1,9 @@
-import { Heading } from '@chakra-ui/react';
+import { border, Box, Heading, List, ListIcon, ListItem, Text } from '@chakra-ui/react';
 import React from 'react'
-
+import { BsStars } from 'react-icons/bs';
+import { FaCheckCircle } from 'react-icons/fa';
+import { FaUserAlt } from 'react-icons/fa';
 const Payment_Pro = () => {
-  
   
       return (
         <div className="app-container" >
@@ -10,73 +11,110 @@ const Payment_Pro = () => {
             <div className="col"  >
               {/* <Item name="Instax Mini 90 Neo Classic" price="$144.99" img="http://ecx.images-amazon.com/images/I/61%2BABMMN5zL._SL1500_.jpg" /> */}
             </div>
-            <div className="col no-gutters">
+            <Box display={{'2xl':"flex", xl:"flex" }} justifyContent={'space-around'}width={'100%'}>
               <Checkout />
-            </div>
+              <Box bg={'#d0f0fd'}  m={'auto'} mt={'15px'} width={{lg:'40%'}}>
+                <Text>Great choice! With Pro, you'll get</Text>
+                <List spacing={3} textAlign="start" pt={5} px={12}>
+             <Text >Pro includes :</Text>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle}  />
+                  Unlimited bases
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle}  />
+                  Up to 5 creators or editors
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle}  />
+                  Unlimited commenter & read-only users
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle}  />
+                  Interface Designer
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle}  />
+                  1 extension per base
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle}  />
+                  1 sync integration
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle}  />
+                  1,200 records per base
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={FaCheckCircle}  />
+                  2GB of attachments per base
+                </ListItem>
+                
+              </List>
+                <img src="https://static.airtable.com/images/pricing/pro-checkout-banner-background-lower-highlight.png" alt='photo' />
+                </Box>
+            </Box>
           </div>
          </div>
       )
       }
 
-  
-  const Item = (props) => (
-    <div className="item-container">
-      <div className="item-image">
-        <img src={props.img}/>
-        <div className="item-details">
-          <h3 className="item-name"> {props.name} </h3>
-          <h2 className="item-price"> {props.price} </h2>
-        </div>
-      </div>
-    </div>
-  );
-  
   const Checkout = (props) => (<div>
-    <Heading mb={'10'}>Easy & Secure Payment with</Heading>
-   <div className="checkout" style={{display:'flex', gap:"50px",margin:"auto"}}>
-    <img Src="https://seeklogo.com/images/V/visa-logo-6F4057663D-seeklogo.com.png"  style={{margin:'10px'}}/>
-      <div className="checkout-container" style={{ border:"solid black",padding:"10px",borderRadius:"10px"}}>
-       <h1 className="heading-3">Credit card checkout</h1>
-       {/* <Input /> */}
-       <input style={{backgroundColor:'lightcyan'}} label="Cardholder's Name" type="text" name="name" />
-       <Input label="Card Number" type="number" name="card_number"
-        />
-        <input  style={{backgroundColor:'lightcyan'}} label="Card Number" type="number" name="card_number"   />
-        
-        <div className="row">
-          <div className="col">
-            
-            <input   label="Expiration Date" type="month" name="exp_date" />
-
-          </div>
-          <div className="col">
-
-            <input style={{backgroundColor:'lightcyan'}} label="CVV" type="number" name="cvv" />
-          </div>
-        </div>
-        {/* <Button border={'1px solid'} text="Payment"/> */}
+    <Box justifyContent={'left'}   m={'0 20% 0 20%'} >
+    <Box  justifyContent={'left'}  display={'flex'} alignItems={'center'}>
+    <Box height={'50px'} >
+      <Heading fontSize={'25px'}><BsStars  color={'orange'}/></Heading>
+    </Box>
+    <Box>
+    <Heading color={'gray'}  mb={'10'}>Checkout</Heading>
+    </Box>
+    </Box>
+    <Box textAlign={'left'} width={'350px'} >
+    <Text fontSize={{'2xl':"17px", xl:"16px",lg:"14px",sm:"12px", base:"11px"}} fontWeight={'500'}>You’ve selected the Pro plan for My First Workspace, billed Annually at $240 per user per year.</Text>
+    </Box>
+    <Box display={'flex'} alignItems={'center'}  mt={'5'} justifyContent={'space-between'}>
+      <Box display={'flex'} >
+      <Text>1 User</Text>
+      </Box>
+      <Box><FaUserAlt  color='orange'/></Box>
+      <Box> 
+      <Text>$288 per year</Text>
+      </Box>
+    </Box>
+    <Box display={'flex'} alignItems={'center'}  mt={'5'} justifyContent={'space-between'}>
+    <Box display={'flex'} >
+      <Text>Annual plan</Text>
+      </Box>
+      <Box> 
+      <Text color={'green'}>-$48</Text>
+      </Box>
+    </Box>
+    <Box display={'flex'} alignItems={'center'}  mt={'5'} justifyContent={'space-between'}>
+    <Box display={'flex'} >
+      <Text>Sub total</Text>
+      </Box>
+      <Box> 
+      <Text color={'green'}>$240</Text>
+      </Box>
+    </Box>
+       <Box>
+       <Input  label="Enter your card details" type="number" name="card_number"/>
+        </Box>
         <button style={{border:'1px solid', width:"120px", borderRadius:"10px", margin:"10px",backgroundColor:'ButtonFace'}}>Payment</button>
-      </div>
-   </div>
+      
+ 
+   </Box>
    </div>
   );
   
   const Input = (props) => (
-    <div className="input">
+    <div style={{ textAlign:'left',marginTop:'5px'}}>
       <label>{props.label}</label>
       <div className="input-field">
-        <input type={props.type} name={props.name} />
-        <img src={props.imgSrc}/>
+        <input  type={props.type} name={props.name} placeholder="Card number MM/YY/CVC" style={{border:"solid gray",marginTop:'5px', borderRadius:"5px", width:"100%" }} />
+        
       </div>
     </div>
   );
   
-  const Button = (props) => (
-    <button className="checkout-btn" type="button">{props.text}</button>
-  );
-  
-  
- 
-
-
 export default Payment_Pro
