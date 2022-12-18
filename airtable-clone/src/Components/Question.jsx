@@ -34,7 +34,7 @@ const Question = () => {
                             // margin={{ base :'10%', sm:'4%', md:'4%', lg:'10%', xl:'10%' }}
                             cursor={'pointer'}
                             onClick={handleToggle1}>
-                            How does Airtable's pricing work
+                            How does Airtable's pricing work ?
                         </Heading>
                             <Divider height={5} />
                         <Collapse startingHeight={5} in={show1} >
@@ -55,7 +55,7 @@ const Question = () => {
                             //  margin={{ base: '10%', sm :'4%', md :'4%', lg :'10%', xl: '10%' }}
                             cursor={'pointer'}
                             onClick={handleToggle2} >
-                            How much does Airtable cost
+                            How much does Airtable cost ?
                             </Heading>
                             <Divider height={5}  />
                         <Collapse startingHeight={5} in={show2} >
@@ -66,12 +66,12 @@ const Question = () => {
                     <Box textAlign='left' margin={'auto'} w={'50%'}>
                         <Heading
                             mt={"15px"}
-                            fontSize={{'2xl':'25px', xl:"25px", lg:'25px',xl:'25px',sm:'20px',base:'12px' }}
+                            fontSize={{'2xl':'25px', xl:'25px', lg:'25px',xl:'25px',sm:'16px',base:'12px' }}
                             fontWeight={'600'}
-                            //  margin={{ base :'10%', sm :'4%', md:'4%', lg :'10%', xl:'10%' }}
+            
                             cursor={'pointer'}
                             onClick={handleToggle3} >
-                            What are my payment options
+                            What are my payment options ?
                         </Heading>
                             <Divider height={5}  />
                         <Collapse startingHeight={5} in={show3}>
@@ -82,12 +82,11 @@ const Question = () => {
                     <Box textAlign='left' margin={'auto'} w={'50%'}>
                         <Heading
                             mt={"15px"}
-                            fontSize={{'2xl':'25px', xl:"25px", lg:'25px',xl:'25px',sm:'20px',base:'12px' }}    
+                            fontSize={{'2xl':'25px', xl:'25px', lg:'25px',xl:'25px',sm:'16px',base:'12px' }}
                             fontWeight={'600'}
-                            // margin={{ base :'10%', sm :'4%', md:'4%', lg :'10%', xl:'10%' }}
                             cursor={'pointer'}
                             onClick={handleToggle4}>
-                            What happens when I hit my usage limits
+                            What happens when I hit my usage limits?
                         </Heading>
                             <Divider height={5}  />
                         <Collapse startingHeight={5} in={show4}>
@@ -98,12 +97,12 @@ const Question = () => {
                     <Box textAlign='left' margin={'auto'} w={'50%'}>
                         <Heading
                         mt={"15px"}
-                        fontSize={{'2xl':'25px', xl:"25px", lg:'25px',xl:'25px',sm:'20px',base:'12px' }}    
+                        fontSize={{'2xl':'25px', xl:'25px', lg:'25px',xl:'25px',sm:'16px',base:'12px' }}
                             fontWeight={'600'}
                             // margin={{ base :'10%', sm :'4%', md:'4%', lg :'10%', xl:'10%' }}
                             cursor={'pointer'}
                             onClick={handleToggle5}>
-                            What's an Airtable base
+                            What's an Airtable base ?
                             </Heading>
                             <Divider height={5}  />
                         <Collapse startingHeight={5} in={show5}>

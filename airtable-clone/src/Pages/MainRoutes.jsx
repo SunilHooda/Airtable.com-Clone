@@ -9,6 +9,10 @@ import { LpSidebar } from "../Components/Todos/LpSidebar";
 import { LpTodoHomePage } from "./LpTodoHomePage";
 import { LpEditPage } from "./LpEditPage";
 import Pricing from "../Components/Pricing";
+import { Product } from "./Product";
+import PricingModal from "../Components/PricingModal";
+import PaymentPro from "../Components/Payment_Pro";
+
 
 
 const MainRoutes = () => {
@@ -18,7 +22,10 @@ const MainRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/profileEdit" element={<ProfileEdit />} />
-      <Route path="/Pricing" element={<Pricing />} />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/product" element={<Product />} />
+      <Route path="/PricingModal" element={<PricingModal />} />
+      <Route path="/paymentpro" element={<PaymentPro />} />
 
       <Route
         path="/todohomepage"

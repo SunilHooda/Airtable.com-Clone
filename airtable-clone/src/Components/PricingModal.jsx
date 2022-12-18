@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Divider, Image, Text } from "@chakra-ui/react";
 import logo from "../Images/pro_banner.png";
 import {BsCheckLg} from "react-icons/bs"
+import { Link } from "react-router-dom";
 
 const PricingModal = () => {
   return (
@@ -25,7 +26,9 @@ const PricingModal = () => {
             <Text fontSize={'3xl'}>$20</Text>
             <Text>per seat/month</Text>
           </Box>
+          <Link to='/PaymentPro'>
           <Button backgroundColor={'#2d7ff9'} w={"70%"} mt={'1'} >Choose Pro</Button>
+          </Link>
           <Box margin={'auto'}  w={'50%'} mt={'5'} textAlign={'left'}>
             
              <Box display={'flex'} gap={'2'}>

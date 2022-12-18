@@ -19,6 +19,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 import { BsCheckLg } from 'react-icons/bs'
 import Question from "./Question";
+import { Link } from "react-router-dom";
 
 
 function Pricing({ children }) {
@@ -92,9 +93,11 @@ export default function ThreeTierPricing() {
               </Box>
             <VStack bg={"white"}  borderBottomRadius={"xl"}>
               <Box w="80%" pt={4}>
+              <Link to='/signup'>
                 <Button w="full" border={' solid black'} borderRadius={'20'} backgroundColor={"white"} >
                   Sign up
                 </Button>
+                </Link>
               </Box>
             
               <List spacing={3} textAlign="start" pt={5} px={12}>
@@ -155,9 +158,11 @@ export default function ThreeTierPricing() {
               </Box>
             <VStack bg={"#ffeab6"}  borderBottomRadius={"xl"}>
               <Box w="80%" pt={4}>
+              <Link to='/signup'>
                 <Button w="full" border={' solid black'} borderRadius={'20'} backgroundColor={'white'}   >
                   Try for Free
                 </Button>
+                </Link>
               </Box>
               <List spacing={3} textAlign="start" px={12} pt={'5'}>
                 <Text >Plus includes :</Text>
@@ -230,9 +235,11 @@ export default function ThreeTierPricing() {
 
             <VStack bg={"#d0f0fd"}  borderBottomRadius={"xl"}>
               <Box w="80%" pt={4}>
+              <Link to='/pricingmodal'>
                 <Button w="full" borderRadius={'20'} backgroundColor={"#2d7ff9"} >
                   Try for Free
                 </Button>
+              </Link>
               </Box>
               <List spacing={3} textAlign="start" px={12}>
                 <ListItem>
@@ -298,9 +305,11 @@ export default function ThreeTierPricing() {
 
             <VStack backgroundColor={"#333333"} color={'white'}  borderBottomRadius={"xl"}>
               <Box w="80%" pt={4}>
+              <Link to='/signup'>
                 <Button w="full" border={' solid black'} borderRadius={'20'} backgroundColor={"white"} color={'black'} >
                   Contact Sales
                 </Button>
+              </Link>
               </Box>
               <List spacing={3} textAlign="start" pt={'4'} px={12}>
                 <ListItem>
@@ -375,7 +384,7 @@ export default function ThreeTierPricing() {
           <Box borderRadius={'10'} w={'36%'} justifyContent={'left'}>
             <Box textAlign={'left'}><Text pt={'10'} fontSize={'2xl'} fontWeight={'bold'}>Compare our plans</Text>
             <Box textAlign={'left'} mt={'20'}>
-              <Text  fontSize={'xl'} >Fundamentals</Text>
+              <Text fontSize={'xl'} >Fundamentals</Text>
               <Text fontSize={'xl'} mt={'1'}>Bases</Text>
               <Text fontSize={'xl'} mt={'1'}>Maximum Number of users</Text>
               <Text fontSize={'xl'} mt={'1'}>Record per base</Text>
@@ -385,20 +394,32 @@ export default function ThreeTierPricing() {
               <Text fontSize={'xl'} mt={'1'}>Rich field types including attachments, checkboxes,<br></br> dropdowns, and more</Text>
               <Text fontSize={'xl'} mt={'1'}>Web, desktop, iOS, and Android apps</Text>
               <Text fontSize={'xl'} mt={'1'}>Realtime collaboration and commenting</Text>
+              <Text  fontSize={'xl'}fontWeight={'bold'} >Views</Text>
+              <Text fontSize={'xl'} mt={'1'}>Grid, calendar, form, kanban, and gallery views</Text>
+              <Text fontSize={'xl'} mt={'1'}>Gantt view</Text>
+              <Text fontSize={'xl'} mt={'1'}>Timeline view</Text>
+              <Text fontSize={'xl'} mt={'1'}>Personal and locked views</Text>
             </Box>
             </Box>
             </Box>
   
           <Box padding={'15px'} borderRadius={'10'}  w={'11%'}>
-          <Box><Text margin={'3'} fontWeight={'700'} fontSize={'xl'} >Free</Text><Button  borderRadius={40} border={'1px solid black'}  width={{  sm: 'none',
-  md: 'none',
-  lg: '70px',
-  xl: '80px',
-  '2xl': '90px',}} fontSize={{  sm: 'none',
-  md: 'none',
-  lg: '14px',
-  xl: '14px',
-  '2xl': '14px',}} >Sign up</Button></Box>
+          <Box><Text margin={'3'} fontWeight={'700'} fontSize={'xl'} >Free</Text>
+          <Link to='/signup'>
+          <Button  
+          borderRadius={40} 
+          border={'1px solid black'}  
+          width={{  sm: 'none',
+            md: 'none',
+            lg: '70px',
+            xl: '80px',
+            '2xl': '90px',}} fontSize={{  sm: 'none',
+            md: 'none',
+            lg: '14px',
+            xl: '14px',
+            '2xl': '14px',}} >Sign up</Button>
+                    </Link>
+          </Box>
           <Box justifyContent={'center'} alignItems={'center'} mt={'8'}>
               <Text fontSize={'xl'} mt={'2'}>unlimited</Text>
               <Text fontSize={'xl'} mt={'3'}>5</Text>
@@ -411,10 +432,21 @@ export default function ThreeTierPricing() {
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
-            </Box></Box></Box>
+            </Box>
+            </Box>
+            <Box  justifyContent={'center'} alignItems={'center'} mt={'12'}>
+              
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+            </Box>
+            </Box>
 
 
-          <Box bg={"#ffeab6"} borderRadius={'10'}  padding={'15px'}  w={'11%'}><Box><Text margin={'3'} fontWeight={'700'} fontSize={'xl'} >Plus</Text><Button borderRadius={40} border={'1px solid black'}           width={{  sm: 'none',
+          <Box bg={"#ffeab6"} borderRadius={'10'}  padding={'15px'}  w={'11%'}><Box><Text margin={'3'} fontWeight={'700'} fontSize={'xl'} >Plus</Text>
+          <Link to='/signup'> 
+          <Button borderRadius={40} border={'1px solid black'}           width={{  sm: 'none',
   md: 'none',
   lg: '85px',
   xl: '90px',
@@ -423,7 +455,9 @@ export default function ThreeTierPricing() {
   lg: '14px',
   xl: '14px',
   '2xl': '14px',}}>Try for free</Button>
-          </Box><Box  justifyContent={'center'} alignItems={'center'} mt={'8'}>
+  </Link>
+          </Box>
+          <Box  justifyContent={'center'} alignItems={'center'} mt={'8'}>
               <Text fontSize={'xl'} mt={'2'}>unlimited</Text>
               <Text fontSize={'xl'} mt={'3'}>unlimited</Text>
               <Text fontSize={'xl'} mt={'3'}>5,000</Text>
@@ -435,18 +469,30 @@ export default function ThreeTierPricing() {
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
-            </Box></Box>
+            </Box>
+            <Box justifyContent={'center'} alignItems={'center'} mt={'12'}>
+              
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+            </Box>
+            </Box>
           </Box>
-          <Box padding={'15px'} borderRadius={'10'} bg={'#d0f0fd'} w={'11%'}><Box><Text margin={'3'} fontWeight={'700'} fontSize={'xl'} >Pro</Text><Button bg={'#2d7ff9'} borderRadius={40} 
+          <Box padding={'15px'} borderRadius={'10'} bg={'#d0f0fd'} w={'11%'}><Box><Text margin={'3'} fontWeight={'700'} fontSize={'xl'} >Pro</Text>
+          <Link to='/pricingmodal'>
+          <Button bg={'#2d7ff9'} borderRadius={40} 
           width={{  sm: 'none',
-  md: 'none',
-  lg: '80px',
-  xl: '90px',
-  '2xl': '90px',}} fontSize={{  sm: 'none',
-  md: 'none',
-  lg: '14px',
-  xl: '14px',
-  '2xl': '14px',}} >Try for free</Button></Box>
+          md: 'none',
+          lg: '80px',
+          xl: '90px',
+          '2xl': '90px',}} fontSize={{  sm: 'none',
+          md: 'none',
+          lg: '14px',
+          xl: '14px',
+          '2xl': '14px',}} >Try for free</Button>
+          </Link>
+          </Box>
           <Box justifyContent={'center'} alignItems={'center'} mt={'8'}>
               <Text fontSize={'xl'} mt={'2'}>unlimited</Text>
               <Text fontSize={'xl'} mt={'3'}>unlimited</Text>
@@ -459,23 +505,36 @@ export default function ThreeTierPricing() {
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
-            </Box></Box></Box>
+            </Box>
+            <Box justifyContent={'center'} alignItems={'center'} mt={'12'}>
+              
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+            </Box>
+            </Box></Box>
 
-          <Box padding={'15px'} borderRadius={'10'} bg={'#333333'} color={'white'} w={'11%'}><Box><Text margin={'3'} fontWeight={'700'} fontSize={{
+          <Box padding={'15px'} borderRadius={'10'} bg={'#333333'} color={'white'} w={'11%'}><Box>
+            <Text margin={'3'} fontWeight={'700'} fontSize={{
             sm: 'none',
   md: 'none',
   lg: '11px',
   xl: '18px',
-  '2xl': '20px',}} >Enterprize</Text><Button borderRadius={40} border={'1px solid black'} color='black'          width={{  sm: 'none',
+  '2xl': '20px',}} >Enterprize</Text>
+  <Link to='/signup'>
+  <Button borderRadius={40} border={'1px solid black'} color='black'          width={{  sm: 'none',
   md: 'none',
   lg: '90px',
   xl: '90px',
   '2xl': '100px',}}
-   fontSize={{  sm: 'none',
+  fontSize={{  sm: 'none',
   md: 'none',
   lg: '14px',
   xl: '13px',
-  '2xl': '14px',}} >Contact sales</Button></Box>
+  '2xl': '14px',}} >Contact sales</Button>
+  </Link>
+  </Box>
           <Box justifyContent={'center'} alignItems={'center'} mt={'8'}>
               <Text fontSize={'xl'} mt={'2'}>unlimited</Text>
               <Text fontSize={'xl'} mt={'3'}>unlimited</Text>
@@ -488,7 +547,15 @@ export default function ThreeTierPricing() {
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
               <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
-            </Box></Box></Box>
+            </Box>
+            <Box justifyContent={'center'} alignItems={'center'} mt={'12'}>
+              
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+              <Box marginLeft={{'2xl':"60px", xl:"55px",lg:"30px" }} textAlign={'center'}><Text  fontSize={'xl'} mt={'3'}><BsCheckLg /></Text></Box>
+            </Box>
+            </Box></Box>
         </Box>
             <Box margin={'auto'} mt={'5'} w={'80%'}>
               <Text>* Service levels determined based on spend; customer base trainings and base build services available to qualified customers as set forth on an applicable order form. Services expire if they are not utilized within the contract term.</Text>
