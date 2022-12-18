@@ -8,8 +8,7 @@ import { Stack, Container } from "@chakra-ui/react";
 import { LpSidebar } from "../Components/Todos/LpSidebar";
 import { LpTodoHomePage } from "./LpTodoHomePage";
 import { LpEditPage } from "./LpEditPage";
-import Pricing from "../Components/Pricing";
-
+import { CombinedPage } from "./CombinedPage";
 
 const MainRoutes = () => {
   return (
@@ -18,13 +17,13 @@ const MainRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/profileEdit" element={<ProfileEdit />} />
-      <Route path="/Pricing" element={<Pricing />} />
+      <Route path="/combinedpage" element={<CombinedPage />} />
 
       <Route
         path="/todohomepage"
         element={
             
-            <Stack backgroundColor="gray.200"  direction={{base: "column", sm: "row", md: "row", lg: "row", xl: "row"}}>
+            <Stack backgroundColor="gray.200"  direction={{base: "column", sm: "colum", md: "row", lg: "row", xl: "row"}}>
               <LpSidebar />
               <LpTodoHomePage />
             </Stack>
@@ -33,7 +32,7 @@ const MainRoutes = () => {
       <Route
         path="/task/:id"
         element={
-            <Stack backgroundColor="gray.200" direction={{base: "column", sm: "row", md: "row", lg: "row", xl: "row"}}>
+            <Stack backgroundColor="gray.200" direction={{base: "column", sm: "column", md: "row", lg: "row", xl: "row"}}>
               <LpSidebar />
               <LpEditPage />
             </Stack>

@@ -48,6 +48,7 @@ const updateTasks = (id, payload) => (dispatch) => {
     .put(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/tasks/${id}`, payload)
     .then((r) => {
         dispatch({type: types.UPDATE_TASK_SUCCESS, payload: r.data});
+        // console.log("updated data: ", r.data);
     })
     .catch((e) => {
         dispatch({type: types.UPDATE_TASK_FAILURE, payload: e});

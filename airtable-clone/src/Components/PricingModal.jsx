@@ -30,7 +30,7 @@ const PricingModal = () => {
             
              <Box display={'flex'} gap={'2'}>
              <BsCheckLg /> 
-            Everything in Plus, and :</Box> 
+            Everything in Plus, and:</Box> 
             <Box display={'flex'} gap={'2'}>
              <BsCheckLg /> 
             50,000 records per base</Box>
@@ -55,7 +55,8 @@ const PricingModal = () => {
             10 extensions per base </Box>
             <Box display={'flex'} gap={'2'}>
              <BsCheckLg /> 
-             10 sync integrations </Box> 
+             10 sync integrations </Box>
+          
           </Box>
         </Box>
         </Box>
