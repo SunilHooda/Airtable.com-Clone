@@ -28,7 +28,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { createTasks, getTasks } from "../Redux/AppContext/actions";
 
-
 const initialTaskState = {
     title: "",
     description: "default description",
@@ -38,7 +37,6 @@ const initialTaskState = {
     userID: "",
     isValidate: false,
 };
-
 
 const taskReducer = (state, action) => {
     switch (action.type) {
@@ -80,7 +78,6 @@ const taskReducer = (state, action) => {
             return state;
     };
 };
-
 
 const LpCreateTask = ({ isOpen, onClose }) => {
 
@@ -172,18 +169,6 @@ const LpCreateTask = ({ isOpen, onClose }) => {
                             <option value="done">Done</option>
                         </Select>
                     </Box>
-
-                    {/* <Box mb="0.5rem">
-                        <FormLabel>Validation</FormLabel>
-                        <Select
-                            placeholder="Validation"
-                            value={taskState.isValidate}
-                            onChange={(e) => setTaskState({ type: 'isValidate', payload: e.target.value })}
-                        >
-                            <option value={true} >True</option>
-                            <option value={false} >False</option>
-                        </Select>
-                    </Box> */}
 
                     {/* Tags  */}
 

@@ -26,6 +26,9 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
 //import { useGoogleLogin } from "@react-oauth/google";
 import { Loginfunction } from "../../Redux/AuthContext/actions";
+
+import { saveData } from "../../Utils/localStorageData";
+
 import { addCheckPoint, getCheckPoint, getTasks, updateCheckPoints, updateTasks } from "../../Redux/AppContext/actions";
 import { useReducer } from "react";
 
@@ -52,6 +55,7 @@ const userIsvalidateReducer = (state, action) => {
           return state;
   };
 };
+
 
 
 
@@ -167,7 +171,11 @@ function Login() {
           });
           /* if employee is is correct */
           if (check.length > 0) {
+
+            saveData("loggedUser", { ...check[0] });
+
             addCheckPointHandler();
+
             dispatch(
               Loginfunction({
                 ...check[0],
@@ -185,6 +193,7 @@ function Login() {
             });
           }
         } else if (checkPassword[0].userType === "user") {
+          saveData("loggedUser", { ...check[0] });
           /* if userType is customer disaptch */
           addCheckPointHandler();
           dispatch(

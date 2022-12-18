@@ -6,8 +6,7 @@ import { LpTaskCard } from "../Components/Todos/LpTaskCard";
 import { getCheckPoint, getTasks } from "../Redux/AppContext/actions";
 
 const LpTodoHomePage = () => {
-
-    const tasks = useSelector((store) => store.AppReducer.tasks);
+   const tasks = useSelector((store) => store.AppReducer.tasks);
     const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
     // console.log("checkPoints:", checkPoints);
     const [checkedUserId, setCheckedUserId] = useState("");
@@ -15,7 +14,7 @@ const LpTodoHomePage = () => {
     const dispatch = useDispatch();
 
 
-    const filterByParamTags = (task) => {
+   const filterByParamTags = (task) => {
         const tagsInTheParams = searchParams.getAll('tags');
         if (tagsInTheParams.includes('All') || tagsInTheParams.length === 0) {
             return task;
@@ -58,8 +57,7 @@ const LpTodoHomePage = () => {
             dispatch(getTasks());
         };
     }, [dispatch, tasks.length]);
-
-
+   
     return (
         <Box
             width="100%"
@@ -164,8 +162,10 @@ const LpTodoHomePage = () => {
                     </Box>
                 </Box>
             </Flex>
-        </Box>
-    )
+
+     
+    </Box>
+  );
 };
 
 export { LpTodoHomePage };

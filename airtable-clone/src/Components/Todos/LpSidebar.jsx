@@ -1,46 +1,38 @@
 import React, { useEffect, useState } from "react";
-import {
-    Box,
-    Button,
-    Flex,
-    Text,
-    useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCheckPoint, getTagsList } from "../../Redux/AppContext/actions";
 import { useSearchParams } from "react-router-dom";
 import { LpCreateTask } from "../../Modals/LpCreateTask";
 
 const LpSidebar = () => {
-
-    const dispatch = useDispatch();
-    const tagLists = useSelector((store) => store.AppReducer.tags);
-    const tasks = useSelector((store) => store.AppReducer.tasks);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [selectTags, setSelectTags] = useState(searchParams.getAll("tags") || []);
-    const [totalTask, setTotalTask] = useState(0);
-    const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
+  const tagLists = useSelector((store) => store.AppReducer.tags);
+  const tasks = useSelector((store) => store.AppReducer.tasks);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectTags, setSelectTags] = useState(
+    searchParams.getAll("tags") || []
+  );
+  const [totalTask, setTotalTask] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
     const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
     const [checkedUserId, setCheckedUserId] = useState("");
     // console.log("checkPoints:", checkPoints);
     // console.log("checkeduserid:", checkedUserId);
-    
 
 
-    const handleTagChange = (value) => {
-        let newTags = [...selectTags];
-        if (selectTags.includes(value)) {
-            newTags.splice(newTags.indexOf(value), 1);
-        }
-        else {
-            newTags.push(value);
-        }
-        setSelectTags(newTags);
-        setSearchParams({ tags: newTags });
-    };
+  const handleTagChange = (value) => {
+    let newTags = [...selectTags];
+    if (selectTags.includes(value)) {
+      newTags.splice(newTags.indexOf(value), 1);
+    } else {
+      newTags.push(value);
+    }
+    setSelectTags(newTags);
+    setSearchParams({ tags: newTags });
+  };
 
-    
-    useEffect(() => {
+   useEffect(() => {
         checkPoints.length > 0 && checkPoints.map(elem => {
             if(elem.checkValidate === true){
                 setCheckedUserId(elem.mailID)
@@ -56,13 +48,11 @@ const LpSidebar = () => {
         };
     }, [dispatch, checkPoints.length]);
 
-
-
-    useEffect(() => {
-        if (tagLists.length === 0) {
-            dispatch(getTagsList());
-        };
-    }, [dispatch, tagLists.length]);
+  useEffect(() => {
+    if (tagLists.length === 0) {
+      dispatch(getTagsList());
+    }
+  }, [dispatch, tagLists.length]);
 
     return (
         <Box
@@ -108,15 +98,7 @@ const LpSidebar = () => {
                         >
                             <Flex>
                                 <Text paddingLeft="5%">All</Text>
-                                {/* <Text>
-                                    {
-                                        tasks.filter((elem) => 
-                                        elem.includes(
-                                        elem.userID === checkedUserId && 
-                                        elem.isValidate === true
-                                        )).length
-                                    }
-                                </Text> */}
+                               
                             </Flex>
                         </Box>
                         {tagLists.length > 0 &&
@@ -153,11 +135,13 @@ const LpSidebar = () => {
                                     </Box>
                                 );
                             })}
+
                     </Flex>
-                </Box>
-            </Flex>
-        </Box>
-    );
+                  </Box>
+             
+      </Flex>
+    </Box>
+  );
 };
 
 export { LpSidebar };

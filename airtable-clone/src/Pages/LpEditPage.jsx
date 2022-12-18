@@ -16,6 +16,7 @@ import {
     Text,
     useDisclosure,
     useToast,
+
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,20 +28,17 @@ import {
     getTagsList,
     getTasks,
     updateSubtasksList,
-    updateTasks
 } from "../Redux/AppContext/actions";
 import { Link } from "react-router-dom";
 import { LpCreateTask } from "../Modals/LpCreateTask";
 
-
 const date = new Date().toLocaleDateString();
-
 
 const LpEditPage = () => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const { id } = useParams();
+  const { id } = useParams();
     const tasks = useSelector((store) => store.AppReducer.tasks);
     const tagLists = useSelector((store) => store.AppReducer.tags);
 
@@ -54,8 +52,6 @@ const LpEditPage = () => {
     const [currentSubTask, setCurrrentSubTask] = useState("");
     const [newTag, setNewTag] = useState('');
     const toast = useToast();
-
-
 
     const deleteSubTaskHandler = (title) => {
         let newSubTasksTitle = subTasks.filter((item) => item.subTaskTitle !== title);
@@ -72,9 +68,9 @@ const LpEditPage = () => {
             .then(() => dispatch(getTasks()));
         // console.log("newSubTasksTitle:", newSubTasksTitle)
     }
+  };
 
-
-    const addSubTask = (e) => {
+  const addSubTask = (e) => {
         e.preventDefault();
         if (currentSubTask) {
             const newSubTask = [
@@ -95,9 +91,8 @@ const LpEditPage = () => {
                 .then(() => setCurrrentSubTask(""))
         }
     };
-
-
-    const createTagHandler = () => {
+    
+      const createTagHandler = () => {
         if (newTag) {
             dispatch(addTags(newTag))
             .then(() => toast({
@@ -111,9 +106,8 @@ const LpEditPage = () => {
             .then(() => dispatch(getTagsList()));
         };
     };
-
-
-    const updateFunc = (identifier, value) => {
+    
+      const updateFunc = (identifier, value) => {
         if (identifier === "textAndDescription") {
             dispatch(updateTasks(id, {
                 title: taskTitle,
@@ -132,8 +126,7 @@ const LpEditPage = () => {
             })).then(() => dispatch(getTasks()));
         }
     };
-
-
+    
     const updateSubTaskStatus = (value) => {
         const newSubTaskData = subTasks.map((item) => {
             if (value.includes(item.subTaskTitle)) {
@@ -148,9 +141,7 @@ const LpEditPage = () => {
                 dispatch(getTasks());
             });
     };
-
-
-    useEffect(() => {
+       useEffect(() => {
         if (tasks.length === 0) {
             dispatch(getTasks());
         }
@@ -176,6 +167,11 @@ const LpEditPage = () => {
             }
         }
     }, [id, tasks]);
+    
+
+
+
+
 
 
     return (
@@ -344,8 +340,10 @@ const LpEditPage = () => {
                     
                 </Box>
             </Flex>
-        </Box>
-    );
+
+     
+    </Box>
+  );
 };
 
 export { LpEditPage };
