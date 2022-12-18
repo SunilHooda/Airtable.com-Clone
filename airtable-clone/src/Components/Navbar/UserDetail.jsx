@@ -27,7 +27,7 @@ import { SIGNOUT } from "../../Redux/AuthContext/actionTypes";
 
 const UserDetail = () => {
   const userData = useSelector((data) => data.AuthReducer.userData);
-  console.log(userData);
+  // console.log(userData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();

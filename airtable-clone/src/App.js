@@ -1,12 +1,8 @@
-
-import logo from './logo.svg';
-import './App.css'
-
+import "./App.css";
 
 import Footer from "./Components/LP_Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import { MainRoutes } from "./Pages/MainRoutes";
-import { Container } from "@chakra-ui/react";
 
 function App() {
   return (
@@ -14,8 +10,6 @@ function App() {
       <Navbar />
       <MainRoutes />
       <Footer />
-  
-      
     </div>
   );
 }

@@ -11,7 +11,6 @@ const LpTodoHomePage = () => {
     const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
     // console.log("checkPoints:", checkPoints);
     const [checkedUserId, setCheckedUserId] = useState("");
-
     const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
 
@@ -96,8 +95,7 @@ const LpTodoHomePage = () => {
                         {tasks.length > 0 && 
                         tasks.filter(item =>  
                             item.task_status === "todo" && 
-                            item.userID === checkedUserId && 
-                            item.isValidate === true)
+                            item.userID === checkedUserId) 
                             .filter(filterByParamTags)
                             .map((item) => {
                                 return <LpTaskCard key={item.id} {...item} colorScheme="red" />
@@ -127,8 +125,7 @@ const LpTodoHomePage = () => {
                         {tasks.length > 0 && 
                         tasks.filter(item => 
                             item.task_status === "progress" && 
-                            item.userID === checkedUserId &&
-                            item.isValidate === true)
+                            item.userID === checkedUserId ) // && item.isValidate === true
                             .filter(filterByParamTags)
                             .map((item) => {
                                 return <LpTaskCard key={item.id} {...item} colorScheme="yellow" />
@@ -159,8 +156,7 @@ const LpTodoHomePage = () => {
                         {tasks.length > 0 && 
                         tasks.filter(item => 
                             item.task_status === "done" && 
-                            item.userID === checkedUserId && 
-                            item.isValidate === true)
+                            item.userID === checkedUserId)
                             .filter(filterByParamTags)
                             .map((item) => {
                                 return <LpTaskCard key={item.id} {...item} colorScheme="green" />
@@ -173,3 +169,4 @@ const LpTodoHomePage = () => {
 };
 
 export { LpTodoHomePage };
+
