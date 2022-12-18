@@ -8,9 +8,13 @@ import { Stack } from "@chakra-ui/react";
 import { LpSidebar } from "../Components/Todos/LpSidebar";
 import { LpTodoHomePage } from "./LpTodoHomePage";
 import { LpEditPage } from "./LpEditPage";
+
 import { UserDashboard } from "./UserDashboard";
 import CalendarHomePage from "../Components/Calendar/CalendarHomePage";
 import AllEvents from "./AllEvents";
+
+import { CombinedPage } from "./CombinedPage";
+
 
 const MainRoutes = () => {
   return (
@@ -19,22 +23,29 @@ const MainRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/profileEdit" element={<ProfileEdit />} />
+      <Route path="/combinedpage" element={<CombinedPage />} />
+
       <Route
         path="/todohomepage"
         element={
-          <Stack direction="row">
-            <LpSidebar />
-            <LpTodoHomePage />
-          </Stack>
+
+            
+            <Stack backgroundColor="gray.200"  direction={{base: "column", sm: "colum", md: "row", lg: "row", xl: "row"}}>
+              <LpSidebar />
+              <LpTodoHomePage />
+            </Stack>
+
         }
       />
       <Route
         path="/task/:id"
         element={
-          <Stack direction="row">
-            <LpSidebar />
-            <LpEditPage />
-          </Stack>
+
+            <Stack backgroundColor="gray.200" direction={{base: "column", sm: "column", md: "row", lg: "row", xl: "row"}}>
+              <LpSidebar />
+              <LpEditPage />
+            </Stack>
+
         }
       />
       <Route path="/calendarhomepage" element={<CalendarHomePage />} />

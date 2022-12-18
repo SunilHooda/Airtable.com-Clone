@@ -1,19 +1,11 @@
-// const initialState = {
-//   isLoading: false,
-//   isError: false,
-//   data: [],
-// };
-
-// export const reducer = (state = initialState) => {
-//   return state;
-// };
-
 import * as types from "./actionTypes";
 
 const initialState = {
+
   tasks: [],
   tags: [],
   events: [],
+  checkPoint: [],
   isLoading: false,
   isError: false,
 };
@@ -72,9 +64,21 @@ const reducer = (state = initialState, action) => {
         isLoading: false,
         isError: true,
       };
+      case types.GET_CHECKPOINT_REQUEST:
+            return { ...state };
+
+        case types.GET_CHECKPOINT_SUCCESS:
+            return {
+                ...state,
+                checkPoint: payload
+            };
+
+        case types.GET_CHECKPOINT_FAILURE:
+            return { ...state };
     default:
       return state;
   }
+
 };
 
 export { reducer };
