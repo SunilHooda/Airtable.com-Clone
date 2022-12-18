@@ -34,20 +34,21 @@ const UserDetail = () => {
   const toast = useToast();
   const { isOpen, onClose } = useDisclosure();
 
-
-
   const handleClickAccount = () => {
     navigate("/profileEdit", { replace: true });
   };
 
   const handleClickDashboard = () => {
-    if(userData.userType==="admin"){
+    if (userData.userType === "admin") {
       navigate("/admindashboard", { replace: true });
-    }else if(userData.userType==="user")
-    navigate("/userdashboard", { replace: true });
+    } else if (userData.userType === "user") {
+      navigate("/userdashboard", { replace: true });
+    }
   };
 
   const handleSignOut = () => {
+    localStorage.removeItem("isAuth");
+    localStorage.removeItem("loggedUser");
     setTimeout(() => {
       navigate("/signup", { replace: true });
     }, 2000);
