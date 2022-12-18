@@ -1,22 +1,54 @@
 import { Box, Button, Container, Grid, GridItem, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import AllEventGrid from "../Components/Calendar/AllEventGrid";
-import { getEvents } from "../Redux/AppContext/actions";
+import { AllEventGrid } from "../Components/Calendar/AllEventGrid";
+import {
+  getEvents,
+  getCheckPoint,
+  updateEvent,
+} from "../Redux/AppContext/actions";
 
 const AllEvents = () => {
-  const userEvents = useSelector((store) => store.AppReducer.events);
+  let userEvents = useSelector((store) => store.AppReducer.events);
+  const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
+  const [checkedUserId, setCheckedUserId] = useState("");
 
   userEvents?.forEach((item) => {
     item.start = new Date(item.start);
     item.end = new Date(item.end);
   });
 
+  if (userEvents.length > 0) {
+    userEvents = userEvents.filter((item) => item.userID === checkedUserId);
+  }
+
   const dispatch = useDispatch();
+
+  const handleUpdateEvent = (id, newEvent) => {
+    console.log(id, newEvent);
+    dispatch(updateEvent(id, newEvent)).then(() => dispatch(getEvents()));
+  };
+
   useEffect(() => {
     dispatch(getEvents());
   });
+
+  useEffect(() => {
+    checkPoints.length > 0 &&
+      checkPoints.map((elem) => {
+        if (elem.checkValidate === true) {
+          // console.log(elem);
+          setCheckedUserId(elem.mailID);
+        }
+      });
+  }, [checkPoints.length]);
+
+  useEffect(() => {
+    if (checkPoints.length === 0) {
+      dispatch(getCheckPoint());
+    }
+  }, [dispatch, checkPoints.length]);
 
   return (
     <Box display="flex" flexDirection={"column"}>
@@ -84,7 +116,10 @@ const AllEvents = () => {
                     title={item.title}
                     start={item.start}
                     end={item.end}
-                    description={item.description}
+                    description={
+                      item.description ? undefined : item.description
+                    }
+                    handleUpdateEvent={handleUpdateEvent}
                   />
                 </GridItem>
               );

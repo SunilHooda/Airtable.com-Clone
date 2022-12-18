@@ -23,7 +23,7 @@ import {
 import { IoIosArrowDown } from "react-icons/io";
 import { FaGreaterThan } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo.png";
 import { useSelector } from "react-redux";
 import SignUpPopUp from "./SignUpPopUp";
@@ -34,9 +34,26 @@ const Navbar = () => {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const hoverColor = "#0768F8";
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
+
+  const handleDashboard = () => {
+    if (isAuth) {
+      navigate("/userdashboard");
+    }
+  };
 
   return (
-    <Box w="100%">
+    <Box
+      bgColor="white"
+      boxShadow=" rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;"
+      w="100%"
+      zIndex={10}
+      borderBottom="1px"
+      borderBottomColor="#c5c7cc"
+      position="sticky"
+      top="0"
+      mb="5px"
+    >
       <Flex align="center" p="1rem" fontSize="14px" bg="#0768F8" w="100%">
         <Text color={"white"}>
           Welcome to WebTaskIt.com. Why stress over Work Management? Manage here
@@ -95,19 +112,19 @@ const Navbar = () => {
                   >
                     Features {<IoIosArrowDown />}
                   </MenuItem>
-                  <Link to="">
-                    <MenuItem
-                      display="flex"
-                      mt="0.8rem"
-                      ml="0.8rem"
-                      gap="1rem"
-                      fontSize={17}
-                      fontWeight={"460"}
-                    >
-                      <FaGreaterThan />
-                      Views
-                    </MenuItem>
-                  </Link>
+
+                  <MenuItem
+                    display="flex"
+                    mt="0.8rem"
+                    ml="0.8rem"
+                    gap="1rem"
+                    fontSize={17}
+                    fontWeight={"460"}
+                    onClick={handleDashboard}
+                  >
+                    <FaGreaterThan />
+                    Views
+                  </MenuItem>
                 </MenuList>
               </Menu>
               <Stack

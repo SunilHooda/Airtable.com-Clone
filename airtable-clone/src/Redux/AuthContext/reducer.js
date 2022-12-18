@@ -13,7 +13,7 @@ const SignUpState = {
   createAccountLoading: false,
   successCreate: false,
   createError: false,
-  userData: {},
+  userData: getLocalData("loggedUser") || {},
   isAuth: getLocalData("isAuth") || false,
   isLoading: false,
   isError: false,

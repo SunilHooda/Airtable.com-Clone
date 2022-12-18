@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addEvents,
   deleteEvent,
+  getCheckPoint,
   getEvents,
   updateEvent,
 } from "../../Redux/AppContext/actions";
@@ -36,12 +37,18 @@ import { Link } from "react-router-dom";
 
 const CalendarHomePage = () => {
   const DragDropCalendar = withDragAndDrop(Calendar);
-  const userEvents = useSelector((store) => store.AppReducer.events);
+  let userEvents = useSelector((store) => store.AppReducer.events);
+  const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
+  const [checkedUserId, setCheckedUserId] = useState("");
 
   userEvents?.forEach((item) => {
     item.start = new Date(item.start);
     item.end = new Date(item.end);
   });
+
+  if (userEvents.length > 0) {
+    userEvents = userEvents.filter((item) => item.userID === checkedUserId);
+  }
 
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -61,7 +68,25 @@ const CalendarHomePage = () => {
     if (userEvents.length === 0) {
       dispatch(getEvents());
     }
-  }, [dispatch, userEvents]);
+  }, [dispatch, userEvents.length]);
+
+  // checking point for validate user for todos
+
+  useEffect(() => {
+    checkPoints.length > 0 &&
+      checkPoints.map((elem) => {
+        if (elem.checkValidate === true) {
+          // console.log(elem);
+          setCheckedUserId(elem.mailID);
+        }
+      });
+  }, [checkPoints.length]);
+
+  useEffect(() => {
+    if (checkPoints.length === 0) {
+      dispatch(getCheckPoint());
+    }
+  }, [dispatch, checkPoints.length]);
 
   const clearAllFormFields = () => {
     setTitle("");
@@ -145,6 +170,7 @@ const CalendarHomePage = () => {
         title: title,
         start: new Date(startDate),
         end: new Date(endDate),
+        description: "",
       };
       handleUpdateEvent(id, newEvent);
     } else {
@@ -161,6 +187,7 @@ const CalendarHomePage = () => {
         title: title,
         start: new Date(startDate),
         end: new Date(endDate),
+        description: "",
       };
       handleAddEvent(newEvent);
     }
