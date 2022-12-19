@@ -12,7 +12,7 @@ Airtable was founded on the belief that software shouldn't dictate how you workâ
 - **Redux**
 - **Reducer**
 - **Chakra-UI**
--**styled-components**
+- **styled-components**
 
 
 
