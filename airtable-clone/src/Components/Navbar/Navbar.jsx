@@ -37,15 +37,10 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const toast = useToast();
-  const userData = useSelector((data) => data.AuthReducer.userData);
 
   const handleDashboard = () => {
     if (isAuth) {
-      if (userData.userType === "admin") {
-        navigate("/admindashboard", { replace: true });
-      } else if (userData.userType === "user") {
-        navigate("/userdashboard", { replace: true });
-      }
+      navigate("/userdashboard", { replace: true });
     } else {
       toast({
         title: `Please Login First...`,
