@@ -1,7 +1,7 @@
-# Tripvillas-Clone
+# AirTable-Clone
 
 ## Description
-Tripvillas is one of Asia's largest Holiday Home Rental Companies. The company was founded in late 2009 by Roshan D'Silva when looking for ways to generate additional income from Coffee Plantations owned by his family in India. Inspired by Craigslist, Roshan set out to create a simple website where owners of private homes could create a simple profile for their property and then correspond with like minded families who would be interested in staying in their homes as an alternate to hotels. 
+Airtable was founded on the belief that software shouldn't dictate how you work—you should dictate how it works.Our mission is to democratize software creation by enabling anyone to build the tools that meet their needs. People around the world use Airtable to do everything from cattle tracking to filmmaking.
 
 ## Tech Stack
 
@@ -9,7 +9,11 @@ Tripvillas is one of Asia's largest Holiday Home Rental Companies. The company w
 - **CSS**
 - **Javascript**
 - **React**
+- **Redux**
 - **Reducer**
+- **Chakra-UI**
+-**styled-components**
+
 
 
 
