@@ -368,37 +368,17 @@ const DSingleBook = () => {
                           </Text>
                         </Stack>
 
-                        {item.description === undefined ? null : (
-                          <Stack
-                            display={"flex"}
-                            flexDirection={"row"}
-                            justifyContent={"space-evenly"}
-                            alignItems="center"
-                            padding={5}
+                        <Link to="/calendarhomepage">
+                          <Button
+                            margin="auto"
+                            bg={"black"}
+                            color={"blue.400"}
+                            onClick={onOpen}
                           >
-                            <Text fontWeight={600} fontSize="xl">
-                              Description:
-                            </Text>
-                            <Text
-                              fontWeight={500}
-                              fontSize="xl"
-                              color={"#008B8B"}
-                            >
-                              {showDetail}
-                            </Text>
-                          </Stack>
-                        )}
+                            Edit Event
+                          </Button>
+                        </Link>
 
-                        <Button
-                          margin="auto"
-                          bg={"black"}
-                          color={"blue.400"}
-                          onClick={onOpen}
-                        >
-                          {item.description === undefined
-                            ? "Add Description"
-                            : "Edit Description"}
-                        </Button>
                         <Modal isOpen={isOpen} onClose={onClose}>
                           <ModalOverlay />
                           <ModalContent>

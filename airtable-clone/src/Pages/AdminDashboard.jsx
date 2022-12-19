@@ -24,6 +24,7 @@ const AdminDashboard = () => {
           alignItems="center"
           padding={5}
           width={"container.xl"}
+          margin="auto"
         >
           <DAdminHomePage />
         </Box>

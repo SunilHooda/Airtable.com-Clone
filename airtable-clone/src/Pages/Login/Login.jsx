@@ -189,7 +189,7 @@ function Login() {
             });
           }
         } else if (checkPassword[0].userType === "user") {
-          saveData("loggedUser", { ...check[0] });
+          saveData("loggedUser", { ...checkPassword[0] });
           /* if userType is customer disaptch */
           addCheckPointHandler();
           dispatch(
@@ -287,7 +287,7 @@ function Login() {
             <GridItem>
               <Flex gap={4}>
                 <Box>
-                  <Heading fontSize={22}>Sign Up </Heading>
+                  <Heading fontSize={22}>Sign In </Heading>
                 </Box>
                 <Box mt={2}>
                   <BiLockAlt />

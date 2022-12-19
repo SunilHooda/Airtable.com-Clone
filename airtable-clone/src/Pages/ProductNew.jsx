@@ -11,7 +11,10 @@ import {
     useBreakpointValue,
   } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-  import QuestionNew from '../Components/QuestionNew';
+
+  import Question from '../Components/QuestionNew';
+
+
   
   export function Product() {
     return (
