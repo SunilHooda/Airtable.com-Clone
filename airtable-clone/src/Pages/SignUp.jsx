@@ -79,22 +79,6 @@ export default function SignUp() {
         userName: userName,
         userType: userType,
         employeeID: employeeID,
-        todos: [],
-        events: [],
-        tagList: [
-          {
-            id: 1,
-            tag: "Personal",
-          },
-          {
-            id: 2,
-            tag: "Official",
-          },
-          {
-            id: 3,
-            tag: "Others",
-          },
-        ],
       })
     );
     setEmail("");
