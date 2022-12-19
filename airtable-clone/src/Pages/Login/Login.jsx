@@ -161,15 +161,11 @@ function Login() {
         /* if userType is admin checking the employeeId */
         if (checkPassword[0].userType === "admin") {
           check = userObj.filter((el) => {
-            return (
-              el.userEmail === email &&
-              el.password === password &&
-              el.employeeId === employeeID
-            );
+            return el.userEmail === email && el.employeeId === employeeID;
           });
           /* if employee is is correct */
           if (check.length > 0) {
-            saveData("loggedUser", { ...check[0] });
+            saveData("loggedUser", { ...check[0], password });
 
             addCheckPointHandler();
 
