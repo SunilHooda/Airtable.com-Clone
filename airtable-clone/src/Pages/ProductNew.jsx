@@ -11,7 +11,7 @@ import {
     useBreakpointValue,
   } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-  import Question from '../Components/Question';
+  import QuestionNew from '../Components/QuestionNew';
   
   export function Product() {
     return (
@@ -85,7 +85,7 @@ import { Link } from 'react-router-dom';
         <Box>
         <Stack mt={'10'} bg={'white'} minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
         <Flex p={8} flex={1} align={'center'} justify={'center'}>
-          <Question />
+          <QuestionNew />
         </Flex>
         <Flex flex={1.5}>
           <Image borderRadius={'10'}
@@ -146,7 +146,7 @@ import { Link } from 'react-router-dom';
             You have questions? We have answers.
                 </Heading>
             </Box>
-            <Question />
+            <QuestionNew />
         </Box>
       </Box>
     {/* ...... */}

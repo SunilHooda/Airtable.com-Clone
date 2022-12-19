@@ -26,7 +26,12 @@ import DSingleBook from "../Components/Admin/DSingleBook";
 import PaymentPro from "../Components/paymentproNew";
 import ThreeTierPricing from "../Components/PricingNew";
 import PricingModal from "../Components/pricingModalNew";
+
+import { Product } from "./ProductNew";
+
+
 import Overview from "./OverviewER";
+
 
 const MainRoutes = () => {
   return (
@@ -37,11 +42,10 @@ const MainRoutes = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/profileEdit" element={<ProfileEdit />} />
 
+      
+
       <Route path="/users/:id" element={<DSingleBook />} />
       <Route path="/enterprises" element={<Overview />} />
-      <Route path="/payment" element={<PaymentPro />} />
-      <Route path="/pricing" element={<ThreeTierPricing />} />
-      <Route path="/pricingmodal" element={<PricingModal />} />
 
       <Route path="/resourse" element={<PR_Resourse />} />
       <Route path="/singleresourse" element={<PR_Single />} />
