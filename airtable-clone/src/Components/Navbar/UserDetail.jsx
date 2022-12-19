@@ -38,12 +38,22 @@ const UserDetail = () => {
     navigate("/profileEdit", { replace: true });
   };
 
-  const handleClickDashboard = () => {
+  const handleAdminDashboard = () => {
     if (userData.userType === "admin") {
       navigate("/admindashboard", { replace: true });
-    } else if (userData.userType === "user") {
-      navigate("/userdashboard", { replace: true });
+    } else {
+      toast({
+        title: "Require Admin Authorization !!!",
+        status: "info",
+        duration: 2000,
+        isClosable: true,
+        position: "top",
+      });
     }
+  };
+
+  const handleClickDashboard = () => {
+    navigate("/userdashboard", { replace: true });
   };
 
   const handleSignOut = () => {
@@ -82,9 +92,9 @@ const UserDetail = () => {
           cursor: "pointer",
           marginBottom: "-8px",
         }}
-        onClick={handleClickDashboard}
+        onClick={handleAdminDashboard}
       >
-        Go To Dashboard
+        Admin Dashboard
       </Button>
 
       <Menu>
