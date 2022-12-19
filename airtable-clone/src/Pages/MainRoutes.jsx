@@ -27,6 +27,7 @@ import PaymentPro from "../Components/paymentproNew";
 import ThreeTierPricing from "../Components/PricingNew";
 import PricingModal from "../Components/pricingModalNew";
 import Overview from "./OverviewER";
+import { Product } from "./ProductNew";
 
 const MainRoutes = () => {
   return (
@@ -42,7 +43,7 @@ const MainRoutes = () => {
       <Route path="/payment" element={<PaymentPro />} />
       <Route path="/pricing" element={<ThreeTierPricing />} />
       <Route path="/pricingmodal" element={<PricingModal />} />
-
+      <Route path="/featuresoverview" element={<Product />} />
       <Route path="/resourse" element={<PR_Resourse />} />
       <Route path="/singleresourse" element={<PR_Single />} />
       <Route path="/singletworesourse" element={<PR_Singletwo />} />

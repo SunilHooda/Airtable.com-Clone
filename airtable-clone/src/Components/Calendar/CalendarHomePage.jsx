@@ -95,12 +95,14 @@ const CalendarHomePage = () => {
     setShowDeleteBtn(false);
   };
 
-  const handleUpdateEvent = (id, newEvent) => {
-    dispatch(updateEvent(id, newEvent)).then(() => dispatch(getEvents()));
+  const handleAddEvent = (newEvent) => {
+    console.log(newEvent);
+    dispatch(addEvents(newEvent)).then(() => dispatch(getEvents()));
   };
 
-  const handleAddEvent = (newEvent) => {
-    dispatch(addEvents(newEvent)).then(() => dispatch(getEvents()));
+  const handleUpdateEvent = (id, updateEventobj) => {
+    console.log(id, updateEventobj);
+    dispatch(updateEvent(id, updateEventobj)).then(() => dispatch(getEvents()));
   };
 
   const handleDeletingEvent = (id) => {
@@ -121,6 +123,7 @@ const CalendarHomePage = () => {
   };
 
   const handleSelectEvent = (event) => {
+    console.log(event);
     setSelectedEvent(event);
     let { start, end } = event;
     start = new Date(start);
@@ -145,8 +148,9 @@ const CalendarHomePage = () => {
   };
 
   const handleSelectSlot = (event) => {
+    setSelectedEvent(undefined);
     const { start, end } = event;
-
+    console.log(event);
     const startMonth =
       start.getMonth() + 1 < 10
         ? `0${start.getMonth() + 1}`
@@ -164,16 +168,20 @@ const CalendarHomePage = () => {
   };
 
   const handleSubmitEvent = () => {
+    console.log(selectedEvent);
     if (selectedEvent) {
+      console.log(123);
       const id = selectedEvent.id;
-      const newEvent = {
+      const updateEvent = {
         title: title,
         start: new Date(startDate),
         end: new Date(endDate),
         description: "",
+        userID: checkedUserId,
       };
-      handleUpdateEvent(id, newEvent);
+      handleUpdateEvent(id, updateEvent);
     } else {
+      console.log(456);
       if (!title || !startDate || !endDate) {
         toast({
           description: "All fields are required !",
@@ -188,6 +196,7 @@ const CalendarHomePage = () => {
         start: new Date(startDate),
         end: new Date(endDate),
         description: "",
+        userID: checkedUserId,
       };
       handleAddEvent(newEvent);
     }

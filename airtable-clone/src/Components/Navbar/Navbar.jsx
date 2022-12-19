@@ -109,7 +109,7 @@ const Navbar = () => {
                   boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
                   minW="300px"
                 >
-                  <Link to="">
+                  <Link to="/featuresoverview">
                     <MenuItem
                       display="flex"
                       mt="0.8rem"
@@ -165,7 +165,7 @@ const Navbar = () => {
                   </Text>
                 </Link>
 
-                <Link to={""}>
+                <Link to={"/enterprises"}>
                   <Text
                     cursor="pointer"
                     _hover={{
@@ -235,7 +235,7 @@ const Navbar = () => {
                   boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
                   minW="300px"
                 >
-                  <Link to="">
+                  <Link to="/featuresoverview">
                     <MenuItem
                       display="flex"
                       mt="0.8rem"
@@ -282,7 +282,7 @@ const Navbar = () => {
               </Box>
 
               <Box m="25px auto" fontSize={18} fontWeight={"500"}>
-                <Link to={""}>
+                <Link to={"/enterprises"}>
                   <Text _hover={{ color: "blue", cursor: "pointer" }}>
                     Enterprise
                   </Text>

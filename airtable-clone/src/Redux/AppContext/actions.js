@@ -129,7 +129,7 @@ const getEvents = () => (dispatch) => {
 const addEvents = (event) => (dispatch) => {
   dispatch({ type: types.ADD_EVENTS_REQUEST });
   return axios
-    .post(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/events`, event)
+    .post("https://639a7c9f3a5fbccb5267f6a0.mockapi.io/events", event)
     .then((r) => {
       dispatch({ type: types.ADD_EVENTS_SUCCESS, payload: r.data });
     })
@@ -141,7 +141,7 @@ const addEvents = (event) => (dispatch) => {
 const updateEvent = (id, payload) => (dispatch) => {
   dispatch({ type: types.UPDATE_EVENT_REQUEST });
   return axios
-    .put(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/${id}`, payload)
+    .put(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/events/${id}`, payload)
     .then((r) => {
       dispatch({ type: types.UPDATE_EVENT_SUCCESS, payload: r.data });
     })
