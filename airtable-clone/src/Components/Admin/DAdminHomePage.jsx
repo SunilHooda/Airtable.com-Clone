@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import DBookCart from "./DBookCart";
 import DFilterComp from "./DFilterComp";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 
 const DAdminHomePage = () => {
   const users = useSelector((store) => store.AdminReducer.users);
@@ -27,12 +27,23 @@ const DAdminHomePage = () => {
 
   return (
     <>
-      <BookPageWrapper>
-        <FilterWrapper>
-          <DFilterComp />
-        </FilterWrapper>
-        <>
-          <Grid
+   
+   <Grid
+    templateColumns={{
+      lg: "repeat(2,1fr)",
+      md: "repeat(2,1fr)",
+      sm: "repeat(1,1fr)",
+    }}>
+    <GridItem>
+    <Box>
+    <DFilterComp />
+    </Box>
+   
+        
+       
+    </GridItem>
+    <GridItem>
+    <Grid
             templateColumns={{
               lg: "repeat(4,1fr)",
               md: "repeat(3,1fr)",
@@ -48,20 +59,25 @@ const DAdminHomePage = () => {
                 );
               })}
           </Grid>
+    </GridItem>
+
+   </Grid>
+
+
+
+        
+        <>
+      
         </>
-      </BookPageWrapper>
+    
+    
+
     </>
   );
 };
 
-const BookPageWrapper = styled.div`
-  display: flex;
-  border:1px solid gray
-`;
 
-const FilterWrapper = styled.div`
-  width: 20%;
-  border:1px solid gray
-`;
+
+
 
 export default DAdminHomePage;
