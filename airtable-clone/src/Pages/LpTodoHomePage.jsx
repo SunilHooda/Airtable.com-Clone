@@ -12,7 +12,7 @@ const LpTodoHomePage = () => {
     const [checkedUserId, setCheckedUserId] = useState("");
     const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
-
+    const [gettododata, setGettododata] = useState(true);
 
    const filterByParamTags = (task) => {
         const tagsInTheParams = searchParams.getAll('tags');
@@ -51,12 +51,14 @@ const LpTodoHomePage = () => {
     }, [dispatch, checkPoints.length]);
 
 
-
     useEffect(() => {
         if (tasks.length === 0) {
             dispatch(getTasks());
+            console.log("running!")
         };
+        tasks.length=0;
     }, [dispatch, tasks.length]);
+
    
     return (
         <Box
