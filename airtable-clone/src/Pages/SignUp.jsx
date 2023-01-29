@@ -23,6 +23,7 @@ import { BsStars } from "react-icons/bs";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { SignUpFunc } from "../Redux/AuthContext/actions";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,6 +32,8 @@ export default function SignUp() {
   const [userName, setUserName] = useState("");
   const [userType, setUserType] = useState("");
   const [employeeID, setEmployeeID] = useState("");
+  const [userObj, setUserObj] = useState([]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toast = useToast();
@@ -42,7 +45,6 @@ export default function SignUp() {
     };
   }, shallowEqual);
 
-  console.log(successCreate, createError);
 
   useEffect(() => {
     if (successCreate) {
@@ -72,20 +74,53 @@ export default function SignUp() {
   }, [createError, toast]);
 
   function SignupRequest() {
-    dispatch(
-      SignUpFunc({
-        userEmail: email,
-        password: password,
-        userName: userName,
-        userType: userType,
-        employeeID: employeeID,
-      })
-    );
-    setEmail("");
-    setPassword("");
-    setUserName("");
-    setUserType("");
+
+    let checkAlready = false;
+
+    userObj.length > 0 && userObj.forEach((el) => {
+      if(el.userEmail === email){
+        checkAlready = true;
+      }
+    })
+
+    if(!checkAlready){
+      dispatch(
+        SignUpFunc({
+          userEmail: email,
+          password: password,
+          userName: userName,
+          userType: userType,
+          employeeID: employeeID,
+        })
+      );
+      setEmail("");
+      setPassword("");
+      setUserName("");
+      setUserType("");
+    }else{
+      toast({
+        title: `User already Signed up !!!`,
+        status: "error",
+        duration: 1500,
+        position: "top",
+        isClosable: true,
+      });
+    }
+    
   }
+
+  useEffect(() => {
+    axios
+      .get("https://6398b39329930e2bb3bf7dcf.mockapi.io/users")
+      .then((response) => {
+        setUserObj(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
+
+
   return (
     <Stack>
       <Flex

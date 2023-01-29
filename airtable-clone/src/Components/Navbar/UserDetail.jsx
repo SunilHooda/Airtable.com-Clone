@@ -15,7 +15,7 @@ import {
   useToast,
   Stack,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Modal,
   ModalOverlay,
@@ -50,10 +50,6 @@ const UserDetail = () => {
         position: "top",
       });
     }
-  };
-
-  const handleClickDashboard = () => {
-    navigate("/userdashboard", { replace: true });
   };
 
   const handleSignOut = () => {
@@ -135,9 +131,15 @@ const UserDetail = () => {
             <MenuItem onClick={handleClickAccount} fontSize="1rem">
               Account
             </MenuItem>
-            <MenuItem onClick={handleClickDashboard} fontSize="1rem">
-              Dashboard
-            </MenuItem>
+            <Link to="/">
+               <MenuItem>Home</MenuItem>
+            </Link>
+            <Link to={"/todohomepage"}>
+               <MenuItem>Task Page</MenuItem>
+            </Link>
+            <Link to={"/calendarhomepage"}>
+               <MenuItem>Calendar Page</MenuItem>
+            </Link>
             <MenuItem fontSize="1rem">Feedback</MenuItem>
           </Box>
 

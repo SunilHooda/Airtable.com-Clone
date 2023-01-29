@@ -32,9 +32,7 @@ import { saveData } from "../../Utils/localStorageData";
 import {
   addCheckPoint,
   getCheckPoint,
-  getTasks,
   updateCheckPoints,
-  updateTasks,
 } from "../../Redux/AppContext/actions";
 import { useReducer } from "react";
 
@@ -66,10 +64,9 @@ function Login() {
     userIsValidateInitialState
   );
   const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
-  console.log("login checkpoint:", checkPoints);
+  // console.log("login checkpoint:", checkPoints);
 
   const [checkingMail, setCheckingMail] = useState("");
-
   const [showPassword, setShowPassword] = useState(false);
   const [userObj, setUserObj] = useState([]);
   const [email, setEmail] = useState("");
@@ -80,6 +77,8 @@ function Login() {
   // console.log(password)
 
   // .........................................................................
+
+
   // adding checkpoint data:-
   let flag = true;
   const addCheckPointHandler = () => {
@@ -95,9 +94,6 @@ function Login() {
 
     if (flag === true) {
       dispatch(addCheckPoint(userValidateState));
-      console.log("userValidateState: ", userValidateState);
-    } else if (flag === false) {
-      console.log("userValidateState: ", userValidateState);
     }
   };
   // ......................................................................................
@@ -131,9 +127,7 @@ function Login() {
   useEffect(() => {
     axios
       .get("https://6398b39329930e2bb3bf7dcf.mockapi.io/users")
-
       .then((response) => {
-        // console.log(response.data);
         setUserObj(response.data);
       })
       .catch((e) => {
@@ -154,26 +148,24 @@ function Login() {
       let checkPassword = userObj.filter((el) => {
         return el.userEmail === email && el.password === password;
       });
-      //console.log(check[0]);
-
       /* if email and password is right ,Checking the userType */
-      if (checkPassword.length > 0) {
+      if (checkEmail.length > 0 && checkPassword.length > 0) {
         /* if userType is admin checking the employeeId */
         if (checkPassword[0].userType === "admin") {
           check = userObj.filter((el) => {
-            return el.userEmail === email && el.employeeId === employeeID;
+            return el.userEmail === email && el.employeeID === employeeID;
           });
           /* if employee is is correct */
           if (check.length > 0) {
             saveData("loggedUser", { ...check[0], password });
-
             addCheckPointHandler();
-
             dispatch(
               Loginfunction({
                 ...check[0],
               })
             );
+            localStorage.setItem("userEmail", email);
+
           } else if (check.length === 0) {
             /*if employee id is not correct */
             toast({
@@ -193,6 +185,8 @@ function Login() {
               ...checkPassword[0],
             })
           );
+          localStorage.setItem("userEmail", email);
+
         }
       } else if (checkPassword.length === 0) {
         /* if password is wrong */
@@ -219,26 +213,6 @@ function Login() {
     setSelectUser("");
     setEmployee("");
   };
-  // const login = useGoogleLogin({
-  //   onSuccess: async (respose) => {
-  //     try {
-  //       const res = await axios.get(
-  //         "https://www.googleapis.com/oauth2/v3/userinfo",
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${respose.access_token}`,
-  //           },
-  //         }
-  //       );
-  //       console.log(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   },
-  // });
-
-  // const initialRef = useRef(null);
-  // const finalRef = useRef(null);
 
   // .............................................................................
 
@@ -249,7 +223,6 @@ function Login() {
   }, [dispatch, checkPoints.length]);
 
   useEffect(() => {
-    // prince77@gmail.com
     checkPoints.length > 0 &&
       checkPoints.map((elem) => {
         if (elem.mailID === checkingMail) {
@@ -262,7 +235,7 @@ function Login() {
           );
         }
       });
-  }, [checkPoints.length, dispatch]);
+  }, [checkPoints.length, checkPoints, dispatch]);
 
   // ...................................................................................
 

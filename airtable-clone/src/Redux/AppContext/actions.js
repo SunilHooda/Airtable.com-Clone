@@ -44,7 +44,6 @@ const updateTasks = (id, payload) => (dispatch) => {
     .put(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/tasks/${id}`, payload)
     .then((r) => {
       dispatch({ type: types.UPDATE_TASK_SUCCESS, payload: r.data });
-      // console.log("updated data: ", r.data);
     })
     .catch((e) => {
       dispatch({ type: types.UPDATE_TASK_FAILURE, payload: e });
@@ -105,7 +104,6 @@ const deleteTasks = (id) => (dispatch) => {
     .delete(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/tasks/${id}`)
     .then((res) => {
       dispatch({ type: types.DELETE_TASK_SUCCESS, payload: res });
-      console.log(res.data);
     })
     .catch((e) => {
       dispatch({ type: types.DELETE_TASK_FAILURE, payload: e });
@@ -156,7 +154,6 @@ const deleteEvent = (id) => (dispatch) => {
     .delete(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/events/${id}`)
     .then((res) => {
       dispatch({ type: types.DELETE_EVENT_SUCCESS, payload: res });
-      console.log(res.data);
     })
     .catch((e) => {
       dispatch({ type: types.DELETE_EVENT_FAILURE, payload: e });
@@ -181,7 +178,6 @@ const addCheckPoint = (payload) => (dispatch) => {
     .post(`https://639a7c9f3a5fbccb5267f6a0.mockapi.io/checkpoint`, payload)
     .then((res) => {
       dispatch({ type: types.GET_CHECKPOINT_SUCCESS, payload: res.data });
-      console.log("Add checkpoint: ", res.data);
     })
     .catch((e) => {
       dispatch({ type: types.GET_CHECKPOINT_FAILURE, payload: e });

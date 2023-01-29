@@ -2,9 +2,6 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
     Button,
     Box,
-    Editable,
-    EditablePreview,
-    EditableTextarea,
     FormControl,
     FormLabel,
     Input,
@@ -23,7 +20,8 @@ import {
     MenuItemOption,
     useToast
 } from "@chakra-ui/react";
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { createTasks, getTasks } from "../Redux/AppContext/actions";
@@ -83,20 +81,25 @@ const LpCreateTask = ({ isOpen, onClose }) => {
 
     const [taskState, setTaskState] = useReducer(taskReducer, initialTaskState);
     const tagList = useSelector((state) => state.AppReducer.tags);
+    const tasks = useSelector((store) => store.AppReducer.tasks);
     const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
     const toast = useToast();
+    if(taskState.userID === ""){
+        setTaskState({ type: 'userID', payload: localStorage.getItem("userEmail") });
+    }
 
 
     const createTaskHandler = () => {
         if(taskState.title !== "" && 
-        taskState.description !="" && 
+        taskState.description !=="" && 
         taskState.task_status !== "" && 
-        taskState.tags != "" && 
-        taskState.subTasks !== "" && 
-        taskState.userID !== ""){
-            console.log(taskState);
+        taskState.tags !== "" && 
+        taskState.subTasks !== ""){
+
+            // console.log(taskState);
+
             dispatch(createTasks(taskState))
             .then(() => dispatch(getTasks()))
             .then(() => toast({
@@ -108,17 +111,18 @@ const LpCreateTask = ({ isOpen, onClose }) => {
                 isClosable: true,
               }))
             .then(() => {
-                if(location.pathname !== "/todohomepage"){
-                    navigate("/todohomepage");
-                    onClose();
-                    dispatch(getTasks());
-                }
-                else{
-                    onClose();
-                    dispatch(getTasks());
-                };
+                // if(location.pathname !== "/todohomepage"){
+                //     navigate("/todohomepage");
+                //     onClose()
+                // }
+                // else{
+                //     navigate("/todohomepage");
+                //     onClose()
+                // };
+                onClose()
             });
-        }else{
+        }
+        else{
             toast({
                 title: 'All fields are not there!.',
                 description: "Please enter all the fileds.",
@@ -128,8 +132,8 @@ const LpCreateTask = ({ isOpen, onClose }) => {
                 isClosable: true,
               })
         }
+        dispatch(getTasks())
     };
-
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -149,19 +153,6 @@ const LpCreateTask = ({ isOpen, onClose }) => {
                             onChange={(e) => setTaskState({ type: 'title', payload: e.target.value })}
                         />
                     </FormControl>
-
-                    {/* UserId  */}
-
-                    <FormControl>
-                        <FormLabel>User-ID</FormLabel>
-                        <Input
-                            placeholder="User-ID"
-                            value={taskState.userID}
-                            onChange={(e) => setTaskState({ type: 'userID', payload: e.target.value })}
-                        />
-                    </FormControl>
-
-                    {/* Description  */}
 
                     <FormControl mt={4}>
                         <FormLabel>Description</FormLabel>
