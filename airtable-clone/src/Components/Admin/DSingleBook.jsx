@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import "./DBookCart.css"
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import {
   Box,
   Image,
@@ -58,8 +60,7 @@ const DSingleBook = () => {
   const users = useSelector((store) => store.AdminReducer.users);
   // console.log("🚀 ~ fil", users);
 
-  const [showtodo, setShowtodo] = useState(false);
-  const [showcalender, setShowcalender] = useState(false);
+
 
   const [currentuser, setCurrentUser] = useState([]);
   const dispatch = useDispatch();
@@ -82,20 +83,7 @@ const DSingleBook = () => {
     return false;
   };
 
-  const handleTodo = () => {
-    if (showtodo) {
-      setShowtodo(false);
-    } else {
-      setShowtodo(true);
-    }
-  };
-  const handleCalender = () => {
-    if (showcalender) {
-      setShowcalender(false);
-    } else {
-      setShowcalender(true);
-    }
-  };
+ 
 
   const handleUpdateEvent = (id, newEvent) => {
     console.log(id, newEvent);
@@ -143,11 +131,18 @@ const DSingleBook = () => {
     console.log("h");
   }, [dispatch, tasks.length, userEvents.length]);
 
+
   return (
     <>
-      <Box width={"full"} marginBottom="130px" marginTop="50px">
+      <Box width={"70%"} margin="auto" marginBottom="50px" marginTop="50px" border={"1px solid black"}
+     boxShadow= "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+     padding={"20px "}
+    borderRadius={"5px"}
+    backgroundColor={"#c8d5e0"}
+ 
+      >
         <Grid
-          width={"75%"}
+          width={"70%"}
           margin={"auto"}
           gridTemplateColumns={{
             lg: "repeat(2,1fr)",
@@ -169,8 +164,9 @@ const DSingleBook = () => {
             />
           </GridItem>
           <GridItem
+          marginLeft={"-50px"}
             textAlign="left"
-            width="85%"
+            width="75%"
             display={"flex"}
             flexDirection={"column"}
             justifyContent={"center"}
@@ -183,7 +179,7 @@ const DSingleBook = () => {
             <h1
               style={{
                 textAlign: "left",
-                fontSize: "25px",
+                fontSize: "20px",
                 marginBottom: "5px",
               }}
             >
@@ -204,15 +200,18 @@ const DSingleBook = () => {
         </Grid>
       </Box>
 
-      <Box>
-        <Flex padding="4%" paddingTop="7%" justifyContent="space-evenly">
-          <Button onClick={handleTodo}>Show Todos</Button>
-          <Button onClick={handleCalender}>Show Calender</Button>
-        </Flex>
-      </Box>
+     
 
-      {showtodo ? (
-        <Box
+
+      <Tabs  width={"60%"}  margin={"auto"} textAlign={"center"}>
+  <TabList>
+    <Tab>Show Todos</Tab>
+    <Tab>Show Calender</Tab>
+  </TabList>
+
+  <TabPanels  width={"80%"} marginLeft={"50px"}>
+    <TabPanel>
+    <Box className="todos"
           width={"full"}
           display={"grid"}
           templateColumns={{
@@ -261,12 +260,9 @@ const DSingleBook = () => {
                 })}
           </Grid>
         </Box>
-      ) : (
-        <></>
-      )}
-
-      {showcalender ? (
-        <Box display="flex" flexDirection={"column"}>
+    </TabPanel>
+    <TabPanel>
+    <Box display="flex" flexDirection={"column"}>
           <Container
             maxW="container.xl"
             margin={"auto"}
@@ -423,9 +419,22 @@ const DSingleBook = () => {
             </Grid>
           </Container>
         </Box>
-      ) : (
-        <></>
-      )}
+    </TabPanel>
+    <TabPanel>
+      <p>three!</p>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
+
+
+      
+
+    
+
+
+
+
+
     </>
   );
 };
