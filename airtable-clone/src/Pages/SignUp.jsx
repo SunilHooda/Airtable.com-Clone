@@ -95,7 +95,7 @@ export default function SignUp() {
         textAlign={"left"}
         bg={useColorModeValue("gray.50", "gray.800")}
       >
-        <Stack spacing={8} w={"40%"} maxW={"xl"}>
+        <Stack  spacing={8} w={{"2xl":'60em', xl:'60em',lg:'60em',md:'50em',sm:'30em',base:'20em'}} maxW={"xl"}>
           <Image
             borderRadius={"25"}
             width={"200px"}
@@ -106,7 +106,7 @@ export default function SignUp() {
           />
           <Stack>
             <Box mb={"5"}>
-              <Heading fontSize={"4xl"} textAlign={"start"}>
+              <Heading fontSize={{"2xl":'50px', xl:'50px',lg:'40px',md:'35px',sm:'35px',base:'30px'}} textAlign={"start"}>
                 Create your account
               </Heading>
             </Box>

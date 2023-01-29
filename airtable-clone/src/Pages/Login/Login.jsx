@@ -15,6 +15,7 @@ import {
   useToast,
   InputGroup,
   InputRightElement,
+  Stack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -268,8 +269,9 @@ function Login() {
 
   return (
     <>
-      <Container>
-        <VStack borderRadius="50%" w="lg" h="full" p={10} bg="white">
+    <Box backgroundColor={'#f7fafc'}> 
+      <Stack  m={'auto'} w={{"2xl":'60em', xl:'60em',lg:'60em',md:'50em',sm:'30em',base:'20em'}} >
+        <VStack borderRadius="50%"  h="full" p={2} >
           <Image
             objectFit="cover"
             borderRadius="20%"
@@ -278,8 +280,8 @@ function Login() {
             alt="logo"
           />
         </VStack>
-        <VStack w="lg" h="full" p={10}>
-          <Grid templateColumns="repeat(2, 1fr)" gap={40}>
+        <VStack  h="full" p={10}>
+          <Grid templateColumns="repeat(2, 1fr)" gap={5}>
             <GridItem>
               <Flex gap={4}>
                 <Box>
@@ -296,7 +298,7 @@ function Login() {
                   Or
                 </Heading>
                 <Link to="/signup">
-                  <Heading mt={2} fontSize={15} color="blue">
+                  <Heading   color="blue"  fontSize={{xl:"20px",lg:"20px",md:"20px",sm:"14px", base:'11px'}}>
                     create an account
                   </Heading>
                 </Link>
@@ -304,12 +306,12 @@ function Login() {
             </GridItem>
           </Grid>
         </VStack>
-        <VStack w="lg" h="full" p={10}>
-          <Box width="full">
-            <FormControl>
+        <VStack   m={'auto'} h="full" border={'1px solid blue'}   >
+          <Box m={2}p={4} w={{"2xl":'60%',xl:'60%',lg:"60%",md:"60%",sm:'80%',base:'90%'}} backgroundColor={'white'} borderRadius={'10px'}>
+            <FormControl >
               <FormLabel>Email address</FormLabel>
               <Input
-                w="full"
+                
                 onChange={(e) => {
                   setEmail(e.target.value);
                   setUserValidateState({
@@ -392,16 +394,18 @@ function Login() {
               border="1px"
               bg="white.500"
               w="100%"
+              fontSize={{xl:"20px",lg:"20px",md:"20px",sm:"14px", base:'11px'}}
             >
               <FcGoogle /> Continue with Google
             </Button>
           </Box>
         </VStack>
 
-        <VStack w="lg" h="full" p={10}>
+        {/* <VStack w="lg" h="full" p={10}>
           <VStack w="full"></VStack>
-        </VStack>
-      </Container>
+        </VStack> */}
+      </Stack>
+      </Box>
     </>
   );
 }
