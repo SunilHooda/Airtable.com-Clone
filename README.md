@@ -4,7 +4,7 @@ Here is the task tracking website in this website I worked in a team of 5 member
 <br/>
 <br/>
 
-## [Deployed URL]( https://webtaskit.vercel.app/)
+## [Deployed URL](https://web-taskit-ynzg.vercel.app/)
 
 # Functionality
  - Fully responsive layouts.
