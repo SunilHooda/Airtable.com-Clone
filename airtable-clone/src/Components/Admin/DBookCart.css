@@ -1,0 +1,22 @@
+.container:hover {
+    box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+  
+    transform: translateY(-1vmax);
+  }
+  .buttoni{
+   
+    margin-bottom: 10px;
+  }
+.buttoni:hover {
+background-color: antiquewhite;
+color:#3174ac ;
+  transform: translateY(-1vmax);
+  }
+  /* marginBottom={"10px"} */
+  /* bg={"green.400"} */
+
+  /* .todos:hover{
+    box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+  
+    transform: translateY(-1vmax);
+  } */

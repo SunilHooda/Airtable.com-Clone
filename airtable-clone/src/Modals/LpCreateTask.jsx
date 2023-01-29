@@ -30,7 +30,7 @@ import { createTasks, getTasks } from "../Redux/AppContext/actions";
 
 const initialTaskState = {
     title: "",
-    description: "default description",
+    description: "",
     task_status: "todo",
     tags: ["Others"],
     subTasks: [],
@@ -90,25 +90,44 @@ const LpCreateTask = ({ isOpen, onClose }) => {
 
 
     const createTaskHandler = () => {
-        dispatch(createTasks(taskState))
-        .then(() => dispatch(getTasks()))
-        .then(() => toast({
-            title: 'Task Created.',
-            description: "We've created your task for you.",
-            status: 'success',
-            duration: 2000,
-            position: "top",
-            isClosable: true,
-          }))
-        .then(() => {
-            if(location.pathname !== "/todohomepage"){
-                navigate("/todohomepage");
-                onClose();
-            }
-            else{
-                onClose();
-            };
-        });
+        if(taskState.title !== "" && 
+        taskState.description !="" && 
+        taskState.task_status !== "" && 
+        taskState.tags != "" && 
+        taskState.subTasks !== "" && 
+        taskState.userID !== ""){
+            console.log(taskState);
+            dispatch(createTasks(taskState))
+            .then(() => dispatch(getTasks()))
+            .then(() => toast({
+                title: 'Task Created.',
+                description: "We've created your task for you.",
+                status: 'success',
+                duration: 2000,
+                position: "top",
+                isClosable: true,
+              }))
+            .then(() => {
+                if(location.pathname !== "/todohomepage"){
+                    navigate("/todohomepage");
+                    onClose();
+                    dispatch(getTasks());
+                }
+                else{
+                    onClose();
+                    dispatch(getTasks());
+                };
+            });
+        }else{
+            toast({
+                title: 'All fields are not there!.',
+                description: "Please enter all the fileds.",
+                status: 'warning',
+                duration: 2000,
+                position: "top",
+                isClosable: true,
+              })
+        }
     };
 
 
@@ -125,7 +144,7 @@ const LpCreateTask = ({ isOpen, onClose }) => {
                     <FormControl>
                         <FormLabel>Title</FormLabel>
                         <Input
-                            placeholder="Title"
+                            placeholder="Enter Title"
                             value={taskState.title}
                             onChange={(e) => setTaskState({ type: 'title', payload: e.target.value })}
                         />
@@ -146,13 +165,11 @@ const LpCreateTask = ({ isOpen, onClose }) => {
 
                     <FormControl mt={4}>
                         <FormLabel>Description</FormLabel>
-                        <Editable minHeight="65px" defaultValue={taskState.description}>
-                            <EditablePreview />
-                            <EditableTextarea
+                            <Input
+                                placeholder="Enter description"
                                 value={taskState.description}
                                 onChange={(e) => setTaskState({ type: 'description', payload: e.target.value })}
-                            ></EditableTextarea>
-                        </Editable>
+                            />
                     </FormControl>
 
                     {/* Task Status  */}
