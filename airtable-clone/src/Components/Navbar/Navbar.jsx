@@ -223,6 +223,7 @@ const Navbar = () => {
                   _hover={{ color: "#0768F8", textDecoration: "underline" }}
                   fontSize={18}
                   fontWeight={"500"}
+                  onClick={onClose}
                 >
                   Product {">"}
                 </MenuButton>
@@ -237,6 +238,7 @@ const Navbar = () => {
                       gap="1rem"
                       fontSize={17}
                       fontWeight={"460"}
+                      onClick={onClose}
                     >
                       Overview
                     </MenuItem>
@@ -248,6 +250,7 @@ const Navbar = () => {
                     gap="1rem"
                     fontSize={17}
                     fontWeight={"460"}
+                    onClick={onClose}
                   >
                     Features {<IoIosArrowDown />}
                   </MenuItem>
@@ -261,14 +264,14 @@ const Navbar = () => {
                       fontWeight={"460"}
                       onClick={handleDashboard}
                     >
-                      <FaGreaterThan />
-                      Views
+                      <FaGreaterThan/>
+                      <Box onClick={onClose}>Views</Box> 
                     </MenuItem>
                   </Link>
                 </MenuList>
               </Menu>
 
-              <Box m="25px auto" fontSize={18} fontWeight={"500"}>
+              <Box onClick={onClose} m="25px auto" fontSize={18} fontWeight={"500"}>
                 <Link to={"/pricing"}>
                   <Text _hover={{ color: "blue", cursor: "pointer" }}>
                     Pricing
@@ -276,7 +279,7 @@ const Navbar = () => {
                 </Link>
               </Box>
 
-              <Box m="25px auto" fontSize={18} fontWeight={"500"}>
+              <Box onClick={onClose} m="25px auto" fontSize={18} fontWeight={"500"}>
                 <Link to={"/enterprises"}>
                   <Text _hover={{ color: "blue", cursor: "pointer" }}>
                     Enterprise
@@ -284,7 +287,7 @@ const Navbar = () => {
                 </Link>
               </Box>
 
-              <Box m="25px auto" fontSize={18} fontWeight={"500"}>
+              <Box onClick={onClose} m="25px auto" fontSize={18} fontWeight={"500"}>
                 <Link to={"/resourse"}>
                   <Text _hover={{ color: "blue", cursor: "pointer" }}>
                     Resources
@@ -292,8 +295,8 @@ const Navbar = () => {
                 </Link>
               </Box>
 
-              <Box m="25px auto">
-                {isAuth ? <UserDetail /> : <SignUpPopUp />}
+              <Box m="25px auto" onClose={onClose}>
+                {isAuth ? <UserDetail onCloseNav={onClose}/> : <SignUpPopUp onCloseNav={onClose}/>}
               </Box>
             </DrawerBody>
           </DrawerContent>

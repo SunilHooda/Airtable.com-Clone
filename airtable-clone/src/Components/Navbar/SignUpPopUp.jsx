@@ -9,15 +9,17 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-const SignUpPopUp = () => {
+const SignUpPopUp = ({onCloseNav}) => {
   const navigate = useNavigate();
   const hoverColor = "#0768F8";
 
   const handleClickSignIn = () => {
+    onCloseNav()
     navigate("/login", { replace: true });
   };
 
   const handleClickSignUp = () => {
+    onCloseNav();
     navigate("/signup", { replace: true });
   };
 

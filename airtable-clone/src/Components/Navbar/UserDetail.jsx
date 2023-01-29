@@ -26,7 +26,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNOUT } from "../../Redux/AuthContext/actionTypes";
 
-const UserDetail = () => {
+const UserDetail = ({onCloseNav}) => {
   const userData = useSelector((data) => data.AuthReducer.userData);
   // console.log(userData);
   const navigate = useNavigate();
@@ -90,7 +90,7 @@ const UserDetail = () => {
         }}
         onClick={handleAdminDashboard}
       >
-        Admin Dashboard
+        <Box onClick={onCloseNav}>Admin Dashboard</Box>
       </Button>
 
       <Menu>
@@ -129,18 +129,18 @@ const UserDetail = () => {
             p="1rem 0px"
           >
             <MenuItem onClick={handleClickAccount} fontSize="1rem">
-              Account
+              <Box onClick={onCloseNav}>Account</Box>
             </MenuItem>
             <Link to="/">
-               <MenuItem>Home</MenuItem>
+               <MenuItem onClick={onCloseNav}>Home</MenuItem>
             </Link>
             <Link to={"/todohomepage"}>
-               <MenuItem>Task Page</MenuItem>
+               <MenuItem onClick={onCloseNav}>Task Page</MenuItem>
             </Link>
             <Link to={"/calendarhomepage"}>
-               <MenuItem>Calendar Page</MenuItem>
+               <MenuItem onClick={onCloseNav}>Calendar Page</MenuItem>
             </Link>
-            <MenuItem fontSize="1rem">Feedback</MenuItem>
+            <MenuItem onClick={onCloseNav} fontSize="1rem">Feedback</MenuItem>
           </Box>
 
           <Box p="1rem">
@@ -157,7 +157,7 @@ const UserDetail = () => {
               fontSize="18px"
               borderRadius={"1rem"}
             >
-              SignOut
+              <Box onClick={onCloseNav}>SignOut</Box>
             </MenuItem>
           </Box>
         </MenuList>
