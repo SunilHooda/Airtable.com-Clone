@@ -5,21 +5,17 @@ import {
   Flex,
   Heading,
   Button,
-  ButtonGroup,
   GridItem,
   Text,
   Image,
-  CardBody,
-  Card,
-  Stack,
 } from "@chakra-ui/react";
 import { RxDotFilled } from "react-icons/rx";
 import { ImFacebook2 } from "react-icons/im";
 import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin } from "react-icons/si";
-// import data from "./data"
 import banner from "../Images/banner.png";
 import logo from "../Images/PRlogo.jpeg";
+
 const PR_Single = () => {
   return (
     <Box>

@@ -24,7 +24,6 @@ import { BiLockAlt } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
-//import { useGoogleLogin } from "@react-oauth/google";
 import { Loginfunction } from "../../Redux/AuthContext/actions";
 
 import { saveData } from "../../Utils/localStorageData";
