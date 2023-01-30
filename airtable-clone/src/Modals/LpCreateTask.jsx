@@ -20,8 +20,7 @@ import {
     MenuItemOption,
     useToast
 } from "@chakra-ui/react";
-import React, { useEffect, useReducer } from "react";
-import { useState } from "react";
+import React, { useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { createTasks, getTasks } from "../Redux/AppContext/actions";
@@ -111,15 +110,15 @@ const LpCreateTask = ({ isOpen, onClose }) => {
                 isClosable: true,
               }))
             .then(() => {
-                // if(location.pathname !== "/todohomepage"){
-                //     navigate("/todohomepage");
-                //     onClose()
-                // }
-                // else{
-                //     navigate("/todohomepage");
-                //     onClose()
-                // };
-                onClose()
+                if(location.pathname !== "/todohomepage"){
+                    navigate("/todohomepage");
+                    onClose()
+                }
+                else{
+                    navigate("/todohomepage");
+                    onClose()
+                };
+                // onClose()
             });
         }
         else{

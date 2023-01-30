@@ -26,7 +26,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNOUT } from "../../Redux/AuthContext/actionTypes";
 
-const UserDetail = ({onCloseNav}) => {
+const UserDetail = ({ onCloseNavDrawer }) => {
   const userData = useSelector((data) => data.AuthReducer.userData);
   // console.log(userData);
   const navigate = useNavigate();
@@ -52,11 +52,15 @@ const UserDetail = ({onCloseNav}) => {
     }
   };
 
+  const handleClickDashboard = () => {
+    navigate("/userdashboard", { replace: true });
+  };
+
   const handleSignOut = () => {
     localStorage.removeItem("isAuth");
     localStorage.removeItem("loggedUser");
     setTimeout(() => {
-      navigate("/signup", { replace: true });
+      navigate("/", { replace: true });
     }, 2000);
 
     dispatch({ type: SIGNOUT });
@@ -90,7 +94,7 @@ const UserDetail = ({onCloseNav}) => {
         }}
         onClick={handleAdminDashboard}
       >
-        <Box onClick={onCloseNav}>Admin Dashboard</Box>
+        <Box onClick={onCloseNavDrawer}>Admin Dashboard</Box>
       </Button>
 
       <Menu>
@@ -129,18 +133,21 @@ const UserDetail = ({onCloseNav}) => {
             p="1rem 0px"
           >
             <MenuItem onClick={handleClickAccount} fontSize="1rem">
-              <Box onClick={onCloseNav}>Account</Box>
+              <Box onClick={onCloseNavDrawer}>Account</Box>
             </MenuItem>
-            <Link to="/">
-               <MenuItem onClick={onCloseNav}>Home</MenuItem>
-            </Link>
-            <Link to={"/todohomepage"}>
-               <MenuItem onClick={onCloseNav}>Task Page</MenuItem>
-            </Link>
-            <Link to={"/calendarhomepage"}>
-               <MenuItem onClick={onCloseNav}>Calendar Page</MenuItem>
-            </Link>
-            <MenuItem onClick={onCloseNav} fontSize="1rem">Feedback</MenuItem>
+            <MenuItem fontSize="1rem">
+              <Link to="/todohomepage">
+                <Box onClick={onCloseNavDrawer}>Task Page</Box>
+              </Link>
+            </MenuItem>
+            <MenuItem fontSize="1rem">
+              <Link to="/calendarhomepage">
+                <Box onClick={onCloseNavDrawer}>Calendar Page</Box>
+              </Link>
+            </MenuItem>
+            <MenuItem fontSize="1rem">
+              <Box onClick={onCloseNavDrawer}>Feedback</Box>
+            </MenuItem>
           </Box>
 
           <Box p="1rem">
@@ -157,7 +164,7 @@ const UserDetail = ({onCloseNav}) => {
               fontSize="18px"
               borderRadius={"1rem"}
             >
-              <Box onClick={onCloseNav}>SignOut</Box>
+              <Box onClick={onCloseNavDrawer}>SignOut</Box>
             </MenuItem>
           </Box>
         </MenuList>
@@ -172,12 +179,6 @@ const UserDetail = ({onCloseNav}) => {
               WebTaskIt.
             </Text>
           </ModalBody>
-
-          <ModalFooter borderTop="0.5px solid gray">
-            <Button onClick={onClose} w="100%" variant={"flushed"}>
-              Close
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </Stack>

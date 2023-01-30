@@ -242,7 +242,7 @@ function Login() {
   return (
     <>
       <Container>
-        <VStack borderRadius="50%" w="lg" h="full" p={10} bg="white">
+        <VStack borderRadius="50%" margin="auto" w="90%" h="full" p="auto" bg="white">
           <Image
             objectFit="cover"
             borderRadius="20%"
@@ -251,7 +251,7 @@ function Login() {
             alt="logo"
           />
         </VStack>
-        <VStack w="lg" h="full" p={10}>
+        <VStack margin="auto" w="90%" h="full" p="auto">
           <Grid templateColumns="repeat(2, 1fr)" gap={40}>
             <GridItem>
               <Flex gap={4}>
@@ -277,7 +277,7 @@ function Login() {
             </GridItem>
           </Grid>
         </VStack>
-        <VStack w="lg" h="full" p={10}>
+        <VStack margin="auto" w="90%" h="full" p="auto">
           <Box width="full">
             <FormControl>
               <FormLabel>Email address</FormLabel>

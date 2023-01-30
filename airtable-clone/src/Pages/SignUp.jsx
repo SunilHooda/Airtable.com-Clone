@@ -92,12 +92,19 @@ export default function SignUp() {
           userType: userType,
           employeeID: employeeID,
         })
-      );
+      ).then(()=>toast({
+        title: `Account Created Successfull`,
+        status: "success",
+        duration: 1500,
+        position: "top",
+        isClosable: true,
+    }));
       setEmail("");
       setPassword("");
       setUserName("");
       setUserType("");
-    }else{
+    }
+    else{
       toast({
         title: `User already Signed up !!!`,
         status: "error",
@@ -122,19 +129,26 @@ export default function SignUp() {
 
 
   return (
-    <Stack>
+        
+    <Stack 
+      width={{base: "80%", sm: "75%", md: "60%", lg: "40%",xl:"30%"}} 
+      paddingTop="5%"
+      paddingBottom="5%"
+      margin="auto"
+      >
       <Flex
-        minH={"93vh"}
         align={"center"}
         justify={"center"}
         textAlign={"left"}
         bg={useColorModeValue("gray.50", "gray.800")}
+      padding="5%"
+
       >
-        <Stack spacing={8} w={"40%"} maxW={"xl"}>
+        <Stack spacing={8} w={"100%"} maxW={"xl"}>
           <Image
             borderRadius={"25"}
-            width={"200px"}
-            height={"100px"}
+            width={{base: "100px", sm:"110px", md: "150px",lg:"200px",xl:"200px"}}
+            height={{base: "70px", sm:"80px", md: "100px",lg:"100px",xl:"100px"}}
             src={logo}
             alt="photo"
             alignSelf={"center"}
@@ -151,9 +165,10 @@ export default function SignUp() {
           </Stack>
           <Box
             rounded={"lg"}
+            width="100%"
             bg={useColorModeValue("white", "gray.700")}
             boxShadow={"lg"}
-            p={8}
+            padding="3%"
           >
             <Stack spacing={4}>
               <Box>

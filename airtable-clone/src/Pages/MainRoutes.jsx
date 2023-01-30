@@ -19,14 +19,11 @@ import { UserDashboard } from "./UserDashboard";
 import CalendarHomePage from "../Components/Calendar/CalendarHomePage";
 import AllEvents from "./AllEvents";
 import { CombinedPage } from "./CombinedPage";
-
 import AdminDashboard from "./AdminDashboard";
 import DSingleBook from "../Components/Admin/DSingleBook";
-
 import PaymentPro from "../Components/paymentproNew";
 import ThreeTierPricing from "../Components/PricingNew";
 import PricingModal from "../Components/pricingModalNew";
-
 import Overview from "./OverviewER";
 import { Product } from "./ProductNew";
 import PrivateRoute from "../Routes/PriveteRoute";
