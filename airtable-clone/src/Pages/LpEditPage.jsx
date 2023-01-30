@@ -69,7 +69,6 @@ const LpEditPage = () => {
         })
       )
       .then(() => dispatch(getTasks()));
-    // console.log("newSubTasksTitle:", newSubTasksTitle)
   };
 
   const addSubTask = (e) => {
@@ -292,7 +291,8 @@ const LpEditPage = () => {
 
         <Box
           width={{ base: "90%", sm: "90%", md: "45%", lg: "45%", xl: "45%" }}
-          paddingRight="5%"
+          paddingRight={{base: "auto", sm: "auto", md: "5%", lg:"5%",xl:"5%"}}
+          margin="auto"
         >
           {/* Create new tasks  */}
 

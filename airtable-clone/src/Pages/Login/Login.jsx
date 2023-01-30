@@ -25,7 +25,6 @@ import { BiLockAlt } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import axios from "axios";
-//import { useGoogleLogin } from "@react-oauth/google";
 import { Loginfunction } from "../../Redux/AuthContext/actions";
 
 import { saveData } from "../../Utils/localStorageData";
@@ -33,9 +32,7 @@ import { saveData } from "../../Utils/localStorageData";
 import {
   addCheckPoint,
   getCheckPoint,
-  getTasks,
   updateCheckPoints,
-  updateTasks,
 } from "../../Redux/AppContext/actions";
 import { useReducer } from "react";
 
@@ -67,10 +64,9 @@ function Login() {
     userIsValidateInitialState
   );
   const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
-  console.log("login checkpoint:", checkPoints);
+  // console.log("login checkpoint:", checkPoints);
 
   const [checkingMail, setCheckingMail] = useState("");
-
   const [showPassword, setShowPassword] = useState(false);
   const [userObj, setUserObj] = useState([]);
   const [email, setEmail] = useState("");
@@ -81,6 +77,8 @@ function Login() {
   // console.log(password)
 
   // .........................................................................
+
+
   // adding checkpoint data:-
   let flag = true;
   const addCheckPointHandler = () => {
@@ -96,9 +94,6 @@ function Login() {
 
     if (flag === true) {
       dispatch(addCheckPoint(userValidateState));
-      console.log("userValidateState: ", userValidateState);
-    } else if (flag === false) {
-      console.log("userValidateState: ", userValidateState);
     }
   };
   // ......................................................................................
@@ -132,9 +127,7 @@ function Login() {
   useEffect(() => {
     axios
       .get("https://6398b39329930e2bb3bf7dcf.mockapi.io/users")
-
       .then((response) => {
-        // console.log(response.data);
         setUserObj(response.data);
       })
       .catch((e) => {
@@ -155,26 +148,24 @@ function Login() {
       let checkPassword = userObj.filter((el) => {
         return el.userEmail === email && el.password === password;
       });
-      //console.log(check[0]);
-
       /* if email and password is right ,Checking the userType */
-      if (checkPassword.length > 0) {
+      if (checkEmail.length > 0 && checkPassword.length > 0) {
         /* if userType is admin checking the employeeId */
         if (checkPassword[0].userType === "admin") {
           check = userObj.filter((el) => {
-            return el.userEmail === email && el.employeeId === employeeID;
+            return el.userEmail === email && el.employeeID === employeeID;
           });
           /* if employee is is correct */
           if (check.length > 0) {
             saveData("loggedUser", { ...check[0], password });
-
             addCheckPointHandler();
-
             dispatch(
               Loginfunction({
                 ...check[0],
               })
             );
+            localStorage.setItem("userEmail", email);
+
           } else if (check.length === 0) {
             /*if employee id is not correct */
             toast({
@@ -194,6 +185,8 @@ function Login() {
               ...checkPassword[0],
             })
           );
+          localStorage.setItem("userEmail", email);
+
         }
       } else if (checkPassword.length === 0) {
         /* if password is wrong */
@@ -220,26 +213,6 @@ function Login() {
     setSelectUser("");
     setEmployee("");
   };
-  // const login = useGoogleLogin({
-  //   onSuccess: async (respose) => {
-  //     try {
-  //       const res = await axios.get(
-  //         "https://www.googleapis.com/oauth2/v3/userinfo",
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${respose.access_token}`,
-  //           },
-  //         }
-  //       );
-  //       console.log(res.data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   },
-  // });
-
-  // const initialRef = useRef(null);
-  // const finalRef = useRef(null);
 
   // .............................................................................
 
@@ -250,7 +223,6 @@ function Login() {
   }, [dispatch, checkPoints.length]);
 
   useEffect(() => {
-    // prince77@gmail.com
     checkPoints.length > 0 &&
       checkPoints.map((elem) => {
         if (elem.mailID === checkingMail) {
@@ -263,15 +235,14 @@ function Login() {
           );
         }
       });
-  }, [checkPoints.length, dispatch]);
+  }, [checkPoints.length, checkPoints, dispatch]);
 
   // ...................................................................................
 
   return (
     <>
-    <Box backgroundColor={'#f7fafc'}> 
-      <Stack  m={'auto'} w={{"2xl":'60em', xl:'60em',lg:'60em',md:'50em',sm:'30em',base:'20em'}} >
-        <VStack borderRadius="50%"  h="full" p={2} >
+      <Container>
+        <VStack borderRadius="50%" margin="auto" w="90%" h="full" p="auto" bg="white">
           <Image
             objectFit="cover"
             borderRadius="20%"
@@ -280,8 +251,8 @@ function Login() {
             alt="logo"
           />
         </VStack>
-        <VStack  h="full" p={10}>
-          <Grid templateColumns="repeat(2, 1fr)" gap={5}>
+        <VStack margin="auto" w="90%" h="full" p="auto">
+          <Grid templateColumns="repeat(2, 1fr)" gap={40}>
             <GridItem>
               <Flex gap={4}>
                 <Box>
@@ -306,9 +277,9 @@ function Login() {
             </GridItem>
           </Grid>
         </VStack>
-        <VStack   m={'auto'} h="full" border={'1px solid blue'}   >
-          <Box m={2}p={4} w={{"2xl":'60%',xl:'60%',lg:"60%",md:"60%",sm:'80%',base:'90%'}} backgroundColor={'white'} borderRadius={'10px'}>
-            <FormControl >
+        <VStack margin="auto" w="90%" h="full" p="auto">
+          <Box width="full">
+            <FormControl>
               <FormLabel>Email address</FormLabel>
               <Input
                 

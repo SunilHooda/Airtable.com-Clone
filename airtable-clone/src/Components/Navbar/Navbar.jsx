@@ -29,6 +29,7 @@ import Logo from "./Logo.png";
 import { useSelector } from "react-redux";
 import SignUpPopUp from "./SignUpPopUp";
 import UserDetail from "./UserDetail";
+import { NavDrawer } from "./NavDrawer";
 
 const Navbar = () => {
   const isAuth = useSelector((store) => store.AuthReducer.isAuth);
@@ -201,103 +202,13 @@ const Navbar = () => {
         </Flex>
 
         <Box
-          display={["inline-block", "inline-block", "none", "none"]}
+          display={["inline-block", "inline-block", "none", "none","none"]}
           mr="2rem"
         >
-          <GiHamburgerMenu onClick={onOpen} size="1.5rem" />
+          {/* <GiHamburgerMenu onClick={onOpen} size="1.5rem" /> */}
+          <NavDrawer/>
         </Box>
         {/* Hamburger menu bar */}
-        <Drawer isOpen={isOpen} onClose={onClose} placement="right">
-          <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Explore</DrawerHeader>
-            <DrawerBody>
-              {/* <Box m="25px auto" fontSize={18} fontWeight={"500"}>
-                <Text _hover={{ color: "blue", cursor: "pointer" }}>
-                  Products {">"}
-                </Text>
-              </Box> */}
-              <Menu>
-                <MenuButton
-                  _hover={{ color: "#0768F8", textDecoration: "underline" }}
-                  fontSize={18}
-                  fontWeight={"500"}
-                >
-                  Product {">"}
-                </MenuButton>
-                <MenuList
-                  boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px"
-                  minW="300px"
-                >
-                  <Link to="/featuresoverview">
-                    <MenuItem
-                      display="flex"
-                      mt="0.8rem"
-                      gap="1rem"
-                      fontSize={17}
-                      fontWeight={"460"}
-                    >
-                      Overview
-                    </MenuItem>
-                  </Link>
-                  <MenuDivider />
-                  <MenuItem
-                    display="flex"
-                    mt="0.8rem"
-                    gap="1rem"
-                    fontSize={17}
-                    fontWeight={"460"}
-                  >
-                    Features {<IoIosArrowDown />}
-                  </MenuItem>
-                  <Link to="">
-                    <MenuItem
-                      display="flex"
-                      mt="0.8rem"
-                      ml="0.8rem"
-                      gap="1rem"
-                      fontSize={17}
-                      fontWeight={"460"}
-                      onClick={handleDashboard}
-                    >
-                      <FaGreaterThan />
-                      Views
-                    </MenuItem>
-                  </Link>
-                </MenuList>
-              </Menu>
-
-              <Box m="25px auto" fontSize={18} fontWeight={"500"}>
-                <Link to={"/pricing"}>
-                  <Text _hover={{ color: "blue", cursor: "pointer" }}>
-                    Pricing
-                  </Text>
-                </Link>
-              </Box>
-
-              <Box m="25px auto" fontSize={18} fontWeight={"500"}>
-                <Link to={"/enterprises"}>
-                  <Text _hover={{ color: "blue", cursor: "pointer" }}>
-                    Enterprise
-                  </Text>
-                </Link>
-              </Box>
-
-              <Box m="25px auto" fontSize={18} fontWeight={"500"}>
-                <Link to={"/resourse"}>
-                  <Text _hover={{ color: "blue", cursor: "pointer" }}>
-                    Resources
-                  </Text>
-                </Link>
-              </Box>
-
-              <Box m="25px auto">
-                {isAuth ? <UserDetail /> : <SignUpPopUp />}
-              </Box>
-            </DrawerBody>
-          </DrawerContent>
-        </Drawer>
       </Flex>
     </Box>
   );

@@ -15,7 +15,7 @@ import {
   useToast,
   Stack,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Modal,
   ModalOverlay,
@@ -26,7 +26,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { SIGNOUT } from "../../Redux/AuthContext/actionTypes";
 
-const UserDetail = () => {
+const UserDetail = ({ onCloseNavDrawer }) => {
   const userData = useSelector((data) => data.AuthReducer.userData);
   // console.log(userData);
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ const UserDetail = () => {
     localStorage.removeItem("isAuth");
     localStorage.removeItem("loggedUser");
     setTimeout(() => {
-      navigate("/signup", { replace: true });
+      navigate("/", { replace: true });
     }, 2000);
 
     dispatch({ type: SIGNOUT });
@@ -94,7 +94,7 @@ const UserDetail = () => {
         }}
         onClick={handleAdminDashboard}
       >
-        Admin Dashboard
+        <Box onClick={onCloseNavDrawer}>Admin Dashboard</Box>
       </Button>
 
       <Menu>
@@ -133,12 +133,21 @@ const UserDetail = () => {
             p="1rem 0px"
           >
             <MenuItem onClick={handleClickAccount} fontSize="1rem">
-              Account
+              <Box onClick={onCloseNavDrawer}>Account</Box>
             </MenuItem>
-            <MenuItem onClick={handleClickDashboard} fontSize="1rem">
-              Dashboard
+            <MenuItem fontSize="1rem">
+              <Link to="/todohomepage">
+                <Box onClick={onCloseNavDrawer}>Task Page</Box>
+              </Link>
             </MenuItem>
-            <MenuItem fontSize="1rem">Feedback</MenuItem>
+            <MenuItem fontSize="1rem">
+              <Link to="/calendarhomepage">
+                <Box onClick={onCloseNavDrawer}>Calendar Page</Box>
+              </Link>
+            </MenuItem>
+            <MenuItem fontSize="1rem">
+              <Box onClick={onCloseNavDrawer}>Feedback</Box>
+            </MenuItem>
           </Box>
 
           <Box p="1rem">
@@ -155,7 +164,7 @@ const UserDetail = () => {
               fontSize="18px"
               borderRadius={"1rem"}
             >
-              SignOut
+              <Box onClick={onCloseNavDrawer}>SignOut</Box>
             </MenuItem>
           </Box>
         </MenuList>
@@ -170,12 +179,6 @@ const UserDetail = () => {
               WebTaskIt.
             </Text>
           </ModalBody>
-
-          <ModalFooter borderTop="0.5px solid gray">
-            <Button onClick={onClose} w="100%" variant={"flushed"}>
-              Close
-            </Button>
-          </ModalFooter>
         </ModalContent>
       </Modal>
     </Stack>

@@ -13,12 +13,8 @@ const LpSidebar = () => {
   const [selectTags, setSelectTags] = useState(
     searchParams.getAll("tags") || []
   );
-  const [totalTask, setTotalTask] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
-  const [checkedUserId, setCheckedUserId] = useState("");
-  // console.log("checkPoints:", checkPoints);
-  // console.log("checkeduserid:", checkedUserId);
 
   const handleTagChange = (value) => {
     let newTags = [...selectTags];
@@ -31,14 +27,6 @@ const LpSidebar = () => {
     setSearchParams({ tags: newTags });
   };
 
-  useEffect(() => {
-    checkPoints.length > 0 &&
-      checkPoints.map((elem) => {
-        if (elem.checkValidate === true) {
-          setCheckedUserId(elem.mailID);
-        }
-      });
-  }, [checkPoints.length]);
 
   useEffect(() => {
     if (checkPoints.length === 0) {
@@ -105,7 +93,9 @@ const LpSidebar = () => {
               color={selectTags.includes("All") ? "white" : "black"}
             >
               <Flex>
-                <Text paddingLeft="5%">All</Text>
+                <Text paddingLeft="5%">Total tasks  ➛{
+                  tasks.filter((elem) => elem.userID === localStorage.getItem("userEmail")).length
+                }</Text>
               </Flex>
             </Box>
             {tagLists.length > 0 &&
@@ -144,7 +134,7 @@ const LpSidebar = () => {
                         {
                           tasks.filter((elem) =>
                             elem.tags.includes(
-                              elem.userID === checkedUserId && item.tag
+                              elem.userID === localStorage.getItem("userEmail") && item.tag
                             )
                           ).length
                         }
