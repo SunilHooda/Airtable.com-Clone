@@ -28,26 +28,27 @@ const DFilterComp = () => {
 
   return (
     <div>
-      <div>
+      <div style={{width:"30%",margin:"auto"}}>
         <h3 style={{color:"#3174ac",fontSize:"25px",fontFamily:"bold"}}>Filter Components</h3>
-        <div>
-          <div style={{}}>
+        <div style={{textAlign:"left",marginLeft:"40px"}}>
+          <div >
             <input 
               type="checkbox"
               value="admin"
               checked={userType.includes("admin")}
               onChange={handleFilterCheckbox}
             />
-            <label style={{color:"black",fontSize:"20px",fontFamily:"bold"}} htmlFor="">Admin</label>
+            <label style={{color:"black",fontSize:"20px",fontFamily:"bold",marginLeft:"5px"}} htmlFor="">Admin</label>
           </div>
-          <div>
+          <div >
             <input
+           
               type="checkbox"
               value="user"
               checked={userType.includes("user")}
               onChange={handleFilterCheckbox}
             />
-            <label style={{color:"black",fontSize:"20px",fontFamily:"bold"}} htmlFor="">User</label>
+            <label style={{color:"black",fontSize:"20px",fontFamily:"bold",marginLeft:"5px"}} htmlFor="">User</label>
           </div>
         </div>
       </div>
