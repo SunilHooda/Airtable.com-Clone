@@ -15,7 +15,6 @@ import {
   useToast,
   InputGroup,
   InputRightElement,
-  Stack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -269,7 +268,7 @@ function Login() {
                   Or
                 </Heading>
                 <Link to="/signup">
-                  <Heading   color="blue"  fontSize={{xl:"20px",lg:"20px",md:"20px",sm:"14px", base:'11px'}}>
+                  <Heading mt={2} fontSize={15} color="blue">
                     create an account
                   </Heading>
                 </Link>
@@ -282,7 +281,7 @@ function Login() {
             <FormControl>
               <FormLabel>Email address</FormLabel>
               <Input
-                
+                w="full"
                 onChange={(e) => {
                   setEmail(e.target.value);
                   setUserValidateState({
@@ -365,18 +364,16 @@ function Login() {
               border="1px"
               bg="white.500"
               w="100%"
-              fontSize={{xl:"20px",lg:"20px",md:"20px",sm:"14px", base:'11px'}}
             >
               <FcGoogle /> Continue with Google
             </Button>
           </Box>
         </VStack>
 
-        {/* <VStack w="lg" h="full" p={10}>
+        <VStack w="lg" h="full" p={10}>
           <VStack w="full"></VStack>
-        </VStack> */}
-      </Stack>
-      </Box>
+        </VStack>
+      </Container>
     </>
   );
 }

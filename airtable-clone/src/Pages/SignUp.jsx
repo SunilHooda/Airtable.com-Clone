@@ -144,7 +144,6 @@ export default function SignUp() {
       padding="5%"
 
       >
-        <Stack  spacing={8} w={{"2xl":'60em', xl:'60em',lg:'60em',md:'50em',sm:'30em',base:'20em'}} maxW={"xl"}>
         <Stack spacing={8} w={"100%"} maxW={"xl"}>
           <Image
             borderRadius={"25"}
@@ -156,7 +155,7 @@ export default function SignUp() {
           />
           <Stack>
             <Box mb={"5"}>
-              <Heading fontSize={{"2xl":'50px', xl:'50px',lg:'40px',md:'35px',sm:'35px',base:'30px'}} textAlign={"start"}>
+              <Heading fontSize={"4xl"} textAlign={"start"}>
                 Create your account
               </Heading>
             </Box>
