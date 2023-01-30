@@ -63,18 +63,22 @@ export default function ThreeTierPricing() {
         </Text>
       </VStack>
       <Stack
-        display={{ sm: "400px", md: "600px", lg: "700px", xl: "flex" }}
+      
+      m={'auto'}
+        display={{ sm: "400px", md: "500px", lg: "flex", xl: "flex" }}
+        w={{sm: "400px", md: "500px",xl:"600px",}}
         direction={{ base: "column", md: "row" }}
         textAlign="center"
         justify="center"
         spacing={{ base: 4, lg: 10 }}
         py={10}
-        padding={"10"}
+        
       >
         <Pricing>
           <Box
             backgroundColor={"white"}
             padding={"10"}
+            h={{xl:'1400px',"2xl":'1400px',lg:"1400px",md:"",base:''}}
             borderRadius={"10px 10px"}
           >
             <Box py={2} px={2} textAlign={"left"}>
@@ -147,6 +151,7 @@ export default function ThreeTierPricing() {
             padding={"10"}
             backgroundColor={"#ffeab6"}
             borderRadius={"10px 10px"}
+            h={{xl:'1400px',"2xl":'1400px',lg:"1400px",md:"",base:''}}
           >
             <Box py={3} px={3} textAlign={"left"}>
               <Text fontWeight="500" fontSize="2xl">
@@ -234,7 +239,7 @@ export default function ThreeTierPricing() {
           >
             Most Popular
           </Text>
-          <Box padding={"10"} backgroundColor={"#d0f0fd"}>
+          <Box h={{xl:'1370px',"2xl":'1370px',lg:"1370px",md:"",base:''}} padding={"10"} backgroundColor={"#d0f0fd"}>
             <Box py={3} px={3} textAlign={"left"}>
               <Text fontWeight="500" fontSize="2xl">
                 Pro
@@ -315,6 +320,7 @@ export default function ThreeTierPricing() {
             backgroundColor={"#333333"}
             borderRadius={10}
             color={"white"}
+            h={{xl:'1400px',"2xl":'1400px',lg:"1400px",md:"1400px",base:''}}
           >
             <Box py={3} px={3} textAlign={"left"}>
               <Text fontWeight="500" fontSize="2xl">
