@@ -30,7 +30,7 @@ const DFilterComp = () => {
     <div>
       <div style={{width:"30%",margin:"auto"}}>
         <h3 style={{color:"#3174ac",fontSize:"25px",fontFamily:"bold"}}>Filter Components</h3>
-        <div style={{textAlign:"left",marginLeft:"40px"}}>
+        <div style={{textAlign:"left",marginLeft:"100px",marginBottom:"20px"}}>
           <div >
             <input 
               type="checkbox"

@@ -5,7 +5,7 @@ import DAdminHomePage from "../Components/Admin/DAdminHomePage";
 const AdminDashboard = () => {
   const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
   return (
-    <Box width={"80%"}
+    <Box width={"100%"}
     margin="auto">
       <Flex direction={"column"}>
         <h1
@@ -24,8 +24,8 @@ const AdminDashboard = () => {
         <Box
           justifyContent={"center"}
           alignItems="center"
-          padding={5}
-          width={"container.xl"}
+       
+          width={"100%"}
           margin="auto"
         >
           <DAdminHomePage />

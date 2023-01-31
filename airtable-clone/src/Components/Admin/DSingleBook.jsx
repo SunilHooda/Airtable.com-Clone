@@ -2,6 +2,17 @@ import styled from "styled-components";
 import "./DBookCart.css";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import {
+  Pie,
+  PieChart,
+  Tooltip,
+  BarChart,
+  XAxis,
+  YAxis,
+  Legend,
+  Bar,
+  CartesianGrid,
+} from "recharts";
+import {
   Box,
   Image,
   Button,
@@ -43,6 +54,7 @@ const DSingleBook = () => {
   console.log("🚀 ~ file: DSingleBook.jsx:14 ~ DSingleBook ~ tasks", tasks);
   let userEvents = useSelector((store) => store.AppReducer.events);
   const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
+
   const [checkedUserId, setCheckedUserId] = useState("");
   const [detail, setDetail] = useState("");
   const [showDetail, setShowDetail] = useState(detail);
@@ -51,9 +63,12 @@ const DSingleBook = () => {
   userEvents?.forEach((item) => {
     item.start = new Date(item.start);
     item.end = new Date(item.end);
+   
   });
 
-  if (userEvents.length > 0) {
+  if (userEvents.length > 0) 
+
+  {
     userEvents = userEvents.filter((item) => item.userID === checkedUserId);
   }
 
@@ -90,7 +105,6 @@ const DSingleBook = () => {
     checkPoints.length > 0 &&
       checkPoints.map((elem) => {
         if (elem.checkValidate === true) {
-          // console.log(elem);
           setCheckedUserId(elem.mailID);
         }
       });
@@ -127,6 +141,11 @@ const DSingleBook = () => {
     console.log("h");
   }, [dispatch, tasks.length, userEvents.length]);
 
+  const data = [
+    { name: "Todos", value: 4 },
+    { name: "Calender", value: 3 },
+  ];
+
   return (
     <>
       <Box
@@ -134,7 +153,6 @@ const DSingleBook = () => {
         margin="auto"
         marginBottom="50px"
         marginTop="50px"
-       
         boxShadow="rgba(0, 0, 0, 0.50) 0px 5px 15px"
         padding={"20px "}
         borderRadius={"5px"}
@@ -199,13 +217,60 @@ const DSingleBook = () => {
         </Grid>
       </Box>
 
+      <Box style={{textAlign:"center"}}>
+        <h1 style={{fontSize:"40px",fontWeight:"bold",color:"#3174ad"}}>Users Data</h1>
+        <Box display={"flex"}
+        justifyContent="space-around"
+        alignItems={"center"}
+        >
+          <PieChart width={400} height={400}>
+            <Pie
+              dataKey="value"
+              isAnimationActive={false}
+              data={data}
+              cx="50%"
+              cy="50%"
+              outerRadius={80}
+              fill="#8884d8"
+              label
+            />
+
+            <Tooltip />
+          </PieChart>
+
+          <BarChart
+            width={500}
+            height={300}
+            data={data}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+            barSize={20}
+          >
+            <XAxis
+              dataKey="name"
+              scale="point"
+              padding={{ left: 10, right: 10 }}
+            />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <CartesianGrid strokeDasharray="3 3" />
+            <Bar dataKey="value" fill="#8884d8" background={{ fill: "#eee" }} />
+          </BarChart>
+        </Box>
+      </Box>
+
       <Tabs width={"60%"} margin={"auto"} textAlign={"center"}>
         <TabList>
           <Tab>Show Todos</Tab>
           <Tab>Show Calender</Tab>
         </TabList>
 
-        <TabPanels width={"80%"} marginLeft={"50px"}>
+        <TabPanels width={"80%"}>
           <TabPanel>
             <Box
               className="todos"
@@ -238,7 +303,13 @@ const DSingleBook = () => {
                     .filter((item) => item.userID === currentuser.userEmail)
 
                     .map((item) => {
+                    
+                      
                       return (
+                        
+
+
+
                         <GridItem
                           _hover={{ transform: "translateY(-1vmax)" }}
                           key={item.id}
@@ -250,6 +321,7 @@ const DSingleBook = () => {
                         >
                           <DSingleUserPage
                             key={item.id}
+                           
                             {...item}
                             colorScheme="red"
                           />
@@ -279,7 +351,9 @@ const DSingleBook = () => {
                   gap={4}
                   paddingTop="5px"
                 >
+                  
                   {userEvents.length > 0 &&
+                    
                     userEvents.map((item, index) => {
                       return (
                         <GridItem

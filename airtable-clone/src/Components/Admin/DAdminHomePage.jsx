@@ -31,13 +31,17 @@ const DAdminHomePage = () => {
     <Box 
      display= "flex"
      flexDirection={"column"}
-    width= "70%"
+    width= "80%"
     margin= "auto"
+  
 
      
     >
       <Box 
       marginBottom={"20px"}
+      width={"100%"}
+      margin="auto"
+      // border="1px solid red"
       >
         <DFilterComp />
       </Box>
