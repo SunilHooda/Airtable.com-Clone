@@ -15,7 +15,7 @@ import {
   import React,{useState} from "react";
   import banner from "../Images/banner.png";
   import { Link } from "react-router-dom";
-  const PR_Resourse = () => {
+  const ResoursePage = () => {
     const  data = [
       {id:1, link:"singleresourse" , title:"What is a customer experience (CX) strategy?"  ,img:"https://images.ctfassets.net/wl95ljfippl8/1fheqqSaxXT2Tb2gOK32EU/dd4b6b91de2069cc4f29bbff2b829d68/customer-experience-strategy-hero-image.png?w=1920" , subTitle:"CUSTOMER EXPERIENCE" , question1:"What is customer experience (CX)?"},
       {id:2, link:"singletworesourse" , title:"What is customer experience" ,img:"https://images.ctfassets.net/wl95ljfippl8/16DlxQWQLiYqpG9nvoyuKy/3a0d89e94e38abf6c8cd5aaed50cdeb8/customer_experience_definition_examples_hero_Image.png?w=1920" , subTitle:"CUSTOMER EXPERIENCE"},
@@ -215,5 +215,5 @@ import {
     );
   };
   
-  export default PR_Resourse;
+  export default ResoursePage;
   

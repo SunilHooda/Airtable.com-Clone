@@ -5,22 +5,17 @@ import {
   Flex,
   Heading,
   Button,
-  ButtonGroup,
   GridItem,
   Text,
   Image,
-  CardBody,
-  Card,
-  Stack,
 } from "@chakra-ui/react";
 import { RxDotFilled } from "react-icons/rx";
 import { ImFacebook2 } from "react-icons/im";
 import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin } from "react-icons/si";
-
-import banner from "../Images/banner4.png";
+import banner from "../Images/banner5.png";
 import logo from "../Images/PRlogo.jpeg";
-const PR_Singlethree = () => {
+const FourthOpenablePageSection = () => {
   return (
     <Box>
       <Box
@@ -65,7 +60,7 @@ const PR_Singlethree = () => {
         >
           <Box width={["full", "full", "full", "lg"]} ml="10">
             <Heading as="h2" size="xl" color="white">
-            What is a User Story? Definition & Examples
+            UI vs UX: What’s the difference?
             </Heading>
           </Box>
           <Box ml="10" mt="200">
@@ -85,7 +80,7 @@ const PR_Singlethree = () => {
                 <RxDotFilled />{" "}
               </Heading>
               <Heading as="h6" size="xs" color="white">
-                5 MIN READ
+                4 MIN READ
               </Heading>
             </Flex>
           </Box>
@@ -100,7 +95,7 @@ const PR_Singlethree = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        What is a user story?
+        Learn how user interface and user experience overlap and differ.
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -125,7 +120,7 @@ const PR_Singlethree = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        Who creates user stories, and why are they important?
+        How are UI and UX related?
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -150,7 +145,7 @@ const PR_Singlethree = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        Important factors in user stories
+        What's UI?
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -175,7 +170,7 @@ const PR_Singlethree = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-          Design a customer experience strategy that truly delivers
+        What's UX?
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -306,4 +301,4 @@ const PR_Singlethree = () => {
   );
 };
 
-export default PR_Singlethree;
+export default FourthOpenablePageSection;

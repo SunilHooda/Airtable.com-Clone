@@ -13,10 +13,10 @@ import { RxDotFilled } from "react-icons/rx";
 import { ImFacebook2 } from "react-icons/im";
 import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin } from "react-icons/si";
-import banner from "../Images/banner.png";
-import logo from "../Images/PRlogo.jpeg";
 
-const PR_Single = () => {
+import banner from "../Images/banner7.png";
+import logo from "../Images/PRlogo.jpeg";
+const SixthOpenablePageSection = () => {
   return (
     <Box>
       <Box
@@ -61,7 +61,7 @@ const PR_Single = () => {
         >
           <Box width={["full", "full", "full", "lg"]} ml="10">
             <Heading as="h2" size="xl" color="white">
-              How to Define a Customer Experience Strategy
+            How to make a Gantt chart: quick tutorial
             </Heading>
           </Box>
           <Box ml="10" mt="200">
@@ -96,7 +96,7 @@ const PR_Single = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        What is a customer experience (CX) strategy?
+        How to make a Gantt chart—The Ultimate Guide
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -121,7 +121,7 @@ const PR_Single = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-          4 key elements of a great CX strategy
+        How to create a Gantt chart
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -146,7 +146,7 @@ const PR_Single = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-          Best practices for designing a great CX strategy
+        Step 1: Gather your information
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -171,7 +171,7 @@ const PR_Single = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-          Design a customer experience strategy that truly delivers
+        Get the most from your Gantt chart 
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -302,4 +302,4 @@ const PR_Single = () => {
   );
 };
 
-export default PR_Single;
+export default SixthOpenablePageSection;
