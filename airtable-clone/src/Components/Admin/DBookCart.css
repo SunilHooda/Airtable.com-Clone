@@ -1,6 +1,6 @@
 .container:hover {
     box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
-  
+  background-color: rgb(160, 227, 252);
     transform: translateY(-1vmax);
   }
   .buttoni{
@@ -8,15 +8,14 @@
     margin-bottom: 10px;
   }
 .buttoni:hover {
-background-color: antiquewhite;
-color:#3174ac ;
-  transform: translateY(-1vmax);
-  }
-  /* marginBottom={"10px"} */
-  /* bg={"green.400"} */
 
-  /* .todos:hover{
-    box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+color:black ;
   
-    transform: translateY(-1vmax);
-  } */
+  }
+
+
+  @media screen and (max-width: 600px) {
+    .maincomponent {
+      height: unset;
+    
+    }}
