@@ -20,13 +20,17 @@ import CalendarHomePage from "../Components/Calendar/CalendarHomePage";
 import AllEvents from "./AllEvents";
 import { CombinedPage } from "./CombinedPage";
 import AdminDashboard from "./AdminDashboard";
-import DSingleBook from "../Components/Admin/DSingleBook";
+
 import PaymentPro from "../Components/paymentproNew";
 import ThreeTierPricing from "../Components/PricingNew";
 import PricingModal from "../Components/pricingModalNew";
 import Overview from "./OverviewER";
 import { Product } from "./ProductNew";
+
+import DSingleUser from "../Components/Admin/DSingleUser";
+
 import PrivateRoute from "../Routes/PriveteRoute";
+
 
 const MainRoutes = () => {
   return (
@@ -42,22 +46,13 @@ const MainRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route
-        path="/profileEdit"
-        element={
-          <PrivateRoute>
-            <ProfileEdit />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/users/:id"
-        element={
-          <PrivateRoute>
-            <DSingleBook />
-          </PrivateRoute>
-        }
-      />
+
+      <Route path="/profileEdit" element={<ProfileEdit />} />
+
+      
+
+      <Route path="/users/:id" element={<DSingleUser />} />
+
       <Route path="/enterprises" element={<Overview />} />
       <Route
         path="/payment"

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import "./DBookCart.css";
+import "./DUserCart.css";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import {
   Pie,
@@ -47,11 +47,11 @@ import {
 } from "../../Redux/AppContext/actions";
 import { DSingleUserPage } from "./DSingleUserPage";
 
-const DSingleBook = () => {
+const DSingleUser = () => {
   const { id } = useParams();
 
   const tasks = useSelector((store) => store.AppReducer.tasks);
-  console.log("🚀 ~ file: DSingleBook.jsx:14 ~ DSingleBook ~ tasks", tasks);
+ 
   let userEvents = useSelector((store) => store.AppReducer.events);
   const checkPoints = useSelector((store) => store.AppReducer.checkPoint);
 
@@ -126,7 +126,7 @@ const DSingleBook = () => {
     if (id) {
       const user = users.find((item) => item.id == id);
 
-      console.log(user.todos);
+      // console.log(user.todos);
       users && setCurrentUser(user);
     }
   }, [id]);
@@ -138,12 +138,22 @@ const DSingleBook = () => {
     if (userEvents.length === 0) {
       dispatch(getEvents());
     }
-    console.log("h");
+    
   }, [dispatch, tasks.length, userEvents.length]);
 
+var gettask
+const getfilter=()=>{
+   gettask=tasks.filter((item) => item.userID === currentuser.userEmail)
+ 
+   console.log(gettask.length)
+
+  }
+
+
+getfilter()
   const data = [
-    { name: "Todos", value: 4 },
-    { name: "Calender", value: 3 },
+    { name: "Todos", value:gettask.length},
+    { name: "Calender", value: userEvents.length },
   ];
 
   return (
@@ -217,12 +227,26 @@ const DSingleBook = () => {
         </Grid>
       </Box>
 
-      <Box style={{textAlign:"center"}}>
-        <h1 style={{fontSize:"40px",fontWeight:"bold",color:"#3174ad"}}>Users Data</h1>
-        <Box display={"flex"}
+      <Box style={{textAlign:"center" ,margin:"auto"}}>
+        <h1 style={{fontSize:"40px",fontWeight:"bold",color:"#3174ad"}}>Users Data Charts</h1>
+        <Box 
         justifyContent="space-around"
         alignItems={"center"}
         >
+            <Grid
+             margin={"auto"}
+            marginTop={"40px"}
+           
+          width={"70%"}
+         
+          gridTemplateColumns={{
+            lg: "repeat(2,1fr)",
+            md: "repeat(1,1fr)",
+            sm: "repeat(1,1fr)",
+            base: "repeat(1,1fr)",
+          }}
+          gap={"50px"}
+        ><GridItem>
           <PieChart width={400} height={400}>
             <Pie
               dataKey="value"
@@ -237,7 +261,8 @@ const DSingleBook = () => {
 
             <Tooltip />
           </PieChart>
-
+          </GridItem>
+          <GridItem>
           <BarChart
             width={500}
             height={300}
@@ -261,6 +286,8 @@ const DSingleBook = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <Bar dataKey="value" fill="#8884d8" background={{ fill: "#eee" }} />
           </BarChart>
+          </GridItem>
+          </Grid>
         </Box>
       </Box>
 
@@ -269,6 +296,10 @@ const DSingleBook = () => {
           <Tab>Show Todos</Tab>
           <Tab>Show Calender</Tab>
         </TabList>
+
+
+   
+
 
         <TabPanels width={"80%"}>
           <TabPanel>
@@ -289,9 +320,9 @@ const DSingleBook = () => {
                   base: "repeat(1, 1fr)",
                   sm: "repeat(1, 1fr)",
                   md: "repeat(2, 1fr)",
-                  lg: "repeat(4, 1fr)",
+                  lg: "repeat(3, 1fr)",
                 }}
-                gap={8}
+                gap={10}
                 padding="0px  20px"
                 paddingTop="5px"
                 margin={"auto"}
@@ -303,7 +334,7 @@ const DSingleBook = () => {
                     .filter((item) => item.userID === currentuser.userEmail)
 
                     .map((item) => {
-                    
+                  
                       
                       return (
                         
@@ -346,14 +377,14 @@ const DSingleBook = () => {
                     base: "repeat(1, 1fr)",
                     sm: "repeat(1, 1fr)",
                     md: "repeat(2, 1fr)",
-                    lg: "repeat(4, 1fr)",
+                    lg: "repeat(3, 1fr)",
                   }}
                   gap={4}
                   paddingTop="5px"
                 >
                   
                   {userEvents.length > 0 &&
-                    
+                  
                     userEvents.map((item, index) => {
                       return (
                         <GridItem
@@ -366,6 +397,7 @@ const DSingleBook = () => {
                             display={"flex"}
                             flexDirection={"column"}
                             paddingBottom={5}
+                       
                             boxShadow={
                               " rgba(3, 102, 214, 0.3) 0px 0px 0px 3px"
                             }
@@ -508,4 +540,4 @@ const DSingleBook = () => {
   );
 };
 
-export default DSingleBook;
+export default DSingleUser;

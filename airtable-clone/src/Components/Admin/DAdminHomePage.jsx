@@ -4,10 +4,11 @@ import { getUsers } from "../../Redux/AdminContext/action";
 import { useMediaQuery } from '@chakra-ui/react'
 import styled from "styled-components";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import DBookCart from "./DBookCart";
+
 import DFilterComp from "./DFilterComp";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
-import "./DBookCart.css";
+import "./DUserCart.css";
+import DUserCart from "./DUserCart";
 
 const DAdminHomePage = () => {
   const users = useSelector((store) => store.AdminReducer.users);
@@ -59,7 +60,7 @@ const DAdminHomePage = () => {
             users.map((ele) => {
               return (
                 <GridItem>
-                  <DBookCart key={ele.id} bookData={ele} />
+                  <DUserCart key={ele.id} userData={ele} />
                 </GridItem>
               );
             })}
