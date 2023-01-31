@@ -64,6 +64,7 @@ const DSingleUserPage = ({
       </Box>
       <Box>
         <Stack width="fit-content">
+        
           {tags.length &&
             tags.map((item, index) => {
               return (
@@ -93,7 +94,7 @@ const DSingleUserPage = ({
             subTasks.map((item, index) => {
               return (
                 <Checkbox value={item.subTaskTitle} key={index}>
-                  {item.subTaskTitle}
+                  <p style={{fontSize:"13px",overflow: "hidden"}}>{item.subTaskTitle}</p>
                 </Checkbox>
               );
             })}

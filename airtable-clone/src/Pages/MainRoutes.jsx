@@ -27,6 +27,7 @@ import PricingModal from "../Components/pricingModalNew";
 import Overview from "./OverviewER";
 import { Product } from "./ProductNew";
 import PrivateRoute from "../Routes/PriveteRoute";
+import { EventsGallary } from "../Components/Calendar/EventsGallary";
 
 const MainRoutes = () => {
   return (
@@ -115,6 +116,14 @@ const MainRoutes = () => {
               <LpSidebar />
               <LpEditPage />
             </Stack>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/show_all_eventsfor_user"
+        element={
+          <PrivateRoute>
+            <EventsGallary />
           </PrivateRoute>
         }
       />

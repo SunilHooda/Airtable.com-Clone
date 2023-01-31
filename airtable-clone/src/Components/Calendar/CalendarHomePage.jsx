@@ -24,6 +24,7 @@ import {
   ModalFooter,
   useDisclosure,
   useToast,
+  Select,
 } from "@chakra-ui/react";
 import {
   AlertDialog,
@@ -46,16 +47,21 @@ const CalendarHomePage = () => {
     item.end = new Date(item.end);
   });
 
+
+
   if (userEvents.length > 0) {
-    userEvents = userEvents.filter((item) => item.userID === checkedUserId);
+    userEvents = userEvents.filter((item) => item.userID === localStorage.getItem("userEmail"));
   }
 
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [startTime, setStartTime] = useState("00:00:00");
+  const [endTime, setEndTime] = useState("00:00:00");
   const [selectedEvent, setSelectedEvent] = useState({});
   const [openModal, setOpenModal] = useState(false);
   const [showDeleteBtn, setShowDeleteBtn] = useState(false);
+  const [amPm, setAmPm] = useState("AM");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
@@ -70,13 +76,11 @@ const CalendarHomePage = () => {
     }
   }, [dispatch, userEvents.length]);
 
-  // checking point for validate user for todos
 
   useEffect(() => {
     checkPoints.length > 0 &&
       checkPoints.map((elem) => {
         if (elem.checkValidate === true) {
-          // console.log(elem);
           setCheckedUserId(elem.mailID);
         }
       });
@@ -92,17 +96,37 @@ const CalendarHomePage = () => {
     setTitle("");
     setStartDate("");
     setEndDate("");
+    setStartTime("");
+    setEndTime("");
     setShowDeleteBtn(false);
+    setAmPm("");
   };
 
   const handleAddEvent = (newEvent) => {
-    console.log(newEvent);
+    // console.log("handleAddEvent:", newEvent);
     dispatch(addEvents(newEvent)).then(() => dispatch(getEvents()));
   };
 
   const handleUpdateEvent = (id, updateEventobj) => {
     console.log(id, updateEventobj);
-    dispatch(updateEvent(id, updateEventobj)).then(() => dispatch(getEvents()));
+    if(updateEventobj.title !== "" && 
+    updateEventobj.start !== "" && 
+    updateEventobj.end !== "" &&
+    updateEventobj.start_time !== "" &&
+    updateEventobj.end_time !== "" 
+    ){
+      dispatch(updateEvent(id, updateEventobj)).then(() => dispatch(getEvents()));
+    }
+    else{
+      toast({
+        description: "All fields are required !",
+        status: "error",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
+      });
+    }
+    clearAllFormFields();
   };
 
   const handleDeletingEvent = (id) => {
@@ -123,25 +147,21 @@ const CalendarHomePage = () => {
   };
 
   const handleSelectEvent = (event) => {
-    console.log(event);
+    // console.log("handleSelectEvent:", event);
     setSelectedEvent(event);
     let { start, end } = event;
     start = new Date(start);
     end = new Date(end);
 
-    const startMonth =
-      start.getMonth() + 1 < 10
-        ? `0${start.getMonth() + 1}`
-        : start.getMonth() + 1;
-    const startDt =
-      start.getDate() + 1 < 10 ? `0${start.getDate()}` : start.getDate();
-
-    const endMonth =
-      end.getMonth() + 1 < 10 ? `0${end.getMonth() + 1}` : end.getMonth() + 1;
+    const startMonth = start.getMonth() + 1 < 10 ? `0${start.getMonth() + 1}` : start.getMonth() + 1;
+    const startDt = start.getDate() + 1 < 10 ? `0${start.getDate()}` : start.getDate();
+    const endMonth = end.getMonth() + 1 < 10 ? `0${end.getMonth() + 1}` : end.getMonth() + 1;
     const endDt = end.getDate() + 1 < 10 ? `0${end.getDate()}` : end.getDate();
 
     setStartDate(`${start.getFullYear()}-${startMonth}-${startDt}`);
     setEndDate(`${end.getFullYear()}-${endMonth}-${endDt}`);
+    setStartTime(`${startTime}${amPm}`);
+    setEndTime(`${endTime}${amPm}`);
     setTitle(event.title);
     setOpenModal(true);
     setShowDeleteBtn(true);
@@ -150,55 +170,62 @@ const CalendarHomePage = () => {
   const handleSelectSlot = (event) => {
     setSelectedEvent(undefined);
     const { start, end } = event;
-    console.log(event);
-    const startMonth =
-      start.getMonth() + 1 < 10
-        ? `0${start.getMonth() + 1}`
-        : start.getMonth() + 1;
-    const startDt =
-      start.getDate() + 1 < 10 ? `0${start.getDate()}` : start.getDate();
-
-    const endMonth =
-      end.getMonth() + 1 < 10 ? `0${end.getMonth() + 1}` : end.getMonth() + 1;
+    // console.log("handleSelectSlot:",event);
+    const startMonth = start.getMonth() + 1 < 10 ? `0${start.getMonth() + 1}` : start.getMonth() + 1;
+    const startDt = start.getDate() + 1 < 10 ? `0${start.getDate()}` : start.getDate();
+    const endMonth = end.getMonth() + 1 < 10 ? `0${end.getMonth() + 1}` : end.getMonth() + 1;
     const endDt = end.getDate() + 1 < 10 ? `0${end.getDate()}` : end.getDate();
 
     setStartDate(`${start.getFullYear()}-${startMonth}-${startDt}`);
     setEndDate(`${end.getFullYear()}-${endMonth}-${endDt}`);
+    setStartTime(`${startTime}${amPm}`);
+    setEndTime(`${endTime}${amPm}`);
     setOpenModal(true);
   };
 
   const handleSubmitEvent = () => {
-    console.log(selectedEvent);
-    if (selectedEvent) {
+    // console.log("Selected event:-", selectedEvent);
+
+    if (selectedEvent.id) {
       console.log(123);
       const id = selectedEvent.id;
+      var time1 = selectedEvent.start_time;
+      var time2 = selectedEvent.end_time;
       const updateEvent = {
         title: title,
         start: new Date(startDate),
         end: new Date(endDate),
+        start_time: (`${startTime}${amPm}`) || time1,
+        end_time: (`${endTime}${amPm}`) || time2,
         description: "",
-        userID: checkedUserId,
+        userID: localStorage.getItem("userEmail"),
       };
       handleUpdateEvent(id, updateEvent);
-    } else {
+    }
+    else {
       console.log(456);
-      if (!title || !startDate || !endDate) {
+
+      if (title !== "" && startDate !== "" && endDate !== "" && startTime !== "" && endTime !== "") {
+        const newEvent = {
+          title: title,
+          start: new Date(startDate),
+          end: new Date(endDate),
+          start_time: (`${startTime}${amPm}`),
+          end_time: (`${endTime}${amPm}`),
+          description: "",
+          userID: localStorage.getItem("userEmail"),
+        };
+        handleAddEvent(newEvent);
+      } 
+      else {
         toast({
           description: "All fields are required !",
           status: "error",
-          duration: 1000,
+          duration: 2000,
+          position: "top",
           isClosable: true,
         });
-        return;
       }
-      const newEvent = {
-        title: title,
-        start: new Date(startDate),
-        end: new Date(endDate),
-        description: "",
-        userID: checkedUserId,
-      };
-      handleAddEvent(newEvent);
     }
     setOpenModal(false);
     clearAllFormFields();
@@ -228,7 +255,7 @@ const CalendarHomePage = () => {
           margin: "2rem auto",
         }}
       >
-        <Link to={"/alluserevents"}>
+        <Link to="/show_all_eventsfor_user">
           <button
             style={{
               padding: "0.7rem 1rem",
@@ -299,7 +326,7 @@ const CalendarHomePage = () => {
               setOpenModal(false);
             }}
           />
-          <ModalBody>
+          <ModalBody padding="5%">
             {/* title  */}
 
             <FormControl>
@@ -337,6 +364,37 @@ const CalendarHomePage = () => {
               />
             </FormControl>
           </ModalBody>
+
+          <FormControl width="90%" margin="auto">
+            <FormLabel>Start Time</FormLabel>
+            <Input
+              name="start-time"
+              type="time"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+            />
+          </FormControl>
+
+          <FormControl width="90%" margin="auto">
+            <FormLabel>End Time</FormLabel>
+            <Input
+              name="end-time"
+              type="time"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+            />
+          </FormControl>
+
+          <FormControl width="90%" margin="auto">
+            <FormLabel>PM/AM</FormLabel>
+            <Select
+              value={amPm}
+              onChange={(e) => setAmPm(e.target.value)}
+            >
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </Select>
+          </FormControl>
 
           <ModalFooter>
             <Button

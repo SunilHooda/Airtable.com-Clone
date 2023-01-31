@@ -146,6 +146,11 @@ const UserDetail = ({ onCloseNavDrawer }) => {
               </Link>
             </MenuItem>
             <MenuItem fontSize="1rem">
+              <Link to="/show_all_eventsfor_user">
+                <Box onClick={onCloseNavDrawer}>User Events</Box>
+              </Link>
+            </MenuItem>
+            <MenuItem fontSize="1rem">
               <Box onClick={onCloseNavDrawer}>Feedback</Box>
             </MenuItem>
           </Box>

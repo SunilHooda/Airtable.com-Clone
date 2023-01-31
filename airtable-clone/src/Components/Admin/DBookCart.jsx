@@ -8,10 +8,11 @@ const DBookCart = ({ bookData }) => {
     <Box className="container"
     _hover={{marginBottom:"5px"}}
       style={{
-        border: "1px solid gray",
+        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
         margin: "10px",
         padding: "20px",
         borderRadius: "5px",
+      
       
       }}
      
