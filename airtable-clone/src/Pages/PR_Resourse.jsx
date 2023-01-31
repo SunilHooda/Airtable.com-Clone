@@ -81,23 +81,22 @@ import {
           >
             <GridItem
               bg="#181d26"
-              p={10}
               h="m"
-              width={["full", "full", "full", "base"]}
+              width="100%"
             >
-              <Box width={["full", "full", "full", "sm"]} ml="10">
-                <Heading as="h2" size="lg" color="white">
+              <Box display="flex" flexDirection="column" height="90%" justifyContent="center" width="80%" m="auto" padding="2%">
+                <Heading as="h2" color="white">
                   Power up.
                 </Heading>
-                <Heading as="h6" mt="3" size="xs" color="white">
+                <Heading fontWeight="400" as="h6" width="100%" margin="auto" mt="3%" color="white" fontSize={["70%","75%","80%","90%", "200%"]}>
                   Airtable gives you the superpower to build workflows made for
                   your business objects in a visual, flexible way. Power up your
                   skillset with our catalog of resources.
                 </Heading>
-                <Heading as="h4" size="lg" mt="20" color="white">
+                <Heading as="h4" size="lg" mt="2%" color="white">
                   QUICK START
                 </Heading>
-                <ButtonGroup mt="3">
+                <ButtonGroup display="flex" flexDirection="row" justifyContent="center">
                   <Button>Product</Button>
                   <Button>Marketing</Button>
                 </ButtonGroup>
@@ -109,24 +108,26 @@ import {
             </GridItem>
           </Grid>
           <Grid
+          width="100%"
             templateColumns={[
               "repeat(1, 1fr)",
               "repeat(1, 1fr)",
               "repeat(1, 1fr)",
               "repeat(2, 1fr)",
             ]}
+            margin="auto"
           >
-            <GridItem p={[ 10 ,5 ,5 ,5]} h="auto" width={["full", "full", "full", "base"]}>
-              <Box width={["full", "full", "full", "base"]} ml="10">
-                <Heading as="h1" size="2xl" color="black.500">
+            <GridItem width="90%" margin="auto" mt={[ 10 ,5 ,5 ,5]} h="auto" >
+              <Box display="flex" justifyContent="center" alignItems="center" width="100%">
+                <Heading as="h1" color="black.500" fontSize={["150%","150%","200%","150%", "200%"]}>
                   Powerful best practices and practical how-tos.
                 </Heading>
               </Box>
             </GridItem>
   
-            <GridItem p={[ 10 ,5 ,5 ,5]} h="auto" width={["full", "full", "full", "base"]}>
-              <Box width={["full", "full", "full", "sm"]} ml="10">
-                <Text fontSize="xl" color="black.500">
+            <GridItem width="90%" margin="auto" pt={[ 10 ,5 ,5 ,5]} h="auto">
+              <Box display="flex" justifyContent="center" alignItems="center" width="100%">
+                <Text fontSize={["80%","100%","150%","100%", "100%"]} color="black.500">
                   Airtable’s leading the charge of the low- and no-code movement.
                   Explore our growing catalog of resources, and transform the way
                   your team works.
@@ -135,12 +136,12 @@ import {
             </GridItem>
           </Grid>
   
-          <Box pb="5" ml={[10,10,20,300]}>
+          <Box pb="5" ml="2%">
             <Heading color="black.300" fontSize={20} as="h4" size="sm">
               Browse
             </Heading>
           </Box>
-          <Box ml={[10,10,20,300]}  >
+          <Box>
           <hr
             width="100%"
             color="black"
@@ -149,7 +150,11 @@ import {
           </Box>
          
   
-          <Grid ml={[10,10,20,300]} mt="10" gap={5}
+          <Grid 
+            width="80%"  
+            m="auto" 
+            mt="10" 
+            gap={4}
            templateColumns={[
             "repeat(1, 1fr)",
             "repeat(2, 1fr)",
@@ -161,7 +166,7 @@ import {
             {slice.map((item)=>(
                <GridItem >
                 <Link to={`/${item.link}`}>
-               <Card  maxW="sm">
+               <Card  maxW="100%">
                  <CardBody >
                    <Image
                      src={item.img}
@@ -182,7 +187,7 @@ import {
           <Box align="center" p={10}>
           <Button onClick={()=> loadMore()}  _hover={{bg: "RGBA(0, 0, 0, 0.24)"}} size='lg' h={50} variant="outline"  color="black" bg="RGBA(0, 0, 0, 0.04)" >Load more</Button>
           </Box>
-          <Grid p={[5,10,5,10]} bg="#EBF8FF"
+          <Grid bg="#EBF8FF"
             templateColumns={[
               "repeat(1, 1fr)",
               "repeat(2, 1fr)",
