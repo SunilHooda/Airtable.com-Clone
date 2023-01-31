@@ -263,7 +263,7 @@ const LpEditPage = () => {
                 placeholder="Create New Tag"
                 onChange={(e) => setNewTag(e.target.value)}
               />
-              <Button onClick={createTagHandler} marginLeft="0.5rem">
+              <Button disabled={true} onClick={createTagHandler} marginLeft="0.5rem">
                 Create
               </Button>
             </Flex>
@@ -293,6 +293,7 @@ const LpEditPage = () => {
           width={{ base: "90%", sm: "90%", md: "45%", lg: "45%", xl: "45%" }}
           paddingRight={{base: "auto", sm: "auto", md: "5%", lg:"5%",xl:"5%"}}
           margin="auto"
+          marginTop={0}
         >
           {/* Create new tasks  */}
 

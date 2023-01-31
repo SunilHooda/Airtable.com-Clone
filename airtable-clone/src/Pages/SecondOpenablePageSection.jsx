@@ -5,21 +5,17 @@ import {
   Flex,
   Heading,
   Button,
-  ButtonGroup,
   GridItem,
   Text,
   Image,
-  CardBody,
-  Card,
-  Stack,
 } from "@chakra-ui/react";
 import { RxDotFilled } from "react-icons/rx";
 import { ImFacebook2 } from "react-icons/im";
 import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin } from "react-icons/si";
-import banner from "../Images/banner5.png";
+import banner from "../Images/banner3.jpg";
 import logo from "../Images/PRlogo.jpeg";
-const PR_Singlefour = () => {
+const SecondOpenablePageSection = () => {
   return (
     <Box>
       <Box
@@ -64,7 +60,7 @@ const PR_Singlefour = () => {
         >
           <Box width={["full", "full", "full", "lg"]} ml="10">
             <Heading as="h2" size="xl" color="white">
-            UI vs UX: What’s the difference?
+            What is User Experience (UX)?
             </Heading>
           </Box>
           <Box ml="10" mt="200">
@@ -84,7 +80,7 @@ const PR_Singlefour = () => {
                 <RxDotFilled />{" "}
               </Heading>
               <Heading as="h6" size="xs" color="white">
-                4 MIN READ
+                3 MIN READ
               </Heading>
             </Flex>
           </Box>
@@ -99,7 +95,7 @@ const PR_Singlefour = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        Learn how user interface and user experience overlap and differ.
+        What is user experience (UX)?
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -124,7 +120,7 @@ const PR_Singlefour = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        How are UI and UX related?
+        What UX isn’t
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -149,7 +145,7 @@ const PR_Singlefour = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        What's UI?
+        What is UX design? 
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -174,7 +170,7 @@ const PR_Singlefour = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        What's UX?
+        Why does UX design matter?
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -305,4 +301,4 @@ const PR_Singlefour = () => {
   );
 };
 
-export default PR_Singlefour;
+export default SecondOpenablePageSection;

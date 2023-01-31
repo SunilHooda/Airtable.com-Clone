@@ -8,13 +8,13 @@ import { Stack } from "@chakra-ui/react";
 import { LpSidebar } from "../Components/Todos/LpSidebar";
 import { LpTodoHomePage } from "./LpTodoHomePage";
 import { LpEditPage } from "./LpEditPage";
-import PR_Resourse from "./PR_Resourse";
-import PR_Single from "./PR_Single";
-import PR_Singletwo from "./PR_Singletwo";
-import PR_Singlethree from "./PR_Singlethree";
-import PR_Singlefour from "./PR_Singlefour";
-import PR_Singlefive from "./PR_Singlefive";
-import PR_Singlesix from "./PR_Singlesix";
+import ResoursePage from "./ResoursePage";
+import FirstOpenablePage from "./FirstOpenablePage";
+import SecondOpenablePageSection from "./SecondOpenablePageSection";
+import ThirdOpenablePageSection from "./ThirdOpenablePageSection";
+import FourthOpenablePageSection from "./FourthOpenablePageSection";
+import PR_Singlefive from "./FifthOpenablePageSection";
+import PR_Singlesix from "./SixthOpenablePageSection";
 import { UserDashboard } from "./UserDashboard";
 import CalendarHomePage from "../Components/Calendar/CalendarHomePage";
 import AllEvents from "./AllEvents";
@@ -27,6 +27,7 @@ import PricingModal from "../Components/pricingModalNew";
 import Overview from "./OverviewER";
 import { Product } from "./ProductNew";
 import PrivateRoute from "../Routes/PriveteRoute";
+import { EventsGallary } from "../Components/Calendar/EventsGallary";
 
 const MainRoutes = () => {
   return (
@@ -70,11 +71,11 @@ const MainRoutes = () => {
       <Route path="/pricing" element={<ThreeTierPricing />} />
       <Route path="/pricingmodal" element={<PricingModal />} />
       <Route path="/featuresoverview" element={<Product />} />
-      <Route path="/resourse" element={<PR_Resourse />} />
-      <Route path="/singleresourse" element={<PR_Single />} />
-      <Route path="/singletworesourse" element={<PR_Singletwo />} />
-      <Route path="/singlethreeresourse" element={<PR_Singlethree />} />
-      <Route path="/singlefourresourse" element={<PR_Singlefour />} />
+      <Route path="/resourse" element={<ResoursePage />} />
+      <Route path="/singleresourse" element={<FirstOpenablePage />} />
+      <Route path="/singletworesourse" element={<SecondOpenablePageSection />} />
+      <Route path="/singlethreeresourse" element={<ThirdOpenablePageSection />} />
+      <Route path="/singlefourresourse" element={<FourthOpenablePageSection />} />
       <Route path="/singlefiveresourse" element={<PR_Singlefive />} />
       <Route path="/singlesixresourse" element={<PR_Singlesix />} />
       <Route path="/combinedpage" element={<CombinedPage />} />
@@ -115,6 +116,14 @@ const MainRoutes = () => {
               <LpSidebar />
               <LpEditPage />
             </Stack>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/show_all_eventsfor_user"
+        element={
+          <PrivateRoute>
+            <EventsGallary />
           </PrivateRoute>
         }
       />

@@ -5,13 +5,9 @@ import {
   Flex,
   Heading,
   Button,
-  ButtonGroup,
   GridItem,
   Text,
   Image,
-  CardBody,
-  Card,
-  Stack,
 } from "@chakra-ui/react";
 import { RxDotFilled } from "react-icons/rx";
 import { ImFacebook2 } from "react-icons/im";
@@ -20,7 +16,7 @@ import { SiLinkedin } from "react-icons/si";
 
 import banner from "../Images/banner6.jpg";
 import logo from "../Images/PRlogo.jpeg";
-const PR_Singlefive = () => {
+const FifthOpenablePageSection = () => {
   return (
     <Box>
       <Box
@@ -306,4 +302,4 @@ const PR_Singlefive = () => {
   );
 };
 
-export default PR_Singlefive;
+export default FifthOpenablePageSection;

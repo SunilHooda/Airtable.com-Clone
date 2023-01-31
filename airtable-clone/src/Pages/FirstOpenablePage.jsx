@@ -5,21 +5,18 @@ import {
   Flex,
   Heading,
   Button,
-  ButtonGroup,
   GridItem,
   Text,
   Image,
-  CardBody,
-  Card,
-  Stack,
 } from "@chakra-ui/react";
 import { RxDotFilled } from "react-icons/rx";
 import { ImFacebook2 } from "react-icons/im";
 import { BsTwitter } from "react-icons/bs";
 import { SiLinkedin } from "react-icons/si";
-import banner from "../Images/banner3.jpg";
+import banner from "../Images/banner.png";
 import logo from "../Images/PRlogo.jpeg";
-const PR_Singletwo = () => {
+
+const FirstOpenablePage = () => {
   return (
     <Box>
       <Box
@@ -64,7 +61,7 @@ const PR_Singletwo = () => {
         >
           <Box width={["full", "full", "full", "lg"]} ml="10">
             <Heading as="h2" size="xl" color="white">
-            What is User Experience (UX)?
+              How to Define a Customer Experience Strategy
             </Heading>
           </Box>
           <Box ml="10" mt="200">
@@ -84,7 +81,7 @@ const PR_Singletwo = () => {
                 <RxDotFilled />{" "}
               </Heading>
               <Heading as="h6" size="xs" color="white">
-                3 MIN READ
+                5 MIN READ
               </Heading>
             </Flex>
           </Box>
@@ -99,7 +96,7 @@ const PR_Singletwo = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        What is user experience (UX)?
+        What is a customer experience (CX) strategy?
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -124,7 +121,7 @@ const PR_Singletwo = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        What UX isn’t
+          4 key elements of a great CX strategy
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -149,7 +146,7 @@ const PR_Singletwo = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        What is UX design? 
+          Best practices for designing a great CX strategy
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -174,7 +171,7 @@ const PR_Singletwo = () => {
       </Box>
       <Box mt={7} ml={[10, 10, 20, 300]} w={[400, 600, 700, 800]}>
         <Heading p={5} as="h2" size="xl">
-        Why does UX design matter?
+          Design a customer experience strategy that truly delivers
         </Heading>
 
         <Text p={5} fontSize="xl">
@@ -305,4 +302,4 @@ const PR_Singletwo = () => {
   );
 };
 
-export default PR_Singletwo;
+export default FirstOpenablePage;
