@@ -1,9 +1,9 @@
 import { Box, Button, Grid, GridItem } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
-import "./DBookCart.css"
+import "./DUserCart.css"
 
-const DBookCart = ({ bookData }) => {
+const DUserCart = ({ userData }) => {
   return (
     <Box className="container"
     _hover={{marginBottom:"5px"}}
@@ -28,14 +28,14 @@ const DBookCart = ({ bookData }) => {
       <Box
         style={{ textAlign: "left", fontWeight: "bold", marginBottom: "10px" }}
       >
-        <h1 style={{textAlign:"center"}}>Name : {bookData.userName}</h1>
-        <h1 style={{textAlign:"center"}}>Type : {bookData.userType}</h1>
+        <h1 style={{textAlign:"center"}}>Name : {userData.userName}</h1>
+        <h1 style={{textAlign:"center"}}>Type : {userData.userType}</h1>
       </Box>
-      <Link to={`/users/${bookData.id}`}>
+      <Link to={`/users/${userData.id}`}>
         <Button className="buttoni" bg={"green.400"} >User Info</Button>
       </Link>
     </Box>
   );
 };
 
-export default DBookCart;
+export default DUserCart;

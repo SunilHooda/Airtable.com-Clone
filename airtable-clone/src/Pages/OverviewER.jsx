@@ -18,6 +18,24 @@ import {
   AspectRatio,
 } from "@chakra-ui/react";
 import { FaCheckCircle } from "react-icons/fa";
+
+const img=[
+  "https://www.airtable.com/images/logo_bar_enterprise/Levis.svg",
+  "https://www.airtable.com/images/logo_bar_enterprise/Intuit.svg",
+  "https://www.airtable.com/images/logo_bar_enterprise/Shopify.svg",
+  "https://www.airtable.com/images/logo_bar_enterprise/Netflix.svg"
+]
+
+
+const data=[
+  {borderColor:"c6a9f5",orientation:"vertical",head:"95%",des:"less time spent on data entry (GitHub)"},
+  {borderColor:"#ffeab6",orientation:"vertical",head:"4X",des:"faster content publishing (Equinox Media)"},
+  {borderColor:"#d3ebd5",orientation:"vertical",head:"$2.6M",des:"Annual savings from automation (Fortune 100 company)"}
+ 
+]
+
+
+
 const Overview = () => {
   return (
     <Box>
@@ -62,122 +80,85 @@ const Overview = () => {
           </GridItem>
         </Grid>
 
-        <Box marginBottom="100px">
-          <Grid
-            width={"80%"}
-            margin={"auto"}
-            gridTemplateColumns={{
-              base: "repeat(2,1fr)",
+
+
+        <Box style={{  width:"80%" ,margin:"auto",marginTop:"20px",marginBottom:"20px"}}>
+        <Grid
+         gap={"50px"}
+          templateColumns={{
+            base: "repeat(2,1fr)",
               lg: "repeat(5,1fr)",
               md: "repeat(3,1fr)",
               sm: "repeat(2,1fr)",
-            }}
-            gap={"50px"}
-          >
-            <GridItem textAlign="left" width="100%">
-              <Text fontSize={25} style={{ marginBottom: "10px" }}>
-                Leading enterprises run on Airtable
-              </Text>
-            </GridItem>
-            <GridItem>
-              <Image
-                boxShadow={"rgba(43, 64, 70, 0.14) 0px 12px 32px"}
-                margin={"auto"}
-                //   width={{ lg: "200px", md: "200px", sm: "200px" }}
-                width={"100%"}
-                src="https://www.airtable.com/images/logo_bar_enterprise/Levis.svg"
-              />
-            </GridItem>
-            <GridItem>
-              <Image
-                boxShadow={"rgba(43, 64, 70, 0.14) 0px 12px 32px"}
-                margin={"auto"}
-                //   width={{ lg: "200px", md: "200px", sm: "200px" }}
-                width={"100%"}
-                src="https://www.airtable.com/images/logo_bar_enterprise/Intuit.svg"
-              />
-            </GridItem>
-            <GridItem>
-              <Image
-                boxShadow={"rgba(43, 64, 70, 0.14) 0px 12px 32px"}
-                margin={"auto"}
-                //   width={{ lg: "200px", md: "200px", sm: "200px" }}
-                width={"100%"}
-                src="https://www.airtable.com/images/logo_bar_enterprise/Shopify.svg"
-              />
-            </GridItem>
-            <GridItem>
-              <Image
-                boxShadow={"rgba(43, 64, 70, 0.14) 0px 12px 32px"}
-                margin={"auto"}
-                //   width={{ lg: "200px", md: "200px", sm: "200px" }}
-                width={"100%"}
-                src="https://www.airtable.com/images/logo_bar_enterprise/Netflix.svg"
-              />
-            </GridItem>
-          </Grid>
-        </Box>
+           
+          }}
+        ><GridItem textAlign="left" width="100%">
+        <p style={{ marginBottom: "40px",fontSize:"25px" }}>
+        Leading enterprises run on Airtable
+        </p>
+      </GridItem>
+          {img.length > 0 &&
+            img.map((ele) => {
+              return (
+               
+                <GridItem>
+              <Image  boxShadow={"rgba(43, 64, 70, 0.14) 0px 12px 32px"}
+            margin={"auto"}
+            //   width={{ lg: "200px", md: "200px", sm: "200px" }}
+            width={"100%"} src={ele} alt="img" />
+                </GridItem>
+              );
+            })}
+        </Grid>
+      </Box>
+
       </Box>
 
       <Box p={5} mb="50" textAlign={["left", "left", "center", "center"]}>
         <Heading as="h2" size="3xl">
           Results you can count on
         </Heading>
+
+
+
+        <Box style={{  width:"100%" ,margin:"auto",marginTop:"20px",marginBottom:"20px"}}>
         <Grid
-          mt="5"
+         gap={"50px"}
           templateColumns={[
             "repeat(1, 1fr)",
             "repeat(1, 1fr)",
             "repeat(3, 1fr)",
             "repeat(3, 1fr)",
-          ]}
+          ]
+          }
         >
-          <GridItem>
-            <Stack direction="row" h="150px" p={4}>
-              <Divider
-                border="5px"
-                borderColor="#c6a9f5"
-                orientation="vertical"
-              />
-              <Box align="left">
-                <Heading fontSize={30}>95%</Heading>
-                <Heading fontSize={20}>
-                  less time spent on data entry (GitHub)
-                </Heading>
-              </Box>
-            </Stack>
-          </GridItem>
-          <GridItem>
-            <Stack direction="row" h="150px" p={4}>
-              <Divider
-                border="5px"
-                borderColor="#ffeab6"
-                orientation="vertical"
-              />
-              <Box align="left">
-                <Heading fontSize={30}>4X</Heading>
-                <Heading fontSize={20}>
-                  faster content publishing (Equinox Media)
-                </Heading>
-              </Box>
-            </Stack>
-          </GridItem>
-          <GridItem>
-            <Stack direction="row" h="150px" p={4}>
-              <Divider
-                border="5px"
-                borderColor="#d3ebd5"
-                orientation="vertical"
-              />
-              <Box align="left">
-                <Heading fontSize={30}>$2.6M</Heading>
-                <Heading fontSize={20}>
-                  Annual savings from automation (Fortune 100 company)
-                </Heading>
-              </Box>
-            </Stack>
-          </GridItem>
+          {data.length > 0 &&
+            data.map((ele) => {
+              return (
+               
+                <GridItem>
+                <Stack direction="row" h="150px" p={4}>
+                  <Divider
+                    border="5px"
+                    borderColor={ele.borderColor}
+                    orientation="vertical"
+                  />
+                  <Box align="left">
+                    <Heading fontSize={30}>{ele.head}</Heading>
+                    <Heading fontSize={20}>
+                     {ele.des}
+                    </Heading>
+                  </Box>
+                </Stack>
+              </GridItem>
+              );
+            })}
         </Grid>
+      </Box>
+
+
+
+       
       </Box>
 
       <Box>
